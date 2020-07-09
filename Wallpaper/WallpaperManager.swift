@@ -9,5 +9,7 @@
 import UIKit
 
 class WallpaperManager: NSObject {
-
+    func saveWallPaper(paperName: String) {
+        
+    }
 }

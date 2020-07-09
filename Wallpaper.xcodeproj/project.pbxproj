@@ -17,6 +17,10 @@
 		660AF24524B73E780042C2FB /* WallpaperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF24424B73E780042C2FB /* WallpaperUITests.swift */; };
 		660AF25324B73F5B0042C2FB /* WallpaperManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF25224B73F5B0042C2FB /* WallpaperManager.swift */; };
 		660AF25524B743600042C2FB /* WallpaperDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF25424B743600042C2FB /* WallpaperDownloader.swift */; };
+		660AF25E24B748C50042C2FB /* apple.mov in Resources */ = {isa = PBXBuildFile; fileRef = 660AF25A24B748C50042C2FB /* apple.mov */; };
+		660AF25F24B748C50042C2FB /* asnw.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 660AF25B24B748C50042C2FB /* asnw.jpg */; };
+		660AF26124B748C50042C2FB /* apple.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 660AF25D24B748C50042C2FB /* apple.jpg */; };
+		660AF26324B754DD0042C2FB /* asnw.mov in Resources */ = {isa = PBXBuildFile; fileRef = 660AF26224B754DD0042C2FB /* asnw.mov */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,10 @@
 		660AF24624B73E780042C2FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		660AF25224B73F5B0042C2FB /* WallpaperManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperManager.swift; sourceTree = "<group>"; };
 		660AF25424B743600042C2FB /* WallpaperDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperDownloader.swift; sourceTree = "<group>"; };
+		660AF25A24B748C50042C2FB /* apple.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = apple.mov; sourceTree = "<group>"; };
+		660AF25B24B748C50042C2FB /* asnw.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = asnw.jpg; sourceTree = "<group>"; };
+		660AF25D24B748C50042C2FB /* apple.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = apple.jpg; sourceTree = "<group>"; };
+		660AF26224B754DD0042C2FB /* asnw.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = asnw.mov; sourceTree = "<group>"; };
 		B404D6B80DB9C3AF34207F6D /* Pods-Wallpaper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper.debug.xcconfig"; path = "Target Support Files/Pods-Wallpaper/Pods-Wallpaper.debug.xcconfig"; sourceTree = "<group>"; };
 		E6A933E3C7F7388999F4BB88 /* libPods-Wallpaper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wallpaper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -108,6 +116,7 @@
 		660AF22124B73E760042C2FB /* Wallpaper */ = {
 			isa = PBXGroup;
 			children = (
+				660AF25824B748A50042C2FB /* Resources */,
 				660AF22224B73E760042C2FB /* AppDelegate.swift */,
 				660AF22624B73E760042C2FB /* ViewController.swift */,
 				660AF25224B73F5B0042C2FB /* WallpaperManager.swift */,
@@ -138,13 +147,31 @@
 			path = WallpaperUITests;
 			sourceTree = "<group>";
 		};
+		660AF25824B748A50042C2FB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				660AF25924B748C50042C2FB /* wallpapers */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		660AF25924B748C50042C2FB /* wallpapers */ = {
+			isa = PBXGroup;
+			children = (
+				660AF25A24B748C50042C2FB /* apple.mov */,
+				660AF25B24B748C50042C2FB /* asnw.jpg */,
+				660AF25D24B748C50042C2FB /* apple.jpg */,
+				660AF26224B754DD0042C2FB /* asnw.mov */,
+			);
+			path = wallpapers;
+			sourceTree = "<group>";
+		};
 		A892ED4BB1FF84098DDFBA97 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				B404D6B80DB9C3AF34207F6D /* Pods-Wallpaper.debug.xcconfig */,
 				20D86C73562B8CE670E00EAC /* Pods-Wallpaper.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -262,8 +289,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				660AF22F24B73E770042C2FB /* LaunchScreen.storyboard in Resources */,
+				660AF25F24B748C50042C2FB /* asnw.jpg in Resources */,
+				660AF26324B754DD0042C2FB /* asnw.mov in Resources */,
 				660AF22C24B73E770042C2FB /* Assets.xcassets in Resources */,
+				660AF26124B748C50042C2FB /* apple.jpg in Resources */,
 				660AF22A24B73E760042C2FB /* Main.storyboard in Resources */,
+				660AF25E24B748C50042C2FB /* apple.mov in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
