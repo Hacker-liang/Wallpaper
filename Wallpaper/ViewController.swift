@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  Wallpaper
+//  LivePhoto
 //
 //  Created by langren on 2020/7/9.
 //  Copyright © 2020 langren. All rights reserved.
@@ -20,29 +20,48 @@ class ViewController: UIViewController {
         livePhotoView = PHLivePhotoView(frame: self.view.bounds)
         self.view.addSubview(livePhotoView)
         
-//        let tap = UITapGestureRecognizer()
-//        tap.numberOfTouchesRequired = 1
-//        tap.numberOfTapsRequired = 1
-//        tap.addTarget(self, action: #selector(livePhotoViewPress))
-//        livePhotoView.addGestureRecognizer(tap)
+        let tap = UITapGestureRecognizer()
+        tap.numberOfTouchesRequired = 1
+        tap.numberOfTapsRequired = 1
+        tap.addTarget(self, action: #selector(livePhotoViewPress))
+        livePhotoView.addGestureRecognizer(tap)
         
-        guard let jpgFilePath = Bundle.main.path(forResource: "apple", ofType: "jpg"), let jpgUrl = URL(string: jpgFilePath), let movFilePath = Bundle.main.path(forResource: "apple", ofType: "mov"), let movUrl = URL(string: movFilePath) else {
+        
+    }
+    
+    func updateLivePhoto(jpgName: String, movName: String) {
+        guard let jpgFilePath = Bundle.main.path(forResource: jpgName, ofType: "jpg"), let movFilePath = Bundle.main.path(forResource: movName, ofType: "mov") else {
             return
         }
-        PHLivePhoto.request(withResourceFileURLs: [jpgUrl,movUrl], placeholderImage: UIImage(named: "asnw.jpg"), targetSize: CGSize(width: 375, height: 667), contentMode: .aspectFill) { (photo, result) in
+        let jpgUrl = URL.init(fileURLWithPath: jpgFilePath)
+        let movUrl = URL.init(fileURLWithPath: movFilePath)
+        PHLivePhoto.request(withResourceFileURLs: [jpgUrl,movUrl], placeholderImage: UIImage(named: "\(jpgName).jpg"), targetSize: self.livePhotoView.bounds.size, contentMode: .aspectFill) { (photo, result) in
             if let p = photo {
-                self.updateLivePhoto(livePhoto: p)
+                self.livePhotoView.livePhoto = p
             }
         }
     }
     
-    func updateLivePhoto(livePhoto: PHLivePhoto) {
-        livePhotoView.livePhoto = livePhoto
+    @objc func livePhotoViewPress() {
+        
+        self.updateLivePhoto(jpgName: "test1", movName: "test1")
+//        PHPhotoLibrary.shared().performChanges({
+//            let request = PHAssetCreationRequest.forAsset()
+//            request.addResource(with: .photo, fileURL: jpgUrl, options: nil)
+//            request.addResource(with: .pairedVideo, fileURL: movUrl, options: nil)
+//
+//        }) { (success, error) in
+//            if success {
+//                print("保存成功")
+//            } else {
+//                print("保存失败")
+//            }
+//        }
     }
     
-    @objc func livePhotoViewPress() {
-        self.livePhotoView.startPlayback(with: .full)
-    }
+//    func checkLivePhotoInAlbum() {
+//        PHPhotoLibrary.shared().
+//    }
 }
 
 

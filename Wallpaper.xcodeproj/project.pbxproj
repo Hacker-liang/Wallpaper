@@ -15,12 +15,15 @@
 		660AF22F24B73E770042C2FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 660AF22D24B73E770042C2FB /* LaunchScreen.storyboard */; };
 		660AF23A24B73E780042C2FB /* WallpaperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF23924B73E780042C2FB /* WallpaperTests.swift */; };
 		660AF24524B73E780042C2FB /* WallpaperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF24424B73E780042C2FB /* WallpaperUITests.swift */; };
-		660AF25324B73F5B0042C2FB /* WallpaperManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF25224B73F5B0042C2FB /* WallpaperManager.swift */; };
-		660AF25524B743600042C2FB /* WallpaperDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF25424B743600042C2FB /* WallpaperDownloader.swift */; };
+		660AF25324B73F5B0042C2FB /* LivePhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF25224B73F5B0042C2FB /* LivePhotoManager.swift */; };
+		660AF25524B743600042C2FB /* LivePhotoDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF25424B743600042C2FB /* LivePhotoDownloader.swift */; };
 		660AF25E24B748C50042C2FB /* apple.mov in Resources */ = {isa = PBXBuildFile; fileRef = 660AF25A24B748C50042C2FB /* apple.mov */; };
 		660AF25F24B748C50042C2FB /* asnw.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 660AF25B24B748C50042C2FB /* asnw.jpg */; };
-		660AF26124B748C50042C2FB /* apple.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 660AF25D24B748C50042C2FB /* apple.jpg */; };
-		660AF26324B754DD0042C2FB /* asnw.mov in Resources */ = {isa = PBXBuildFile; fileRef = 660AF26224B754DD0042C2FB /* asnw.mov */; };
+		660AF26124B748C50042C2FB /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 660AF25D24B748C50042C2FB /* test.jpg */; };
+		660AF26324B754DD0042C2FB /* test2.mov in Resources */ = {isa = PBXBuildFile; fileRef = 660AF26224B754DD0042C2FB /* test2.mov */; };
+		660AF26524B897480042C2FB /* LivePhotoUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF26424B897480042C2FB /* LivePhotoUploader.swift */; };
+		660AF26C24B89D440042C2FB /* test1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 660AF26A24B89D440042C2FB /* test1.jpg */; };
+		660AF26D24B89D440042C2FB /* test1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 660AF26B24B89D440042C2FB /* test1.mov */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,12 +58,16 @@
 		660AF24024B73E780042C2FB /* WallpaperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WallpaperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		660AF24424B73E780042C2FB /* WallpaperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperUITests.swift; sourceTree = "<group>"; };
 		660AF24624B73E780042C2FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		660AF25224B73F5B0042C2FB /* WallpaperManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperManager.swift; sourceTree = "<group>"; };
-		660AF25424B743600042C2FB /* WallpaperDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperDownloader.swift; sourceTree = "<group>"; };
+		660AF25224B73F5B0042C2FB /* LivePhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoManager.swift; sourceTree = "<group>"; };
+		660AF25424B743600042C2FB /* LivePhotoDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoDownloader.swift; sourceTree = "<group>"; };
 		660AF25A24B748C50042C2FB /* apple.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = apple.mov; sourceTree = "<group>"; };
 		660AF25B24B748C50042C2FB /* asnw.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = asnw.jpg; sourceTree = "<group>"; };
-		660AF25D24B748C50042C2FB /* apple.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = apple.jpg; sourceTree = "<group>"; };
-		660AF26224B754DD0042C2FB /* asnw.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = asnw.mov; sourceTree = "<group>"; };
+		660AF25D24B748C50042C2FB /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
+		660AF26224B754DD0042C2FB /* test2.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test2.mov; sourceTree = "<group>"; };
+		660AF26424B897480042C2FB /* LivePhotoUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoUploader.swift; sourceTree = "<group>"; };
+		660AF26624B898280042C2FB /* Wallpaper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wallpaper-Bridging-Header.h"; sourceTree = "<group>"; };
+		660AF26A24B89D440042C2FB /* test1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test1.jpg; sourceTree = "<group>"; };
+		660AF26B24B89D440042C2FB /* test1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test1.mov; sourceTree = "<group>"; };
 		B404D6B80DB9C3AF34207F6D /* Pods-Wallpaper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper.debug.xcconfig"; path = "Target Support Files/Pods-Wallpaper/Pods-Wallpaper.debug.xcconfig"; sourceTree = "<group>"; };
 		E6A933E3C7F7388999F4BB88 /* libPods-Wallpaper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wallpaper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -119,12 +126,14 @@
 				660AF25824B748A50042C2FB /* Resources */,
 				660AF22224B73E760042C2FB /* AppDelegate.swift */,
 				660AF22624B73E760042C2FB /* ViewController.swift */,
-				660AF25224B73F5B0042C2FB /* WallpaperManager.swift */,
-				660AF25424B743600042C2FB /* WallpaperDownloader.swift */,
+				660AF25224B73F5B0042C2FB /* LivePhotoManager.swift */,
+				660AF25424B743600042C2FB /* LivePhotoDownloader.swift */,
+				660AF26424B897480042C2FB /* LivePhotoUploader.swift */,
 				660AF22824B73E760042C2FB /* Main.storyboard */,
 				660AF22B24B73E770042C2FB /* Assets.xcassets */,
 				660AF22D24B73E770042C2FB /* LaunchScreen.storyboard */,
 				660AF23024B73E770042C2FB /* Info.plist */,
+				660AF26624B898280042C2FB /* Wallpaper-Bridging-Header.h */,
 			);
 			path = Wallpaper;
 			sourceTree = "<group>";
@@ -150,20 +159,22 @@
 		660AF25824B748A50042C2FB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				660AF25924B748C50042C2FB /* wallpapers */,
+				660AF25924B748C50042C2FB /* LivePhotos */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		660AF25924B748C50042C2FB /* wallpapers */ = {
+		660AF25924B748C50042C2FB /* LivePhotos */ = {
 			isa = PBXGroup;
 			children = (
+				660AF26A24B89D440042C2FB /* test1.jpg */,
+				660AF26B24B89D440042C2FB /* test1.mov */,
 				660AF25A24B748C50042C2FB /* apple.mov */,
 				660AF25B24B748C50042C2FB /* asnw.jpg */,
-				660AF25D24B748C50042C2FB /* apple.jpg */,
-				660AF26224B754DD0042C2FB /* asnw.mov */,
+				660AF25D24B748C50042C2FB /* test.jpg */,
+				660AF26224B754DD0042C2FB /* test2.mov */,
 			);
-			path = wallpapers;
+			path = LivePhotos;
 			sourceTree = "<group>";
 		};
 		A892ED4BB1FF84098DDFBA97 /* Pods */ = {
@@ -252,6 +263,7 @@
 				TargetAttributes = {
 					660AF21E24B73E760042C2FB = {
 						CreatedOnToolsVersion = 11.4;
+						LastSwiftMigration = 1140;
 					};
 					660AF23424B73E780042C2FB = {
 						CreatedOnToolsVersion = 11.4;
@@ -290,11 +302,13 @@
 			files = (
 				660AF22F24B73E770042C2FB /* LaunchScreen.storyboard in Resources */,
 				660AF25F24B748C50042C2FB /* asnw.jpg in Resources */,
-				660AF26324B754DD0042C2FB /* asnw.mov in Resources */,
+				660AF26324B754DD0042C2FB /* test2.mov in Resources */,
 				660AF22C24B73E770042C2FB /* Assets.xcassets in Resources */,
-				660AF26124B748C50042C2FB /* apple.jpg in Resources */,
+				660AF26124B748C50042C2FB /* test.jpg in Resources */,
 				660AF22A24B73E760042C2FB /* Main.storyboard in Resources */,
+				660AF26D24B89D440042C2FB /* test1.mov in Resources */,
 				660AF25E24B748C50042C2FB /* apple.mov in Resources */,
+				660AF26C24B89D440042C2FB /* test1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,10 +358,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				660AF26524B897480042C2FB /* LivePhotoUploader.swift in Sources */,
 				660AF22724B73E760042C2FB /* ViewController.swift in Sources */,
-				660AF25324B73F5B0042C2FB /* WallpaperManager.swift in Sources */,
+				660AF25324B73F5B0042C2FB /* LivePhotoManager.swift in Sources */,
 				660AF22324B73E760042C2FB /* AppDelegate.swift in Sources */,
-				660AF25524B743600042C2FB /* WallpaperDownloader.swift in Sources */,
+				660AF25524B743600042C2FB /* LivePhotoDownloader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +536,7 @@
 			baseConfigurationReference = B404D6B80DB9C3AF34207F6D /* Pods-Wallpaper.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5VYP985JJ2;
 				INFOPLIST_FILE = Wallpaper/Info.plist;
@@ -531,6 +547,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lps.Wallpaper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Wallpaper/Wallpaper-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -541,6 +559,7 @@
 			baseConfigurationReference = 20D86C73562B8CE670E00EAC /* Pods-Wallpaper.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5VYP985JJ2;
 				INFOPLIST_FILE = Wallpaper/Info.plist;
@@ -551,6 +570,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lps.Wallpaper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Wallpaper/Wallpaper-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

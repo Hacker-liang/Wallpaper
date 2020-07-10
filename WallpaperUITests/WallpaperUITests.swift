@@ -1,6 +1,6 @@
 //
-//  WallpaperUITests.swift
-//  WallpaperUITests
+//  LivePhotoUITests.swift
+//  LivePhotoUITests
 //
 //  Created by langren on 2020/7/9.
 //  Copyright © 2020 langren. All rights reserved.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class WallpaperUITests: XCTestCase {
+class LivePhotoUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
