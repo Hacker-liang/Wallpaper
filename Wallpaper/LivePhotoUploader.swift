@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import Photos
 
 class LivePhotoUploader: NSObject {
     func uploadLivePhoto(livePhoto: String) {
-        
+    }
+    
+    func uploadLivePhoto(livePhoto: PHLivePhoto) {
+        let qnUploader = QiniuUplader()
+        qnUploader.uploadLivePhoto(livePhoto: livePhoto)
     }
 }

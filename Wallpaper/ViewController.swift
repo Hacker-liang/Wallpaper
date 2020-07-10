@@ -25,8 +25,6 @@ class ViewController: UIViewController {
         tap.numberOfTapsRequired = 1
         tap.addTarget(self, action: #selector(livePhotoViewPress))
         livePhotoView.addGestureRecognizer(tap)
-        
-        
     }
     
     func updateLivePhoto(jpgName: String, movName: String) {
@@ -36,8 +34,11 @@ class ViewController: UIViewController {
         let jpgUrl = URL.init(fileURLWithPath: jpgFilePath)
         let movUrl = URL.init(fileURLWithPath: movFilePath)
         PHLivePhoto.request(withResourceFileURLs: [jpgUrl,movUrl], placeholderImage: UIImage(named: "\(jpgName).jpg"), targetSize: self.livePhotoView.bounds.size, contentMode: .aspectFill) { (photo, result) in
-            if let p = photo {
+            if let p = photo, self.livePhotoView.livePhoto == nil {
                 self.livePhotoView.livePhoto = p
+                
+                let uploader = LivePhotoUploader()
+                uploader.uploadLivePhoto(livePhoto: p)
             }
         }
     }

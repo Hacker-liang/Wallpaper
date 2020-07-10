@@ -3,3 +3,6 @@
 //
 
 #import "QiniuSDK.h"
+#import "QN_GTM_Base64.h"
+#import <CommonCrypto/CommonHMAC.h>
+#import "HappyDNS/HappyDNS.h"
