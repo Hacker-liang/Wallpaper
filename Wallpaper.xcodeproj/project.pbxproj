@@ -25,6 +25,10 @@
 		660AF26C24B89D440042C2FB /* test1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 660AF26A24B89D440042C2FB /* test1.jpg */; };
 		660AF26D24B89D440042C2FB /* test1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 660AF26B24B89D440042C2FB /* test1.mov */; };
 		660AF26F24B8A94B0042C2FB /* QiniuUplader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF26E24B8A94B0042C2FB /* QiniuUplader.swift */; };
+		66515E4224C024DC0075095C /* LPPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66515E4124C024DC0075095C /* LPPurchaseManager.swift */; };
+		66607CE924C03350005CEEB5 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66607CE824C03350005CEEB5 /* StoreKit.framework */; };
+		66607CEC24C0376D005CEEB5 /* LPPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66607CEA24C0376D005CEEB5 /* LPPurchaseViewController.swift */; };
+		66607CED24C0376D005CEEB5 /* LPPurchaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66607CEB24C0376D005CEEB5 /* LPPurchaseViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +74,10 @@
 		660AF26A24B89D440042C2FB /* test1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test1.jpg; sourceTree = "<group>"; };
 		660AF26B24B89D440042C2FB /* test1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test1.mov; sourceTree = "<group>"; };
 		660AF26E24B8A94B0042C2FB /* QiniuUplader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiniuUplader.swift; sourceTree = "<group>"; };
+		66515E4124C024DC0075095C /* LPPurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPPurchaseManager.swift; sourceTree = "<group>"; };
+		66607CE824C03350005CEEB5 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		66607CEA24C0376D005CEEB5 /* LPPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPPurchaseViewController.swift; sourceTree = "<group>"; };
+		66607CEB24C0376D005CEEB5 /* LPPurchaseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LPPurchaseViewController.xib; sourceTree = "<group>"; };
 		B404D6B80DB9C3AF34207F6D /* Pods-Wallpaper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper.debug.xcconfig"; path = "Target Support Files/Pods-Wallpaper/Pods-Wallpaper.debug.xcconfig"; sourceTree = "<group>"; };
 		E6A933E3C7F7388999F4BB88 /* libPods-Wallpaper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wallpaper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -80,6 +88,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E3DB6BD1F0387881C4F0EE3 /* libPods-Wallpaper.a in Frameworks */,
+				66607CE924C03350005CEEB5 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +141,7 @@
 				660AF25424B743600042C2FB /* LivePhotoDownloader.swift */,
 				660AF26424B897480042C2FB /* LivePhotoUploader.swift */,
 				660AF26E24B8A94B0042C2FB /* QiniuUplader.swift */,
+				66515E4024C024B00075095C /* Purchase */,
 				660AF22824B73E760042C2FB /* Main.storyboard */,
 				660AF22B24B73E770042C2FB /* Assets.xcassets */,
 				660AF22D24B73E770042C2FB /* LaunchScreen.storyboard */,
@@ -180,6 +190,16 @@
 			path = LivePhotos;
 			sourceTree = "<group>";
 		};
+		66515E4024C024B00075095C /* Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				66515E4124C024DC0075095C /* LPPurchaseManager.swift */,
+				66607CEA24C0376D005CEEB5 /* LPPurchaseViewController.swift */,
+				66607CEB24C0376D005CEEB5 /* LPPurchaseViewController.xib */,
+			);
+			path = Purchase;
+			sourceTree = "<group>";
+		};
 		A892ED4BB1FF84098DDFBA97 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +212,7 @@
 		FD235F5930F0D3B82EB62010 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				66607CE824C03350005CEEB5 /* StoreKit.framework */,
 				E6A933E3C7F7388999F4BB88 /* libPods-Wallpaper.a */,
 			);
 			name = Frameworks;
@@ -310,6 +331,7 @@
 				660AF26124B748C50042C2FB /* test.jpg in Resources */,
 				660AF22A24B73E760042C2FB /* Main.storyboard in Resources */,
 				660AF26D24B89D440042C2FB /* test1.mov in Resources */,
+				66607CED24C0376D005CEEB5 /* LPPurchaseViewController.xib in Resources */,
 				660AF25E24B748C50042C2FB /* test.mov in Resources */,
 				660AF26C24B89D440042C2FB /* test1.jpg in Resources */,
 			);
@@ -365,8 +387,10 @@
 				660AF22724B73E760042C2FB /* ViewController.swift in Sources */,
 				660AF26F24B8A94B0042C2FB /* QiniuUplader.swift in Sources */,
 				660AF25324B73F5B0042C2FB /* LivePhotoManager.swift in Sources */,
+				66515E4224C024DC0075095C /* LPPurchaseManager.swift in Sources */,
 				660AF22324B73E760042C2FB /* AppDelegate.swift in Sources */,
 				660AF25524B743600042C2FB /* LivePhotoDownloader.swift in Sources */,
+				66607CEC24C0376D005CEEB5 /* LPPurchaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,14 +566,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5VYP985JJ2;
+				DEVELOPMENT_TEAM = 8Z57A6F36Q;
 				INFOPLIST_FILE = Wallpaper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lps.Wallpaper;
+				PRODUCT_BUNDLE_IDENTIFIER = com.5vdesign.livephotos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wallpaper/Wallpaper-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -565,14 +589,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5VYP985JJ2;
+				DEVELOPMENT_TEAM = 8Z57A6F36Q;
 				INFOPLIST_FILE = Wallpaper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lps.Wallpaper;
+				PRODUCT_BUNDLE_IDENTIFIER = com.5vdesign.livephotos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wallpaper/Wallpaper-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

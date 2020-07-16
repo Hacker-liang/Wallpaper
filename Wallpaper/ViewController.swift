@@ -14,17 +14,25 @@ class ViewController: UIViewController {
 
     var livePhotoView: PHLivePhotoView!
     
+    var purchaseManager: LPPurchaseManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
-        livePhotoView = PHLivePhotoView(frame: self.view.bounds)
-        self.view.addSubview(livePhotoView)
-        
-        let tap = UITapGestureRecognizer()
-        tap.numberOfTouchesRequired = 1
-        tap.numberOfTapsRequired = 1
-        tap.addTarget(self, action: #selector(livePhotoViewPress))
-        livePhotoView.addGestureRecognizer(tap)
+//        livePhotoView = PHLivePhotoView(frame: self.view.bounds)
+//        self.view.addSubview(livePhotoView)
+//
+//        let tap = UITapGestureRecognizer()
+//        tap.numberOfTouchesRequired = 1
+//        tap.numberOfTapsRequired = 1
+//        tap.addTarget(self, action: #selector(livePhotoViewPress))
+//        livePhotoView.addGestureRecognizer(tap)
+    }
+    
+    @IBAction func purchaseButtonAction(_ sender: Any) {
+        let purchaseVC = LPPurchaseViewController()
+        purchaseVC.modalPresentationStyle = .fullScreen
+        self.present(purchaseVC, animated: true, completion: nil)
     }
     
     func updateLivePhoto(jpgName: String, movName: String) {
