@@ -17,14 +17,15 @@
 		660AF24524B73E780042C2FB /* WallpaperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF24424B73E780042C2FB /* WallpaperUITests.swift */; };
 		660AF25324B73F5B0042C2FB /* LivePhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF25224B73F5B0042C2FB /* LivePhotoManager.swift */; };
 		660AF25524B743600042C2FB /* LivePhotoDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF25424B743600042C2FB /* LivePhotoDownloader.swift */; };
-		660AF25E24B748C50042C2FB /* test.mov in Resources */ = {isa = PBXBuildFile; fileRef = 660AF25A24B748C50042C2FB /* test.mov */; };
+		660AF25E24B748C50042C2FB /* test111.mov in Resources */ = {isa = PBXBuildFile; fileRef = 660AF25A24B748C50042C2FB /* test111.mov */; };
 		660AF25F24B748C50042C2FB /* asnw.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 660AF25B24B748C50042C2FB /* asnw.jpg */; };
-		660AF26124B748C50042C2FB /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 660AF25D24B748C50042C2FB /* test.jpg */; };
+		660AF26124B748C50042C2FB /* test111.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 660AF25D24B748C50042C2FB /* test111.jpg */; };
 		660AF26324B754DD0042C2FB /* test2.mov in Resources */ = {isa = PBXBuildFile; fileRef = 660AF26224B754DD0042C2FB /* test2.mov */; };
 		660AF26524B897480042C2FB /* LivePhotoUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF26424B897480042C2FB /* LivePhotoUploader.swift */; };
 		660AF26C24B89D440042C2FB /* test1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 660AF26A24B89D440042C2FB /* test1.jpg */; };
 		660AF26D24B89D440042C2FB /* test1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 660AF26B24B89D440042C2FB /* test1.mov */; };
-		660AF26F24B8A94B0042C2FB /* QiniuUplader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF26E24B8A94B0042C2FB /* QiniuUplader.swift */; };
+		660AF26F24B8A94B0042C2FB /* QiniuHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF26E24B8A94B0042C2FB /* QiniuHelper.swift */; };
+		660DD79024C5471E00A26AD1 /* LPLivePhotoSourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660DD78F24C5471E00A26AD1 /* LPLivePhotoSourceManager.swift */; };
 		66515E4224C024DC0075095C /* LPPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66515E4124C024DC0075095C /* LPPurchaseManager.swift */; };
 		66607CE924C03350005CEEB5 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66607CE824C03350005CEEB5 /* StoreKit.framework */; };
 		66607CEC24C0376D005CEEB5 /* LPPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66607CEA24C0376D005CEEB5 /* LPPurchaseViewController.swift */; };
@@ -65,15 +66,16 @@
 		660AF24624B73E780042C2FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		660AF25224B73F5B0042C2FB /* LivePhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoManager.swift; sourceTree = "<group>"; };
 		660AF25424B743600042C2FB /* LivePhotoDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoDownloader.swift; sourceTree = "<group>"; };
-		660AF25A24B748C50042C2FB /* test.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test.mov; sourceTree = "<group>"; };
+		660AF25A24B748C50042C2FB /* test111.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test111.mov; sourceTree = "<group>"; };
 		660AF25B24B748C50042C2FB /* asnw.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = asnw.jpg; sourceTree = "<group>"; };
-		660AF25D24B748C50042C2FB /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
+		660AF25D24B748C50042C2FB /* test111.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test111.jpg; sourceTree = "<group>"; };
 		660AF26224B754DD0042C2FB /* test2.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test2.mov; sourceTree = "<group>"; };
 		660AF26424B897480042C2FB /* LivePhotoUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoUploader.swift; sourceTree = "<group>"; };
 		660AF26624B898280042C2FB /* Wallpaper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wallpaper-Bridging-Header.h"; sourceTree = "<group>"; };
 		660AF26A24B89D440042C2FB /* test1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test1.jpg; sourceTree = "<group>"; };
 		660AF26B24B89D440042C2FB /* test1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test1.mov; sourceTree = "<group>"; };
-		660AF26E24B8A94B0042C2FB /* QiniuUplader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiniuUplader.swift; sourceTree = "<group>"; };
+		660AF26E24B8A94B0042C2FB /* QiniuHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiniuHelper.swift; sourceTree = "<group>"; };
+		660DD78F24C5471E00A26AD1 /* LPLivePhotoSourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPLivePhotoSourceManager.swift; sourceTree = "<group>"; };
 		66515E4124C024DC0075095C /* LPPurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPPurchaseManager.swift; sourceTree = "<group>"; };
 		66607CE824C03350005CEEB5 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		66607CEA24C0376D005CEEB5 /* LPPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPPurchaseViewController.swift; sourceTree = "<group>"; };
@@ -140,7 +142,8 @@
 				660AF25224B73F5B0042C2FB /* LivePhotoManager.swift */,
 				660AF25424B743600042C2FB /* LivePhotoDownloader.swift */,
 				660AF26424B897480042C2FB /* LivePhotoUploader.swift */,
-				660AF26E24B8A94B0042C2FB /* QiniuUplader.swift */,
+				660AF26E24B8A94B0042C2FB /* QiniuHelper.swift */,
+				660DD78F24C5471E00A26AD1 /* LPLivePhotoSourceManager.swift */,
 				66515E4024C024B00075095C /* Purchase */,
 				660AF22824B73E760042C2FB /* Main.storyboard */,
 				660AF22B24B73E770042C2FB /* Assets.xcassets */,
@@ -181,8 +184,8 @@
 			isa = PBXGroup;
 			children = (
 				660AF25B24B748C50042C2FB /* asnw.jpg */,
-				660AF25D24B748C50042C2FB /* test.jpg */,
-				660AF25A24B748C50042C2FB /* test.mov */,
+				660AF25D24B748C50042C2FB /* test111.jpg */,
+				660AF25A24B748C50042C2FB /* test111.mov */,
 				660AF26A24B89D440042C2FB /* test1.jpg */,
 				660AF26B24B89D440042C2FB /* test1.mov */,
 				660AF26224B754DD0042C2FB /* test2.mov */,
@@ -328,11 +331,11 @@
 				660AF25F24B748C50042C2FB /* asnw.jpg in Resources */,
 				660AF26324B754DD0042C2FB /* test2.mov in Resources */,
 				660AF22C24B73E770042C2FB /* Assets.xcassets in Resources */,
-				660AF26124B748C50042C2FB /* test.jpg in Resources */,
+				660AF26124B748C50042C2FB /* test111.jpg in Resources */,
 				660AF22A24B73E760042C2FB /* Main.storyboard in Resources */,
 				660AF26D24B89D440042C2FB /* test1.mov in Resources */,
 				66607CED24C0376D005CEEB5 /* LPPurchaseViewController.xib in Resources */,
-				660AF25E24B748C50042C2FB /* test.mov in Resources */,
+				660AF25E24B748C50042C2FB /* test111.mov in Resources */,
 				660AF26C24B89D440042C2FB /* test1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,8 +387,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				660AF26524B897480042C2FB /* LivePhotoUploader.swift in Sources */,
+				660DD79024C5471E00A26AD1 /* LPLivePhotoSourceManager.swift in Sources */,
 				660AF22724B73E760042C2FB /* ViewController.swift in Sources */,
-				660AF26F24B8A94B0042C2FB /* QiniuUplader.swift in Sources */,
+				660AF26F24B8A94B0042C2FB /* QiniuHelper.swift in Sources */,
 				660AF25324B73F5B0042C2FB /* LivePhotoManager.swift in Sources */,
 				66515E4224C024DC0075095C /* LPPurchaseManager.swift in Sources */,
 				660AF22324B73E760042C2FB /* AppDelegate.swift in Sources */,

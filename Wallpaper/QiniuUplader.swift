@@ -9,15 +9,15 @@
 import UIKit
 import Photos
 
-class QiniuUplader: NSObject {
+class QiniuHelper: NSObject {
     func uploadLivePhoto(livePhoto: PHLivePhoto) {
         let uploader = QNUploadManager()
         let asset = PHAssetResource.assetResources(for: livePhoto)
         let option = QNUploadOption()
-        let authPolicy = QiniuAuthPolicy("wall", expires: 10000)
-        let token = authPolicy.makeToken(accessKey: "pUj-ZwQ5-s6m8aZ8RbFwnFNxUQccPHjwJP_SR1LX", secretKey: "AxNK6pwhYm0vqg9tfV_SHN1Lql6NHVmGBG1trZyg")
+        let authPolicy = QiniuAuthPolicy("5v-livephotos", expires: 10000)
+        let token = authPolicy.makeToken(accessKey: "cBqs-TLzssggrz5-ZGjjvkLrQieW2p1njCVHMf7Y", secretKey: "uq9fYW-EI-GdalJhr1a8_96GaRUNtPwUs-PKUbTQ")
         
-        uploader?.putFile(Bundle.main.path(forResource: "test", ofType: "mov"), key: "test1", token: token, complete: { (info, str, dic) in
+        uploader?.putFile(Bundle.main.path(forResource: "test", ofType: "mov"), key: "test", token: token, complete: { (info, str, dic) in
             print(str)
             
         }, option: nil)

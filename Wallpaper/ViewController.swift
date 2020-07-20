@@ -19,14 +19,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
-//        livePhotoView = PHLivePhotoView(frame: self.view.bounds)
-//        self.view.addSubview(livePhotoView)
-//
-//        let tap = UITapGestureRecognizer()
-//        tap.numberOfTouchesRequired = 1
-//        tap.numberOfTapsRequired = 1
-//        tap.addTarget(self, action: #selector(livePhotoViewPress))
-//        livePhotoView.addGestureRecognizer(tap)
+        livePhotoView = PHLivePhotoView(frame: self.view.bounds)
+        self.view.addSubview(livePhotoView)
+
+        let tap = UITapGestureRecognizer()
+        tap.numberOfTouchesRequired = 1
+        tap.numberOfTapsRequired = 1
+        tap.addTarget(self, action: #selector(livePhotoViewPress))
+        livePhotoView.addGestureRecognizer(tap)
     }
     
     @IBAction func purchaseButtonAction(_ sender: Any) {
@@ -36,19 +36,7 @@ class ViewController: UIViewController {
     }
     
     func updateLivePhoto(jpgName: String, movName: String) {
-        guard let jpgFilePath = Bundle.main.path(forResource: jpgName, ofType: "jpg"), let movFilePath = Bundle.main.path(forResource: movName, ofType: "mov") else {
-            return
-        }
-        let jpgUrl = URL.init(fileURLWithPath: jpgFilePath)
-        let movUrl = URL.init(fileURLWithPath: movFilePath)
-        PHLivePhoto.request(withResourceFileURLs: [jpgUrl,movUrl], placeholderImage: UIImage(named: "\(jpgName).jpg"), targetSize: self.livePhotoView.bounds.size, contentMode: .aspectFill) { (photo, result) in
-            if let p = photo, self.livePhotoView.livePhoto == nil {
-                self.livePhotoView.livePhoto = p
-                
-                let uploader = LivePhotoUploader()
-                uploader.uploadLivePhoto(livePhoto: p)
-            }
-        }
+        
     }
     
     @objc func livePhotoViewPress() {
