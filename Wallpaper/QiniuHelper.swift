@@ -11,7 +11,7 @@ import Photos
 
 class QiniuHelper: NSObject {
     
-    private static let qiniuDownloadUrl = "www.qiniu.livephotos.5vlive.cn/resource/"
+    private static let qiniuDownloadUrl = "http://qiniu.livephotos.5vlive.cn/"
     private static let qiniuKey = "cBqs-TLzssggrz5-ZGjjvkLrQieW2p1njCVHMf7Y"
     private static let qiniuSecret = "uq9fYW-EI-GdalJhr1a8_96GaRUNtPwUs-PKUbTQ"
     
@@ -30,7 +30,7 @@ class QiniuHelper: NSObject {
         let expires = 10000
         let authPolicy = QiniuAuthPolicy("5v-livephotos", expires: expires)
         let expiresDate = Int(Date().timeIntervalSince1970)+expires
-        let url = "\(qiniuDownloadUrl)\(sourceName)/\(sourceName)?e=\(expiresDate)"
+        let url = "\(qiniuDownloadUrl)\(sourceName)?e=\(expiresDate)"
         let toke = authPolicy.makedownloadToken(url: url, accessKey: qiniuKey, secretKey: qiniuSecret)
         return "\(url)&token=\(toke)"
     }

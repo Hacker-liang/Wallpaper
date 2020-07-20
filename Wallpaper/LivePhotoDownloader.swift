@@ -22,6 +22,7 @@ class LivePhotoDownloader: NSObject {
             imageSuccess = isSuccess
             group.leave()
         }
+        
         group.enter()
         self.downloadMovFile(movName: "\(livePhotoName).mov", savePath: savedPath.movSavedPath, progressChange: progressChange) { (isSuccess, savedPath) in
             movSuccess = isSuccess
@@ -65,12 +66,13 @@ class LivePhotoDownloader: NSObject {
             print("Download Progress: \(progress.fractionCompleted)")
         }
         .responseData { response in
-            if let data = response.value {
+            if let data = response.value, let path = response.fileURL?.path {
                 if LPLivePhotoSourceManager().saveLivePhotoData(with: data, savePath: savePath) {
                     callback(true, savePath)
                 } else {
                     callback(false, nil)
                 }
+                try? FileManager.default.removeItem(atPath: path)
             } else {
                 callback(false, nil)
             }

@@ -16,23 +16,38 @@ class ViewController: UIViewController {
     
     var purchaseManager: LPPurchaseManager!
     
+    var livePhotoManager: LivePhotoManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         livePhotoView = PHLivePhotoView(frame: self.view.bounds)
-        self.view.addSubview(livePhotoView)
-
-        let tap = UITapGestureRecognizer()
-        tap.numberOfTouchesRequired = 1
-        tap.numberOfTapsRequired = 1
-        tap.addTarget(self, action: #selector(livePhotoViewPress))
-        livePhotoView.addGestureRecognizer(tap)
+        
+        livePhotoManager = LivePhotoManager()
+        
+        self.view.insertSubview(livePhotoView, at: 0)
+//
+//        let tap = UITapGestureRecognizer()
+//        tap.numberOfTouchesRequired = 1
+//        tap.numberOfTapsRequired = 1
+//        tap.addTarget(self, action: #selector(livePhotoViewPress))
+//        livePhotoView.addGestureRecognizer(tap)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     @IBAction func purchaseButtonAction(_ sender: Any) {
-        let purchaseVC = LPPurchaseViewController()
-        purchaseVC.modalPresentationStyle = .fullScreen
-        self.present(purchaseVC, animated: true, completion: nil)
+       
+        livePhotoManager.requestLivePhoto(livePhotoName: "test1", targetSize: CGSize(width: 720, height: 1280), progress: { (progress) in
+            print("下载进度为：\(progress)")
+            
+        }) { (livePhoto) in
+            if let p = livePhoto {
+                self.livePhotoView.livePhoto = p
+            }
+        }
     }
     
     func updateLivePhoto(jpgName: String, movName: String) {

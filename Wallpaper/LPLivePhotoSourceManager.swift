@@ -10,30 +10,27 @@ import UIKit
 
 class LPLivePhotoSourceManager: NSObject {
     
-    private let livePhotosDir = FileManager.default.temporaryDirectory.absoluteString+"/LivePhotos/"
-    
+    let livePhotosDir = (NSTemporaryDirectory() as NSString).appendingPathComponent("LivePhotos")
+
     func livePhotoSavedPath(with livePhotoName: String) -> (jpgSavedPath: String, movSavedPath: String) {
-        
-        let imagePath = livePhotosDir+"\(livePhotoName).jpg"
-        let movPath = livePhotosDir+"\(livePhotoName).mov"
-        
-        [imagePath, movPath].forEach { (path) in
-            if !FileManager.default.fileExists(atPath: path) {
-                FileManager.default.createFile(atPath: path, contents: nil, attributes: nil)
-            }
+    
+        let imagePath = (livePhotosDir as NSString).appendingPathComponent("\(livePhotoName).jpg")
+        let movPath = (livePhotosDir as NSString).appendingPathComponent("\(livePhotoName).mov")
+
+        if !FileManager.default.fileExists(atPath: livePhotosDir) {
+            try? FileManager.default.createDirectory(atPath: livePhotosDir, withIntermediateDirectories: true, attributes: nil)
         }
-        
         return (imagePath, movPath)
     }
     
     func livePhotoIsExitInSandbox(with livePhotoName: String) -> Bool {
-        let imagePath = livePhotosDir+"\(livePhotoName).jpg"
-        let movPath = livePhotosDir+"\(livePhotoName).mov"
+        let imagePath = (livePhotosDir as NSString).appendingPathComponent("\(livePhotoName).jpg")
+        let movPath = (livePhotosDir as NSString).appendingPathComponent("\(livePhotoName).mov")
         return FileManager.default.fileExists(atPath: imagePath) && FileManager.default.fileExists(atPath: movPath)
     }
     
     func saveLivePhotoData(with data: Data, savePath: String) -> Bool {
-        
+        FileManager.default.createFile(atPath: savePath, contents: data, attributes: nil)
         return true
     }
 
