@@ -63,7 +63,6 @@ class LivePhotoDownloader: NSObject {
         AF.download(url)
         .downloadProgress { progress in
             progressChange?(CGFloat(progress.fractionCompleted))
-            print("Download Progress: \(progress.fractionCompleted)")
         }
         .responseData { response in
             if let data = response.value, let path = response.fileURL?.path {

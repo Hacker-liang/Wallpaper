@@ -20,6 +20,7 @@ class LPLivePhotoSourceManager: NSObject {
         if !FileManager.default.fileExists(atPath: livePhotosDir) {
             try? FileManager.default.createDirectory(atPath: livePhotosDir, withIntermediateDirectories: true, attributes: nil)
         }
+        
         return (imagePath, movPath)
     }
     

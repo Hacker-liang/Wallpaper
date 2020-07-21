@@ -11,6 +11,11 @@ import Photos
 
 class LivePhotoManager: NSObject {
     
+    func requestLivePhotoCategory(callback:((_ category: [LivePhotoCategory])->Void)) {
+        LivePhotoNetworkHelper.requseLivePhotoCagetory { list in
+        }
+    }
+    
     func requestLivePhoto(livePhotoName: String, targetSize: CGSize, progress:((_ value:CGFloat)->Void)?, callback: @escaping ((_ livePhoto: PHLivePhoto?)->Void)) {
         let sourceManager = LPLivePhotoSourceManager()
         

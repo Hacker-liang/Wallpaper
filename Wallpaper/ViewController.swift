@@ -38,6 +38,11 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
     }
     
+    @IBAction func categoryButtonAction(_ sender: Any) {
+        let categoryVC = LivePhotoCategoryViewController()
+        self.present(categoryVC, animated: true, completion: nil)
+    }
+    
     @IBAction func purchaseButtonAction(_ sender: Any) {
        
         livePhotoManager.requestLivePhoto(livePhotoName: "test1", targetSize: CGSize(width: 720, height: 1280), progress: { (progress) in

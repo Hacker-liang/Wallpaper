@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E3DB6BD1F0387881C4F0EE3 /* libPods-Wallpaper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6A933E3C7F7388999F4BB88 /* libPods-Wallpaper.a */; };
 		660AF22324B73E760042C2FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF22224B73E760042C2FB /* AppDelegate.swift */; };
 		660AF22724B73E760042C2FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF22624B73E760042C2FB /* ViewController.swift */; };
 		660AF22A24B73E760042C2FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 660AF22824B73E760042C2FB /* Main.storyboard */; };
@@ -26,8 +25,11 @@
 		660AF26D24B89D440042C2FB /* test1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 660AF26B24B89D440042C2FB /* test1.mov */; };
 		660AF26F24B8A94B0042C2FB /* QiniuHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF26E24B8A94B0042C2FB /* QiniuHelper.swift */; };
 		660DD79024C5471E00A26AD1 /* LPLivePhotoSourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660DD78F24C5471E00A26AD1 /* LPLivePhotoSourceManager.swift */; };
+		660DD79224C59A5900A26AD1 /* LivePhotoCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660DD79124C59A5900A26AD1 /* LivePhotoCategoryViewController.swift */; };
+		661A6A6124C59C570005E91F /* LivePhotoCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661A6A6024C59C570005E91F /* LivePhotoCategory.swift */; };
+		664651D624C5A5A9001B9B2C /* LivePhotoNetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664651D524C5A5A9001B9B2C /* LivePhotoNetworkHelper.swift */; };
+		664651D824C5BB5E001B9B2C /* LivePhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664651D724C5BB5E001B9B2C /* LivePhotoModel.swift */; };
 		66515E4224C024DC0075095C /* LPPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66515E4124C024DC0075095C /* LPPurchaseManager.swift */; };
-		66607CE924C03350005CEEB5 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66607CE824C03350005CEEB5 /* StoreKit.framework */; };
 		66607CEC24C0376D005CEEB5 /* LPPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66607CEA24C0376D005CEEB5 /* LPPurchaseViewController.swift */; };
 		66607CED24C0376D005CEEB5 /* LPPurchaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66607CEB24C0376D005CEEB5 /* LPPurchaseViewController.xib */; };
 /* End PBXBuildFile section */
@@ -76,12 +78,14 @@
 		660AF26B24B89D440042C2FB /* test1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test1.mov; sourceTree = "<group>"; };
 		660AF26E24B8A94B0042C2FB /* QiniuHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiniuHelper.swift; sourceTree = "<group>"; };
 		660DD78F24C5471E00A26AD1 /* LPLivePhotoSourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPLivePhotoSourceManager.swift; sourceTree = "<group>"; };
+		660DD79124C59A5900A26AD1 /* LivePhotoCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoCategoryViewController.swift; sourceTree = "<group>"; };
+		661A6A6024C59C570005E91F /* LivePhotoCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoCategory.swift; sourceTree = "<group>"; };
+		664651D524C5A5A9001B9B2C /* LivePhotoNetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoNetworkHelper.swift; sourceTree = "<group>"; };
+		664651D724C5BB5E001B9B2C /* LivePhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoModel.swift; sourceTree = "<group>"; };
 		66515E4124C024DC0075095C /* LPPurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPPurchaseManager.swift; sourceTree = "<group>"; };
-		66607CE824C03350005CEEB5 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		66607CEA24C0376D005CEEB5 /* LPPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPPurchaseViewController.swift; sourceTree = "<group>"; };
 		66607CEB24C0376D005CEEB5 /* LPPurchaseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LPPurchaseViewController.xib; sourceTree = "<group>"; };
 		B404D6B80DB9C3AF34207F6D /* Pods-Wallpaper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper.debug.xcconfig"; path = "Target Support Files/Pods-Wallpaper/Pods-Wallpaper.debug.xcconfig"; sourceTree = "<group>"; };
-		E6A933E3C7F7388999F4BB88 /* libPods-Wallpaper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wallpaper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,8 +93,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E3DB6BD1F0387881C4F0EE3 /* libPods-Wallpaper.a in Frameworks */,
-				66607CE924C03350005CEEB5 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,7 +121,6 @@
 				660AF24324B73E780042C2FB /* WallpaperUITests */,
 				660AF22024B73E760042C2FB /* Products */,
 				A892ED4BB1FF84098DDFBA97 /* Pods */,
-				FD235F5930F0D3B82EB62010 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,18 +138,16 @@
 			isa = PBXGroup;
 			children = (
 				660AF25824B748A50042C2FB /* Resources */,
-				660AF22224B73E760042C2FB /* AppDelegate.swift */,
 				660AF22624B73E760042C2FB /* ViewController.swift */,
-				660AF25224B73F5B0042C2FB /* LivePhotoManager.swift */,
-				660AF25424B743600042C2FB /* LivePhotoDownloader.swift */,
-				660AF26424B897480042C2FB /* LivePhotoUploader.swift */,
-				660AF26E24B8A94B0042C2FB /* QiniuHelper.swift */,
-				660DD78F24C5471E00A26AD1 /* LPLivePhotoSourceManager.swift */,
+				661A6A6224C59D9C0005E91F /* LivePhotoManager */,
+				660DD79324C59A5D00A26AD1 /* Cagegory */,
+				661A6A6324C59DBF0005E91F /* Downloader */,
 				66515E4024C024B00075095C /* Purchase */,
+				660AF22224B73E760042C2FB /* AppDelegate.swift */,
 				660AF22824B73E760042C2FB /* Main.storyboard */,
-				660AF22B24B73E770042C2FB /* Assets.xcassets */,
 				660AF22D24B73E770042C2FB /* LaunchScreen.storyboard */,
 				660AF23024B73E770042C2FB /* Info.plist */,
+				660AF22B24B73E770042C2FB /* Assets.xcassets */,
 				660AF26624B898280042C2FB /* Wallpaper-Bridging-Header.h */,
 			);
 			path = Wallpaper;
@@ -193,6 +192,36 @@
 			path = LivePhotos;
 			sourceTree = "<group>";
 		};
+		660DD79324C59A5D00A26AD1 /* Cagegory */ = {
+			isa = PBXGroup;
+			children = (
+				660DD79124C59A5900A26AD1 /* LivePhotoCategoryViewController.swift */,
+				661A6A6024C59C570005E91F /* LivePhotoCategory.swift */,
+				664651D724C5BB5E001B9B2C /* LivePhotoModel.swift */,
+			);
+			path = Cagegory;
+			sourceTree = "<group>";
+		};
+		661A6A6224C59D9C0005E91F /* LivePhotoManager */ = {
+			isa = PBXGroup;
+			children = (
+				660AF25224B73F5B0042C2FB /* LivePhotoManager.swift */,
+				660DD78F24C5471E00A26AD1 /* LPLivePhotoSourceManager.swift */,
+				664651D524C5A5A9001B9B2C /* LivePhotoNetworkHelper.swift */,
+			);
+			path = LivePhotoManager;
+			sourceTree = "<group>";
+		};
+		661A6A6324C59DBF0005E91F /* Downloader */ = {
+			isa = PBXGroup;
+			children = (
+				660AF25424B743600042C2FB /* LivePhotoDownloader.swift */,
+				660AF26424B897480042C2FB /* LivePhotoUploader.swift */,
+				660AF26E24B8A94B0042C2FB /* QiniuHelper.swift */,
+			);
+			path = Downloader;
+			sourceTree = "<group>";
+		};
 		66515E4024C024B00075095C /* Purchase */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,15 +239,6 @@
 				20D86C73562B8CE670E00EAC /* Pods-Wallpaper.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		FD235F5930F0D3B82EB62010 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				66607CE824C03350005CEEB5 /* StoreKit.framework */,
-				E6A933E3C7F7388999F4BB88 /* libPods-Wallpaper.a */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -386,9 +406,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				661A6A6124C59C570005E91F /* LivePhotoCategory.swift in Sources */,
 				660AF26524B897480042C2FB /* LivePhotoUploader.swift in Sources */,
 				660DD79024C5471E00A26AD1 /* LPLivePhotoSourceManager.swift in Sources */,
+				664651D824C5BB5E001B9B2C /* LivePhotoModel.swift in Sources */,
+				664651D624C5A5A9001B9B2C /* LivePhotoNetworkHelper.swift in Sources */,
 				660AF22724B73E760042C2FB /* ViewController.swift in Sources */,
+				660DD79224C59A5900A26AD1 /* LivePhotoCategoryViewController.swift in Sources */,
 				660AF26F24B8A94B0042C2FB /* QiniuHelper.swift in Sources */,
 				660AF25324B73F5B0042C2FB /* LivePhotoManager.swift in Sources */,
 				66515E4224C024DC0075095C /* LPPurchaseManager.swift in Sources */,

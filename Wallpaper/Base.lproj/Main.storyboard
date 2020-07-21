@@ -24,6 +24,14 @@
                                     <action selector="purchaseButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="868-ny-HyR"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7K1-ab-4ra">
+                                <rect key="frame" x="173" y="444" width="31" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="分类"/>
+                                <connections>
+                                    <action selector="categoryButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yuA-Nx-pah"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
