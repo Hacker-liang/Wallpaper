@@ -14,6 +14,8 @@ class LivePhotoNetworkHelper: NSObject {
     fileprivate static let LeanCloud_LivePhotosCategoryClass = "LivePhotosCategory"
     fileprivate static let LeanCloud_LivePhotosList = "LivePhotosList"
 
+    fileprivate static let pageSize = 10
+    
     class func requseLivePhotoCagetory(_ callback: @escaping ((_ list: [LivePhotoCategory]?)->Void)) {
         
         let query = LCQuery(className: LeanCloud_LivePhotosCategoryClass)
@@ -28,7 +30,31 @@ class LivePhotoNetworkHelper: NSObject {
                 for category in categories {
                     list.append(self.parseCategoryData(object: category))
                 }
+                callback(list.sorted{$0.categoryId ?? 0 < $1.categoryId ?? 0})
+            case .failure(error: let error):
+                print(error)
+                callback(nil)
+            }
+        }
+    }
+    
+    class func requestLivePhotoList(in category: Int, at page: Int, _ callback: @escaping ((_ list: [LivePhotoModel]?)->Void)) {
+        let query = LCQuery(className: LeanCloud_LivePhotosList)
+        query.limit = 10
+        query.skip = pageSize*page
+        query.whereKey("updatedAt", .descending)
+        
+        query.find { (result) in
+            switch result {
+            case .success(objects: let livePhotos):
+                var list = [LivePhotoModel]()
+                //livePhotos包含所有的列表
+                for model in livePhotos {
+                    list.append(self.parseLivePhotoData(object: model))
+                }
                 callback(list)
+                
+                
             case .failure(error: let error):
                 print(error)
                 callback(nil)
@@ -48,9 +74,16 @@ class LivePhotoNetworkHelper: NSObject {
                     list.append((Int(id), name))
                 }
             }
-            category.subCategories = list
+            
+            category.subCategories = list.sorted{$0.0 < $1.0}
         }
         return category
-        
+    }
+    
+    class func parseLivePhotoData(object: LCObject) -> LivePhotoModel {
+        let livePhoto = LivePhotoModel()
+        livePhoto.imageName = object.get("imageName")?.stringValue
+        livePhoto.movName = object.get("movName")?.stringValue
+        return livePhoto
     }
 }

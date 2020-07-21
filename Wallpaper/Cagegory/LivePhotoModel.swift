@@ -14,7 +14,11 @@ class LivePhotoModel: NSObject {
     
     var movName: String?
     
-    var isLivePhoto: Bool = true
+    var isLivePhoto: Bool {
+        get {
+            return self.movName != nil
+        }
+    }
 
     var associateSubCategoryId: Int?
 }

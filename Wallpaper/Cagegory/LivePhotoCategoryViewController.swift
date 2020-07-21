@@ -9,20 +9,31 @@
 import UIKit
 import SnapKit
 
+protocol LivePhotoCategoryViewControllerDelegate: class {
+    
+    func didSelectedCagetory(category: LivePhotoCategory, subCagetoryId: Int, subCagetoryName: String)
+    
+}
+
 class LivePhotoCategoryViewController: UIViewController {
 
-    var tableView: UITableView!
+    public weak var delegate: LivePhotoCategoryViewControllerDelegate?
     
-    var dataSource = [LivePhotoCategory]()
+    private var tableView: UITableView!
+    
+    private var dataSource = [LivePhotoCategory]()
+    
+    private var livePhotoManager: LivePhotoManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        livePhotoManager = LivePhotoManager()
         setupContentView()
         loadData()
     }
     
     private func setupContentView() {
-        tableView = UITableView(frame: .zero, style: <#T##UITableView.Style#>)
+        tableView = UITableView()
         self.view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
@@ -32,7 +43,7 @@ class LivePhotoCategoryViewController: UIViewController {
     }
     
     private func loadData() {
-        LivePhotoNetworkHelper.requseLivePhotoCagetory() { [weak self] list in
+        livePhotoManager.requestLivePhotoCategory() { [weak self] list in
             guard let weakSelf = self else {
                 return
             }
@@ -54,9 +65,17 @@ extension LivePhotoCategoryViewController: UITableViewDataSource, UITableViewDel
         return dataSource[section].subCategories.count
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return dataSource[section].categoryName
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = "\(dataSource[indexPath.section].subCategories[indexPath.row].subCategoryName)"
+        cell.textLabel?.text = dataSource[indexPath.section].subCategories[indexPath.row].subCategoryName
         return cell
     }
 

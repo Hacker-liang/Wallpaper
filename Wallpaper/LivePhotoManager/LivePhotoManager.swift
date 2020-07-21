@@ -11,9 +11,12 @@ import Photos
 
 class LivePhotoManager: NSObject {
     
-    func requestLivePhotoCategory(callback:((_ category: [LivePhotoCategory])->Void)) {
-        LivePhotoNetworkHelper.requseLivePhotoCagetory { list in
-        }
+    func requestLivePhotoCategory(callback:@escaping ((_ category: [LivePhotoCategory]?)->Void)) {
+        LivePhotoNetworkHelper.requseLivePhotoCagetory(callback)
+    }
+    
+    func requestLivePhotos(in category: Int, at page: Int, callback:@escaping ((_ category: [LivePhotoModel]?)->Void)) {
+        LivePhotoNetworkHelper.requestLivePhotoList(in: category, at: page, callback)
     }
     
     func requestLivePhoto(livePhotoName: String, targetSize: CGSize, progress:((_ value:CGFloat)->Void)?, callback: @escaping ((_ livePhoto: PHLivePhoto?)->Void)) {

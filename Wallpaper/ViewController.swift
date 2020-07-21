@@ -40,6 +40,7 @@ class ViewController: UIViewController {
     
     @IBAction func categoryButtonAction(_ sender: Any) {
         let categoryVC = LivePhotoCategoryViewController()
+        categoryVC.delegate = self
         self.present(categoryVC, animated: true, completion: nil)
     }
     
@@ -95,3 +96,9 @@ extension ViewController: PHLivePhotoViewDelegate {
     
 }
 
+
+extension ViewController: LivePhotoCategoryViewControllerDelegate {
+    func didSelectedCagetory(category: LivePhotoCategory, subCagetoryId: Int, subCagetoryName: String) {
+        
+    }
+}
