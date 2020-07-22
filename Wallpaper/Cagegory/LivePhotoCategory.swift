@@ -12,7 +12,8 @@ class LivePhotoCategory: NSObject {
 
     var categoryId: Int?
     var categoryName: String?
+    var icon: String?
     var isFree: Bool?
-    var subCategories = [(subCategoryId: Int, subCategoryName: String)]()
+    var subCategories = [(subCategoryId: Int, subCategoryName: String, icon: String?)]()
     
 }

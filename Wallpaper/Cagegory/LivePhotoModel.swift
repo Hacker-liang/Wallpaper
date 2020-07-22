@@ -21,4 +21,37 @@ class LivePhotoModel: NSObject {
     }
 
     var associateSubCategoryId: Int?
+    
+    var imageUrl: String? {
+        get {
+            if let name = self.imageName {
+                return QiniuHelper.requestQiniuLivePhotoDownloadUrl(sourceName: name.fullImageName)
+            } else {
+                return nil
+            }
+        }
+    }
+    var movUrl: String? {
+        get {
+            if let name = self.movName {
+                return QiniuHelper.requestQiniuLivePhotoDownloadUrl(sourceName: name.fullMovName)
+            } else {
+                return nil
+            }
+        }
+    }
+}
+
+extension String {
+    var fullImageName: String {
+        get {
+            return "\(self).jpg"
+        }
+    }
+    
+    var fullMovName: String {
+        get {
+            return "\(self).mov"
+        }
+    }
 }

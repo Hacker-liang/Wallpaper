@@ -47,14 +47,17 @@ class LPRootViewController: UIViewController {
     
     @IBAction func purchaseButtonAction(_ sender: Any) {
        
-        livePhotoManager.requestLivePhoto(livePhotoName: "test1", targetSize: CGSize(width: 720, height: 1280), progress: { (progress) in
-            print("下载进度为：\(progress)")
-            
-        }) { (livePhoto) in
-            if let p = livePhoto {
-                self.livePhotoView.livePhoto = p
-            }
-        }
+        let detailVC = LivePhotoDetailViewController()
+        self.present(detailVC, animated: true, completion: nil)
+        
+//        livePhotoManager.requestLivePhoto(livePhotoName: "test1", targetSize: CGSize(width: 720, height: 1280), progress: { (progress) in
+//            print("下载进度为：\(progress)")
+//
+//        }) { (livePhoto) in
+//            if let p = livePhoto {
+//                self.livePhotoView.livePhoto = p
+//            }
+//        }
     }
     
     func updateLivePhoto(jpgName: String, movName: String) {

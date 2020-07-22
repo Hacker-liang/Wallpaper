@@ -54,7 +54,6 @@ class LivePhotoNetworkHelper: NSObject {
                 }
                 callback(list)
                 
-                
             case .failure(error: let error):
                 print(error)
                 callback(nil)
@@ -67,11 +66,13 @@ class LivePhotoNetworkHelper: NSObject {
         category.categoryId = object.get("categoryId")?.intValue
         category.categoryName = object.get("categoryName")?.stringValue
         category.isFree = object.get("categoryIsFree")?.boolValue
+        category.icon = object.get("icon")?.stringValue
+        
         if let subCategories = object.get("subCategory")?.arrayValue as? [[String: Any]] {
-            var list = [(Int, String)]()
+            var list = [(Int, String, String?)]()
             for item in subCategories {
                 if let id = item["subCategoryId"] as? Double, let name = item["subCategoryName"] as? String {
-                    list.append((Int(id), name))
+                    list.append((Int(id), name, item["icon"] as? String))
                 }
             }
             

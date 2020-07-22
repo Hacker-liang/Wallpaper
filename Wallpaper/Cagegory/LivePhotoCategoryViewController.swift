@@ -43,7 +43,7 @@ class LivePhotoCategoryViewController: UIViewController {
     }
     
     private func loadData() {
-        livePhotoManager.requestLivePhotoCategory() { [weak self] list in
+        LivePhotoNetworkHelper.requseLivePhotoCagetory() { [weak self] list in
             guard let weakSelf = self else {
                 return
             }

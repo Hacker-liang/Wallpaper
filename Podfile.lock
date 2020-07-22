@@ -14,6 +14,9 @@ PODS:
     - SwiftProtobuf (~> 1.10)
   - Qiniu (7.4.1):
     - HappyDNS (~> 0.3.16)
+  - SDWebImage (5.8.4):
+    - SDWebImage/Core (= 5.8.4)
+  - SDWebImage/Core (5.8.4)
   - SnapKit (5.0.1)
   - SwiftProtobuf (1.10.2)
 
@@ -21,6 +24,7 @@ DEPENDENCIES:
   - Alamofire
   - LeanCloud
   - Qiniu (~> 7.4.1)
+  - SDWebImage
   - SnapKit
 
 SPEC REPOS:
@@ -32,6 +36,7 @@ SPEC REPOS:
   trunk:
     - GRDB.swift
     - LeanCloud
+    - SDWebImage
     - SwiftProtobuf
 
 SPEC CHECKSUMS:
@@ -40,9 +45,10 @@ SPEC CHECKSUMS:
   HappyDNS: 158044ed01375cb27b28f272b198bca3901aced8
   LeanCloud: 37b7dff1dd6061a572b8d4367464df74f315b74f
   Qiniu: eec0930c1e403ec22f0c472d31f7c4a9ed45a95b
+  SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftProtobuf: bec1ae7d686ff73dd09d79866154f4970b891410
 
-PODFILE CHECKSUM: b94f2d5f3e4ef5c8e3c8b3148148477abf3ffde8
+PODFILE CHECKSUM: 1aaae1deac32671af99debb428760691113b97a8
 
 COCOAPODS: 1.9.3

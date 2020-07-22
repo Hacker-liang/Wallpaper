@@ -27,7 +27,7 @@ class QiniuHelper: NSObject {
     }
     
     class func requestQiniuLivePhotoDownloadUrl(sourceName: String) -> String {
-        let expires = 10000
+        let expires = 60 //分钟失效
         let authPolicy = QiniuAuthPolicy("5v-livephotos", expires: expires)
         let expiresDate = Int(Date().timeIntervalSince1970)+expires
         let url = "\(qiniuDownloadUrl)\(sourceName)?e=\(expiresDate)"

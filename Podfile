@@ -5,5 +5,6 @@ target 'Wallpaper' do
     pod "Qiniu", "~> 7.4.1"
     
     pod 'LeanCloud'
+    pod 'SDWebImage', :modular_headers => true
 
 end
