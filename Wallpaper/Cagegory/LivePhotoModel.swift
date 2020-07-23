@@ -31,6 +31,7 @@ class LivePhotoModel: NSObject {
             }
         }
     }
+    
     var movUrl: String? {
         get {
             if let name = self.movName {
@@ -40,6 +41,7 @@ class LivePhotoModel: NSObject {
             }
         }
     }
+    
 }
 
 extension String {

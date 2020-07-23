@@ -23,11 +23,11 @@ class LivePhotoCategoryViewController: UIViewController {
     
     private var dataSource = [LivePhotoCategory]()
     
-    private var livePhotoManager: LivePhotoManager!
+    private var livePhotoManager: LivePhotoHelper!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        livePhotoManager = LivePhotoManager()
+        livePhotoManager = LivePhotoHelper()
         setupContentView()
         loadData()
     }

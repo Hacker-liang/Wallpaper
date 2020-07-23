@@ -17,14 +17,14 @@ class LPRootViewController: UIViewController {
     
     var purchaseManager: LPPurchaseManager!
     
-    var livePhotoManager: LivePhotoManager!
+    var livePhotoManager: LivePhotoHelper!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         livePhotoView = PHLivePhotoView(frame: self.view.bounds)
         
-        livePhotoManager = LivePhotoManager()
+        livePhotoManager = LivePhotoHelper()
         
         self.view.insertSubview(livePhotoView, at: 0)
 //

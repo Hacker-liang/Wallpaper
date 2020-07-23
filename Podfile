@@ -7,4 +7,6 @@ target 'Wallpaper' do
     pod 'LeanCloud'
     pod 'SDWebImage', :modular_headers => true
 
+    pod 'JGProgressHUD', :modular_headers => true
+
 end

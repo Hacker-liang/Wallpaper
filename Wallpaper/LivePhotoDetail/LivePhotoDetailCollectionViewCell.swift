@@ -9,12 +9,13 @@
 import UIKit
 import PhotosUI
 import SDWebImage
+import JGProgressHUD
 
 class LivePhotoDetailCollectionViewCell: UICollectionViewCell {
 
     var livePhotoView: PHLivePhotoView!
     var staticImageView: UIImageView!
-    var currentLivePhoto: LivePhotoModel?
+    var currentLivePhotoModel: LivePhotoModel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,41 +35,16 @@ class LivePhotoDetailCollectionViewCell: UICollectionViewCell {
         staticImageView.isHidden = true
     }
     
-    public func updateLivePhotoData(livePhoto: LivePhotoModel) {
-        self.currentLivePhoto = livePhoto
-        
-        if livePhoto.isLivePhoto {
-            livePhotoView.isHidden = false
-            staticImageView.isHidden = true
-            if let name = livePhoto.movName {
-                LivePhotoManager.requestLivePhoto(livePhotoName: name, targetSize: self.bounds.size, progress: { [weak self] (progress) in
-                    guard let weakSelf = self else {
-                        return
-                    }
-                    
-                }) { [weak self] (livePhoto) in
-                    guard let weakSelf = self else {
-                        return
-                    }
-                    if name == weakSelf.currentLivePhoto?.movName ?? "" {  //如果下载的是当前的壁纸
-                        weakSelf.livePhotoView.livePhoto = livePhoto
-                    }
-                }
-
-            }
-            
-        } else {
-            livePhotoView.isHidden = true
-            staticImageView.isHidden = false
-            if let name = livePhoto.imageName {
-                LivePhotoManager.requestStaticImage(imageName: name, progress: { (progress) in
-                    
-                }) { (image) in
-                    self.staticImageView.image = image
-                }
-
-            }
-        }
+    func updateLivePhoto(livePhoto: PHLivePhoto?) {
+        self.livePhotoView.livePhoto = livePhoto
+        self.livePhotoView.isHidden = false
+        self.staticImageView.isHidden = true
+    }
+    
+    func updateStaticPhoto(staticImage: UIImage?) {
+        self.staticImageView.image = staticImage
+        self.livePhotoView.isHidden = true
+        self.staticImageView.isHidden = false
     }
     
 
