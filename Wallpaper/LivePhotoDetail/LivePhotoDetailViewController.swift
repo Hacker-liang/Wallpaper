@@ -23,7 +23,7 @@ class LivePhotoDetailViewController: UIViewController {
     var moreButton: UIButton!
     var collectionView: UICollectionView!
     
-    var currentCellIndex: IndexPath = IndexPath(row: 0, section: 0)
+    var currentCellIndex: IndexPath = IndexPath(row: -1, section: 0)
 
     var pageIndex = 0
     
@@ -74,7 +74,9 @@ class LivePhotoDetailViewController: UIViewController {
         let index = Int((contentOffset.x+100)/collectionView.bounds.size.width)
         print("当前是第:\(index)页")
         if currentCellIndex.row != index {
-            self.cancelDownloadIfNeeded(model: dataSource[currentCellIndex.row])
+            if currentCellIndex.row >= 0 {
+                self.cancelDownloadIfNeeded(model: dataSource[currentCellIndex.row])
+            }
             currentCellIndex = IndexPath(row: index, section: 0)
             self.startDownloadIfNeeded(model: dataSource[currentCellIndex.row])
         }
