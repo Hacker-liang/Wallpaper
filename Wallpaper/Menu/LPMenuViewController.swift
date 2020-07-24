@@ -10,21 +10,68 @@ import UIKit
 
 class LPMenuViewController: UIViewController {
 
+    var segmentControl: LPSegmentView!
+    
+    let dataSource = ["分类", "高级版", "设置中心"]
+    
+    var categoryListVC: LivePhotoCategoryViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .gray
-        // Do any additional setup after loading the view.
+        self.view.backgroundColor = .black
+        setupContentView()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.segmentControl.markSelected(at: 0)
     }
-    */
+    
+    private func gotoSettingVC() {
+        let settingVC = LPSettingViewController()
+        settingVC.modalPresentationStyle = .fullScreen
+        self.present(settingVC, animated: true, completion: nil)
+    }
+    
+    private func gotoPurchaseVC() {
+        let purchaseVC = LPPurchaseViewController()
+        purchaseVC.modalPresentationStyle = .fullScreen
+        self.present(purchaseVC, animated: true, completion: nil)
+    }
+    
+    private func setupContentView() {
+        segmentControl = LPSegmentView(titles: dataSource, normalImageNames: dataSource, selectedImageNames: dataSource)
+        segmentControl.delegate = self
+        segmentControl.markSelected(at: 0)
+        
+        self.view.addSubview(segmentControl)
+        
+        segmentControl.snp.makeConstraints { (make) in
+            make.leading.top.equalToSuperview()
+            make.width.equalTo(290.0)
+            make.height.equalTo(55)
+        }
+        
+        categoryListVC = LivePhotoCategoryViewController()
+        categoryListVC.willMove(toParent: self)
+        self.addChild(categoryListVC)
+        self.view.addSubview(categoryListVC.view)
+        categoryListVC.view.snp.makeConstraints { (make) in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(segmentControl.snp.bottom)
+        }
+    }
+    
+}
 
+extension LPMenuViewController: LPSegmentViewDelegate {
+    func didSelected(at index: Int) {
+        if index == 0 { //显示分类
+            
+        } else if index == 1 { //显示VIP页面
+            self.gotoPurchaseVC()
+        } else if index == 2 {  //显示设置页面
+            self.gotoSettingVC()
+        }
+    }
 }

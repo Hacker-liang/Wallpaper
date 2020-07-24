@@ -64,10 +64,16 @@
 		6646522E24CA956E001B9B2C /* JPEG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646522C24CA956D001B9B2C /* JPEG.swift */; };
 		6646522F24CA956E001B9B2C /* QuickTimeMov.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646522D24CA956D001B9B2C /* QuickTimeMov.swift */; };
 		6646523224CAB054001B9B2C /* LPMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646523124CAB054001B9B2C /* LPMenuViewController.swift */; };
+		6646523724CAB43D001B9B2C /* TwicketSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646523424CAB43D001B9B2C /* TwicketSegmentedControl.swift */; };
+		6646523824CAB43D001B9B2C /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646523524CAB43D001B9B2C /* Palette.swift */; };
+		6646523924CAB43D001B9B2C /* UIViewShadowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646523624CAB43D001B9B2C /* UIViewShadowExtension.swift */; };
+		6646523B24CABF82001B9B2C /* LPSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646523A24CABF82001B9B2C /* LPSegmentView.swift */; };
+		6646523E24CAC279001B9B2C /* LPColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646523D24CAC279001B9B2C /* LPColor.swift */; };
+		6646524124CAD098001B9B2C /* LPSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646524024CAD098001B9B2C /* LPSettingViewController.swift */; };
 		66515E4224C024DC0075095C /* LPPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66515E4124C024DC0075095C /* LPPurchaseManager.swift */; };
 		66607CEC24C0376D005CEEB5 /* LPPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66607CEA24C0376D005CEEB5 /* LPPurchaseViewController.swift */; };
 		66607CED24C0376D005CEEB5 /* LPPurchaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66607CEB24C0376D005CEEB5 /* LPPurchaseViewController.xib */; };
-		DD6D2C867A928FE6C8934508 /* libPods-Wallpaper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3510FF81BF3B660A15AFB7B /* libPods-Wallpaper.a */; };
+		CE9D1A95F96E447E7AA7553A /* libPods-Wallpaper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EADB868DCF283667142BE229 /* libPods-Wallpaper.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,11 +160,17 @@
 		6646522C24CA956D001B9B2C /* JPEG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JPEG.swift; sourceTree = "<group>"; };
 		6646522D24CA956D001B9B2C /* QuickTimeMov.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickTimeMov.swift; sourceTree = "<group>"; };
 		6646523124CAB054001B9B2C /* LPMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPMenuViewController.swift; sourceTree = "<group>"; };
+		6646523424CAB43D001B9B2C /* TwicketSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwicketSegmentedControl.swift; sourceTree = "<group>"; };
+		6646523524CAB43D001B9B2C /* Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
+		6646523624CAB43D001B9B2C /* UIViewShadowExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewShadowExtension.swift; sourceTree = "<group>"; };
+		6646523A24CABF82001B9B2C /* LPSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPSegmentView.swift; sourceTree = "<group>"; };
+		6646523D24CAC279001B9B2C /* LPColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPColor.swift; sourceTree = "<group>"; };
+		6646524024CAD098001B9B2C /* LPSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPSettingViewController.swift; sourceTree = "<group>"; };
 		66515E4124C024DC0075095C /* LPPurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPPurchaseManager.swift; sourceTree = "<group>"; };
 		66607CEA24C0376D005CEEB5 /* LPPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPPurchaseViewController.swift; sourceTree = "<group>"; };
 		66607CEB24C0376D005CEEB5 /* LPPurchaseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LPPurchaseViewController.xib; sourceTree = "<group>"; };
 		B404D6B80DB9C3AF34207F6D /* Pods-Wallpaper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper.debug.xcconfig"; path = "Target Support Files/Pods-Wallpaper/Pods-Wallpaper.debug.xcconfig"; sourceTree = "<group>"; };
-		C3510FF81BF3B660A15AFB7B /* libPods-Wallpaper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wallpaper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EADB868DCF283667142BE229 /* libPods-Wallpaper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wallpaper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,7 +178,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD6D2C867A928FE6C8934508 /* libPods-Wallpaper.a in Frameworks */,
+				CE9D1A95F96E447E7AA7553A /* libPods-Wallpaper.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +224,8 @@
 		660AF22124B73E760042C2FB /* Wallpaper */ = {
 			isa = PBXGroup;
 			children = (
+				6646523F24CAD080001B9B2C /* Setting */,
+				6646523C24CAC25B001B9B2C /* Extension */,
 				6646521F24C997F7001B9B2C /* Libs */,
 				664651DA24C6CCF2001B9B2C /* LivePhotoDetail */,
 				664651D924C6B886001B9B2C /* Menu */,
@@ -304,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				6646523124CAB054001B9B2C /* LPMenuViewController.swift */,
+				6646523A24CABF82001B9B2C /* LPSegmentView.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -358,6 +373,7 @@
 		6646521F24C997F7001B9B2C /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				6646523324CAB43D001B9B2C /* TwicketSegmentedControl */,
 				6646522024C99809001B9B2C /* Toast */,
 			);
 			path = Libs;
@@ -379,6 +395,32 @@
 				6646522D24CA956D001B9B2C /* QuickTimeMov.swift */,
 			);
 			path = Metadata;
+			sourceTree = "<group>";
+		};
+		6646523324CAB43D001B9B2C /* TwicketSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				6646523424CAB43D001B9B2C /* TwicketSegmentedControl.swift */,
+				6646523524CAB43D001B9B2C /* Palette.swift */,
+				6646523624CAB43D001B9B2C /* UIViewShadowExtension.swift */,
+			);
+			path = TwicketSegmentedControl;
+			sourceTree = "<group>";
+		};
+		6646523C24CAC25B001B9B2C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				6646523D24CAC279001B9B2C /* LPColor.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		6646523F24CAD080001B9B2C /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				6646524024CAD098001B9B2C /* LPSettingViewController.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		66515E4024C024B00075095C /* Purchase */ = {
@@ -403,7 +445,7 @@
 		EB141A51D25D902E94B3FA30 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C3510FF81BF3B660A15AFB7B /* libPods-Wallpaper.a */,
+				EADB868DCF283667142BE229 /* libPods-Wallpaper.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -606,18 +648,24 @@
 				660AF26524B897480042C2FB /* LivePhotoUploader.swift in Sources */,
 				660DD79024C5471E00A26AD1 /* LPLivePhotoSourceManager.swift in Sources */,
 				664651D824C5BB5E001B9B2C /* LivePhotoModel.swift in Sources */,
+				6646523724CAB43D001B9B2C /* TwicketSegmentedControl.swift in Sources */,
 				664651DF24C81DF6001B9B2C /* LivePhotoDetailCollectionViewCell.swift in Sources */,
+				6646523824CAB43D001B9B2C /* Palette.swift in Sources */,
 				6646522F24CA956E001B9B2C /* QuickTimeMov.swift in Sources */,
 				664651DC24C6CD1D001B9B2C /* LivePhotoDetailViewController.swift in Sources */,
+				6646523B24CABF82001B9B2C /* LPSegmentView.swift in Sources */,
 				6646523224CAB054001B9B2C /* LPMenuViewController.swift in Sources */,
 				664651D624C5A5A9001B9B2C /* LivePhotoNetworkHelper.swift in Sources */,
 				660AF22724B73E760042C2FB /* LPRootViewController.swift in Sources */,
 				6646522324C99809001B9B2C /* UIView+Toast.m in Sources */,
 				6646522E24CA956E001B9B2C /* JPEG.swift in Sources */,
+				6646523924CAB43D001B9B2C /* UIViewShadowExtension.swift in Sources */,
 				660DD79224C59A5900A26AD1 /* LivePhotoCategoryViewController.swift in Sources */,
 				660AF26F24B8A94B0042C2FB /* QiniuHelper.swift in Sources */,
 				660AF25324B73F5B0042C2FB /* LivePhotoHelper.swift in Sources */,
+				6646523E24CAC279001B9B2C /* LPColor.swift in Sources */,
 				66515E4224C024DC0075095C /* LPPurchaseManager.swift in Sources */,
+				6646524124CAD098001B9B2C /* LPSettingViewController.swift in Sources */,
 				660AF22324B73E760042C2FB /* AppDelegate.swift in Sources */,
 				660AF25524B743600042C2FB /* LivePhotoDownloader.swift in Sources */,
 				66607CEC24C0376D005CEEB5 /* LPPurchaseViewController.swift in Sources */,
