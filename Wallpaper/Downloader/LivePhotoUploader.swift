@@ -14,7 +14,7 @@ class LivePhotoUploader: NSObject {
     }
     
     func uploadLivePhoto(livePhoto: PHLivePhoto) {
-        let qnUploader = QiniuHelper()
+//        let qnUploader = QiniuHelper()
         
     }
 }

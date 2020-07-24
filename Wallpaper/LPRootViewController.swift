@@ -12,97 +12,47 @@ import PhotosUI
 import StoreKit
 
 class LPRootViewController: UIViewController {
-
-    var livePhotoView: PHLivePhotoView!
     
+    var livePhotoDetailVC: LivePhotoDetailViewController!
     var purchaseManager: LPPurchaseManager!
-    
-    var livePhotoManager: LivePhotoHelper!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
-        livePhotoView = PHLivePhotoView(frame: self.view.bounds)
+        livePhotoDetailVC = LivePhotoDetailViewController()
+        livePhotoDetailVC.willMove(toParent: self)
+        self.addChild(livePhotoDetailVC)
+        self.view.addSubview(livePhotoDetailVC.view)
+        livePhotoDetailVC.view.snp.makeConstraints { (make) in
+            make.top.bottom.leading.trailing.equalTo(0)
+        }
         
-        livePhotoManager = LivePhotoHelper()
-        
-        self.view.insertSubview(livePhotoView, at: 0)
-//
-//        let tap = UITapGestureRecognizer()
-//        tap.numberOfTouchesRequired = 1
-//        tap.numberOfTapsRequired = 1
-//        tap.addTarget(self, action: #selector(livePhotoViewPress))
-//        livePhotoView.addGestureRecognizer(tap)
+        livePhotoDetailVC.moreButton.addTarget(self, action: #selector(moreButtonAction), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
-    @IBAction func categoryButtonAction(_ sender: Any) {
-        let categoryVC = LivePhotoCategoryViewController()
-        categoryVC.delegate = self
-        self.present(categoryVC, animated: true, completion: nil)
-    }
-    
-    @IBAction func purchaseButtonAction(_ sender: Any) {
-       
-        let detailVC = LivePhotoDetailViewController()
-        self.present(detailVC, animated: true, completion: nil)
-        
-//        livePhotoManager.requestLivePhoto(livePhotoName: "test1", targetSize: CGSize(width: 720, height: 1280), progress: { (progress) in
-//            print("下载进度为：\(progress)")
-//
-//        }) { (livePhoto) in
-//            if let p = livePhoto {
-//                self.livePhotoView.livePhoto = p
-//            }
-//        }
-    }
-    
-    func updateLivePhoto(jpgName: String, movName: String) {
-        
-    }
-    
-    @objc func livePhotoViewPress() {
-        
-        self.updateLivePhoto(jpgName: "test1", movName: "test1")
-//        PHPhotoLibrary.shared().performChanges({
-//            let request = PHAssetCreationRequest.forAsset()
-//            request.addResource(with: .photo, fileURL: jpgUrl, options: nil)
-//            request.addResource(with: .pairedVideo, fileURL: movUrl, options: nil)
-//
-//        }) { (success, error) in
-//            if success {
-//                print("保存成功")
-//            } else {
-//                print("保存失败")
-//            }
-//        }
-    }
-    
-//    func checkLivePhotoInAlbum() {
-//        PHPhotoLibrary.shared().
-//    }
-}
-
-
-
-extension LPRootViewController: PHLivePhotoViewDelegate {
-
-    func livePhotoView(_ livePhotoView: PHLivePhotoView, willBeginPlaybackWith playbackStyle: PHLivePhotoViewPlaybackStyle) {
-        
-    }
-    
-    func livePhotoView(_ livePhotoView: PHLivePhotoView, didEndPlaybackWith playbackStyle: PHLivePhotoViewPlaybackStyle) {
-        
-    }
-    
-}
-
-
-extension LPRootViewController: LivePhotoCategoryViewControllerDelegate {
-    func didSelectedCagetory(category: LivePhotoCategory, subCagetoryId: Int, subCagetoryName: String) {
+   
+    @objc func moreButtonAction(sender: UIButton) {
+        if !sender.isSelected {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.livePhotoDetailVC.view.frame = CGRect(x: 0, y: 200-self.livePhotoDetailVC.view.bounds.size.height, width: self.livePhotoDetailVC.view.bounds.size.width, height: self.livePhotoDetailVC.view.bounds.size.height)
+                self.livePhotoDetailVC.view.snp.updateConstraints { (make) in
+                    make.top.equalToSuperview().offset(200-self.livePhotoDetailVC.view.bounds.size.height)
+                }
+            }, completion: nil)
+        } else {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.livePhotoDetailVC.view.frame = CGRect(x: 0, y: 0, width: self.livePhotoDetailVC.view.bounds.size.width, height: self.livePhotoDetailVC.view.bounds.size.height)
+                self.livePhotoDetailVC.view.snp.updateConstraints { (make) in
+                    make.top.equalToSuperview().offset(0
+                    )
+                }
+            }, completion: nil)
+        }
+        sender.isSelected = !sender.isSelected
         
     }
 }
+

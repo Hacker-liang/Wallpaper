@@ -18,6 +18,7 @@ class LivePhotoDetailViewController: UIViewController {
     var livePhotoManager: LivePhotoHelper!
     
     var livePhotoView: PHLivePhotoView!
+    
     var saveButton: UIButton!
     var favoriteButton: UIButton!
     var moreButton: UIButton!
@@ -52,6 +53,7 @@ class LivePhotoDetailViewController: UIViewController {
         guard let categoryId = selectedSubCategoryId else {
             return
         }
+        
         LivePhotoNetworkHelper.requestLivePhotoList(in: categoryId, at: pageIndex) { [weak self] (livePhotos) in
             if let list = livePhotos {
                 
@@ -142,10 +144,14 @@ class LivePhotoDetailViewController: UIViewController {
                         request.addResource(with: .pairedVideo, fileURL: URL(fileURLWithPath: savedPath.movSavedPath), options: nil)
                         
                     }) { (success, error) in
-                        if error == nil {
-                            print("保存成功")
-                        } else {
-                            print("保存失败：\(String(describing: error))")
+                        DispatchQueue.main.async {
+                            if error == nil {
+                                self.view.makeToast("保存成功")
+                                print("保存成功")
+                            } else {
+                                self.view.makeToast("保存失败")
+                                print("保存失败：\(String(describing: error))")
+                            }
                         }
                     }
                 }
@@ -155,10 +161,14 @@ class LivePhotoDetailViewController: UIViewController {
                     PHPhotoLibrary.shared().performChanges({
                         PHAssetChangeRequest.creationRequestForAsset(from: image)
                     }) { (success, error) in
-                        if error == nil {
-                            print("保存成功")
-                        } else {
-                            print("保存失败：\(String(describing: error))")
+                        DispatchQueue.main.async {
+                            if error == nil {
+                                self.view.makeToast("保存成功")
+                                print("保存成功")
+                            } else {
+                                self.view.makeToast("保存失败")
+                                print("保存失败：\(String(describing: error))")
+                            }
                         }
                     }
                 }
@@ -178,7 +188,7 @@ class LivePhotoDetailViewController: UIViewController {
         collectionView.isPagingEnabled = true
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.backgroundColor = .gray
+        collectionView.backgroundColor = .black
         
         self.view.addSubview(collectionView)
         collectionView.snp.makeConstraints { (make) in
@@ -231,7 +241,7 @@ extension LivePhotoDetailViewController: UICollectionViewDataSource, UICollectio
         if model.isLivePhoto, let name = model.movName {
             if LPLivePhotoSourceManager.livePhotoIsExitInSandbox(with: name) {
                 let paths = LPLivePhotoSourceManager.livePhotoSavedPath(with: name)
-                LivePhotoHelper.requestLivePhotoFromCache(jpgPath: paths.jpgSavedPath, movPath: paths.movSavedPath, targetSize: cell.bounds.size, callback: { (photo) in
+                LivePhotoHelper.requestLivePhotoFromCache(jpgPath: paths.jpgSavedPath, movPath: paths.movSavedPath, targetSize: CGSize(width: cell.bounds.size.width*UIScreen.main.scale, height: cell.bounds.size.height*UIScreen.main.scale), callback: { (photo) in
                     if let p = photo {
                         cell.updateLivePhoto(livePhoto: p)
                     }
