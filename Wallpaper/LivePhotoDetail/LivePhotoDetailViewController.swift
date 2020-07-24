@@ -43,6 +43,22 @@ class LivePhotoDetailViewController: UIViewController {
         self.refreshDataSource()
     }
     
+    public func showDetail() {
+        self.saveButton.alpha = 1.0
+        self.favoriteButton.alpha = 1.0
+        self.moreButton.snp.updateConstraints { (make) in
+            make.centerY.equalTo(saveButton.snp.centerY)
+        }
+    }
+       
+    public func hideDetail() {
+        self.saveButton.alpha = 0.0
+        self.favoriteButton.alpha = 0.0
+        self.moreButton.snp.updateConstraints { (make) in
+            make.centerY.equalTo(saveButton.snp.centerY).offset(70)
+        }
+    }
+    
     private func refreshDataSource() {
         pageIndex = 0
         dataSource.removeAll()
@@ -200,19 +216,18 @@ class LivePhotoDetailViewController: UIViewController {
         self.view.addSubview(saveButton)
         saveButton.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-100)
             make.width.height.equalTo(60)
+            make.bottom.equalToSuperview().offset(-100)
         }
-        
         saveButton.addTarget(self, action: #selector(saveLivePhoto), for: .touchUpInside)
         
         moreButton = UIButton(frame: .zero)
         moreButton.backgroundColor = UIColor.gray
         self.view.addSubview(moreButton)
         moreButton.snp.makeConstraints { (make) in
-            make.centerY.equalTo(saveButton.snp.centerY)
             make.right.equalTo(saveButton.snp.left).offset(-20)
-            make.width.height.equalTo(30)
+            make.width.height.equalTo(saveButton.snp.width)
+            make.centerY.equalTo(saveButton.snp.centerY)
         }
         
         favoriteButton = UIButton(frame: .zero)
@@ -221,7 +236,7 @@ class LivePhotoDetailViewController: UIViewController {
         favoriteButton.snp.makeConstraints { (make) in
             make.centerY.equalTo(saveButton.snp.centerY)
             make.left.equalTo(saveButton.snp.right).offset(20)
-            make.width.height.equalTo(30)
+            make.width.height.equalTo(saveButton.snp.width)
         }
     }
 }

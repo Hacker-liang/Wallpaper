@@ -18,7 +18,6 @@ class LivePhotoDownloader: NSObject {
     
     override init() {
         super.init()
-        
     }
     
     func cancelDownloadLivePhoto(livePhotoName: String) {

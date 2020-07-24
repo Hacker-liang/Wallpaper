@@ -63,6 +63,7 @@
 		6646522B24CA8F76001B9B2C /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6646522724CA8F76001B9B2C /* test.jpg */; };
 		6646522E24CA956E001B9B2C /* JPEG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646522C24CA956D001B9B2C /* JPEG.swift */; };
 		6646522F24CA956E001B9B2C /* QuickTimeMov.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646522D24CA956D001B9B2C /* QuickTimeMov.swift */; };
+		6646523224CAB054001B9B2C /* LPMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646523124CAB054001B9B2C /* LPMenuViewController.swift */; };
 		66515E4224C024DC0075095C /* LPPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66515E4124C024DC0075095C /* LPPurchaseManager.swift */; };
 		66607CEC24C0376D005CEEB5 /* LPPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66607CEA24C0376D005CEEB5 /* LPPurchaseViewController.swift */; };
 		66607CED24C0376D005CEEB5 /* LPPurchaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66607CEB24C0376D005CEEB5 /* LPPurchaseViewController.xib */; };
@@ -152,6 +153,7 @@
 		6646522724CA8F76001B9B2C /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
 		6646522C24CA956D001B9B2C /* JPEG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JPEG.swift; sourceTree = "<group>"; };
 		6646522D24CA956D001B9B2C /* QuickTimeMov.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickTimeMov.swift; sourceTree = "<group>"; };
+		6646523124CAB054001B9B2C /* LPMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPMenuViewController.swift; sourceTree = "<group>"; };
 		66515E4124C024DC0075095C /* LPPurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPPurchaseManager.swift; sourceTree = "<group>"; };
 		66607CEA24C0376D005CEEB5 /* LPPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPPurchaseViewController.swift; sourceTree = "<group>"; };
 		66607CEB24C0376D005CEEB5 /* LPPurchaseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LPPurchaseViewController.xib; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 		664651D924C6B886001B9B2C /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				6646523124CAB054001B9B2C /* LPMenuViewController.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -606,6 +609,7 @@
 				664651DF24C81DF6001B9B2C /* LivePhotoDetailCollectionViewCell.swift in Sources */,
 				6646522F24CA956E001B9B2C /* QuickTimeMov.swift in Sources */,
 				664651DC24C6CD1D001B9B2C /* LivePhotoDetailViewController.swift in Sources */,
+				6646523224CAB054001B9B2C /* LPMenuViewController.swift in Sources */,
 				664651D624C5A5A9001B9B2C /* LivePhotoNetworkHelper.swift in Sources */,
 				660AF22724B73E760042C2FB /* LPRootViewController.swift in Sources */,
 				6646522324C99809001B9B2C /* UIView+Toast.m in Sources */,
