@@ -19,7 +19,7 @@ class LivePhotoDetailCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = UIColor.red
+        self.backgroundColor = .black
         livePhotoView = PHLivePhotoView()
         self.addSubview(livePhotoView)
         livePhotoView.snp.makeConstraints { (make) in

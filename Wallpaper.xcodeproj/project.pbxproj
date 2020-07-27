@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -70,6 +70,7 @@
 		6646523B24CABF82001B9B2C /* LPSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646523A24CABF82001B9B2C /* LPSegmentView.swift */; };
 		6646523E24CAC279001B9B2C /* LPColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646523D24CAC279001B9B2C /* LPColor.swift */; };
 		6646524124CAD098001B9B2C /* LPSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646524024CAD098001B9B2C /* LPSettingViewController.swift */; };
+		6646524624CAD733001B9B2C /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646524524CAD733001B9B2C /* AdManager.swift */; };
 		66515E4224C024DC0075095C /* LPPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66515E4124C024DC0075095C /* LPPurchaseManager.swift */; };
 		66607CEC24C0376D005CEEB5 /* LPPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66607CEA24C0376D005CEEB5 /* LPPurchaseViewController.swift */; };
 		66607CED24C0376D005CEEB5 /* LPPurchaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66607CEB24C0376D005CEEB5 /* LPPurchaseViewController.xib */; };
@@ -166,6 +167,9 @@
 		6646523A24CABF82001B9B2C /* LPSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPSegmentView.swift; sourceTree = "<group>"; };
 		6646523D24CAC279001B9B2C /* LPColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPColor.swift; sourceTree = "<group>"; };
 		6646524024CAD098001B9B2C /* LPSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPSettingViewController.swift; sourceTree = "<group>"; };
+		6646524224CAD5BB001B9B2C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		6646524324CAD5BB001B9B2C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		6646524524CAD733001B9B2C /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
 		66515E4124C024DC0075095C /* LPPurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPPurchaseManager.swift; sourceTree = "<group>"; };
 		66607CEA24C0376D005CEEB5 /* LPPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPPurchaseViewController.swift; sourceTree = "<group>"; };
 		66607CEB24C0376D005CEEB5 /* LPPurchaseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LPPurchaseViewController.xib; sourceTree = "<group>"; };
@@ -224,6 +228,7 @@
 		660AF22124B73E760042C2FB /* Wallpaper */ = {
 			isa = PBXGroup;
 			children = (
+				6646524424CAD71F001B9B2C /* AD */,
 				6646523F24CAD080001B9B2C /* Setting */,
 				6646523C24CAC25B001B9B2C /* Extension */,
 				6646521F24C997F7001B9B2C /* Libs */,
@@ -423,6 +428,14 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
+		6646524424CAD71F001B9B2C /* AD */ = {
+			isa = PBXGroup;
+			children = (
+				6646524524CAD733001B9B2C /* AdManager.swift */,
+			);
+			path = AD;
+			sourceTree = "<group>";
+		};
 		66515E4024C024B00075095C /* Purchase */ = {
 			isa = PBXGroup;
 			children = (
@@ -461,6 +474,7 @@
 				660AF21B24B73E760042C2FB /* Sources */,
 				660AF21C24B73E760042C2FB /* Frameworks */,
 				660AF21D24B73E760042C2FB /* Resources */,
+				3D16916C611EB81D1875085A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -538,6 +552,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 660AF21624B73E760042C2FB;
 			productRefGroup = 660AF22024B73E760042C2FB /* Products */;
@@ -615,6 +630,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3D16916C611EB81D1875085A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Wallpaper/Pods-Wallpaper-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Wallpaper/Pods-Wallpaper-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Wallpaper/Pods-Wallpaper-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E2B3CD7E92D18559E1B81E20 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -650,6 +682,7 @@
 				664651D824C5BB5E001B9B2C /* LivePhotoModel.swift in Sources */,
 				6646523724CAB43D001B9B2C /* TwicketSegmentedControl.swift in Sources */,
 				664651DF24C81DF6001B9B2C /* LivePhotoDetailCollectionViewCell.swift in Sources */,
+				6646524624CAD733001B9B2C /* AdManager.swift in Sources */,
 				6646523824CAB43D001B9B2C /* Palette.swift in Sources */,
 				6646522F24CA956E001B9B2C /* QuickTimeMov.swift in Sources */,
 				664651DC24C6CD1D001B9B2C /* LivePhotoDetailViewController.swift in Sources */,
@@ -708,6 +741,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				660AF22924B73E760042C2FB /* Base */,
+				6646524224CAD5BB001B9B2C /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -716,6 +750,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				660AF22E24B73E770042C2FB /* Base */,
+				6646524324CAD5BB001B9B2C /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -727,6 +762,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -787,6 +823,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

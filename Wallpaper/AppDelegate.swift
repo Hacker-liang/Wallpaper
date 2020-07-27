@@ -17,10 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     fileprivate let LeanCloudAppKey = "qdRAAvwmzjXqjdMFb4gNCgvh"
     fileprivate let LeanCloudServerUrl = "http://leancloud.livephotos.5vlive.cn"
 
+    fileprivate let BUAd_AppId = "5091389"
+
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.setupLeanCloud()
+        self.setupBUAd()
         return true
     }
 }
@@ -38,6 +41,10 @@ extension AppDelegate {
         } catch {
             print(error)
         }
-        
+    }
+    
+    fileprivate func setupBUAd() {
+        BUAdSDKManager.setAppID(BUAd_AppId)
     }
 }
+
