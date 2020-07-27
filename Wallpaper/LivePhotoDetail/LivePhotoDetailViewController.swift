@@ -24,6 +24,14 @@ class LivePhotoDetailViewController: UIViewController {
     var moreButton: UIButton!
     var collectionView: UICollectionView!
     
+    private lazy var adManager: AdManager = {
+        let m = AdManager()
+        return m
+    }()
+    
+    var currentAdBannerView: BUNativeExpressBannerView?
+    var currentRewardAd: BUNativeExpressRewardedVideoAd?
+
     var currentCellIndex: IndexPath = IndexPath(row: -1, section: 0)
 
     var pageIndex = 0
@@ -36,6 +44,8 @@ class LivePhotoDetailViewController: UIViewController {
         self.view.backgroundColor = UIColor.white
         self.setupContentView()
         self.updateSelectedSubCategoryId(id: 1001)
+//        loadBannerAdIfNeeded()
+        loadRewardAdIfNeeded()
     }
     
     public func updateSelectedSubCategoryId(id: Int) {
@@ -49,6 +59,7 @@ class LivePhotoDetailViewController: UIViewController {
         self.moreButton.snp.updateConstraints { (make) in
             make.centerY.equalTo(saveButton.snp.centerY)
         }
+        self.currentAdBannerView?.isHidden = false
     }
        
     public func hideDetail() {
@@ -57,6 +68,18 @@ class LivePhotoDetailViewController: UIViewController {
         self.moreButton.snp.updateConstraints { (make) in
             make.centerY.equalTo(saveButton.snp.centerY).offset(70)
         }
+        self.currentAdBannerView?.isHidden = true
+
+    }
+    
+    private func loadBannerAdIfNeeded() {
+        currentAdBannerView = self.adManager.loadBannerAd(in: self)
+        self.view.addSubview(currentAdBannerView!)
+    }
+    
+    private func loadRewardAdIfNeeded() {
+        currentRewardAd = self.adManager.loadRewardAd(in: self)
+//        currentRewardAd?.show(fromRootViewController: self)
     }
     
     private func refreshDataSource() {
@@ -278,5 +301,54 @@ extension LivePhotoDetailViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         self.pageDidChanged()
     }
+}
 
+extension LivePhotoDetailViewController: BUNativeExpressBannerViewDelegate {
+    
+    func nativeExpressBannerAdViewDidLoad(_ bannerAdView: BUNativeExpressBannerView) {
+        print("广告加载成功")
+    }
+    
+    func nativeExpressBannerAdView(_ bannerAdView: BUNativeExpressBannerView, didLoadFailWithError error: Error?) {
+        print("广告加载失败: \(String(describing: error))")
+    }
+    
+    func nativeExpressBannerAdViewRenderSuccess(_ bannerAdView: BUNativeExpressBannerView) {
+        print("nativeExpressBannerAdViewRenderSuccess")
+    }
+    
+    func nativeExpressBannerAdViewWillBecomVisible(_ bannerAdView: BUNativeExpressBannerView) {
+        print("nativeExpressBannerAdViewWillBecomVisible")
+    }
+    
+    func nativeExpressBannerAdViewDidCloseOtherController(_ bannerAdView: BUNativeExpressBannerView, interactionType: BUInteractionType) {
+        print("nativeExpressBannerAdViewDidCloseOtherController")
+    }
+    
+    func nativeExpressBannerAdViewDidClick(_ bannerAdView: BUNativeExpressBannerView) {
+        print("nativeExpressBannerAdViewDidClick")
+    }
+    
+    func nativeExpressBannerAdView(_ bannerAdView: BUNativeExpressBannerView, dislikeWithReason filterwords: [BUDislikeWords]?) {
+        print("nativeExpressBannerAdView dislikeWithReason:\(String(describing: filterwords?.map{return $0.name}))")
+    }
+}
+
+extension LivePhotoDetailViewController: BUNativeExpressRewardedVideoAdDelegate {
+    func nativeExpressRewardedVideoAdDidLoad(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd) {
+        let success = rewardedVideoAd.show(fromRootViewController: self)
+        print("\(success)")
+    }
+    
+    func nativeExpressBannerAdViewRenderFail(_ bannerAdView: BUNativeExpressBannerView, error: Error?) {
+        
+    }
+    
+    func nativeExpressRewardedVideoAdViewRenderSuccess(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd) {
+        
+    }
+    
+    func nativeExpressRewardedVideoAdServerRewardDidFail(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd) {
+        
+    }
 }

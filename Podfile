@@ -11,6 +11,6 @@ target 'Wallpaper' do
 
     pod 'JGProgressHUD', :modular_headers => true
 
-  pod 'Bytedance-UnionAD'
+    pod 'Bytedance-UnionAD'
 
 end
