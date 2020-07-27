@@ -12,6 +12,7 @@ class AdManager: NSObject {
     
     private static let Banner_600x90_Id = "945348135"
     private static let Reward_Video_Id = "945348230"
+    private static let FullScreen_Video_Id = "945348715"
 
     class func loadBannerAd<T: UIViewController & BUNativeExpressBannerViewDelegate>(in controller: T) -> BUNativeExpressBannerView {
         
@@ -37,6 +38,14 @@ class AdManager: NSObject {
         videoAd.loadData()
         
         return videoAd
+    }
+    
+    class func loadFullVideoAd<T: UIViewController & BUNativeExpressFullscreenVideoAdDelegate>(in controller: T) -> BUNativeExpressFullscreenVideoAd {
+        
+        let ad = BUNativeExpressFullscreenVideoAd(slotID: FullScreen_Video_Id)
+        ad.delegate = controller
+        ad.loadData()
+        return ad
     }
     
 }

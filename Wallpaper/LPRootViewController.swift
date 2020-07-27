@@ -24,7 +24,7 @@ class LPRootViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         setupChildVC()
-        self.loadRewardAdIfNeeded()
+//        self.loadRewardAdIfNeeded()
     }
     
     private func loadRewardAdIfNeeded() {

@@ -24,12 +24,8 @@ class LivePhotoDetailViewController: UIViewController {
     var moreButton: UIButton!
     var collectionView: UICollectionView!
     
-//    private lazy var adManager: AdManager = {
-//        let m = AdManager()
-//        return m
-//    }()
-    
-    var currentAdBannerView: BUNativeExpressBannerView?
+    var currentBannerAdView: BUNativeExpressBannerView?
+    var currentFullScreenAd: BUNativeExpressFullscreenVideoAd?
 
     var currentCellIndex: IndexPath = IndexPath(row: -1, section: 0)
 
@@ -39,11 +35,11 @@ class LivePhotoDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.view.backgroundColor = UIColor.white
         self.setupContentView()
         self.updateSelectedSubCategoryId(id: 1001)
         loadBannerAdIfNeeded()
+        loadFullVideoAdIfNeeded()
     }
     
     public func updateSelectedSubCategoryId(id: Int) {
@@ -57,7 +53,7 @@ class LivePhotoDetailViewController: UIViewController {
         self.moreButton.snp.updateConstraints { (make) in
             make.centerY.equalTo(saveButton.snp.centerY)
         }
-        self.currentAdBannerView?.isHidden = false
+        self.currentBannerAdView?.isHidden = false
     }
        
     public func hideDetail() {
@@ -66,14 +62,17 @@ class LivePhotoDetailViewController: UIViewController {
         self.moreButton.snp.updateConstraints { (make) in
             make.centerY.equalTo(saveButton.snp.centerY).offset(70)
         }
-        self.currentAdBannerView?.isHidden = true
+        self.currentBannerAdView?.isHidden = true
     }
     
     private func loadBannerAdIfNeeded() {
-        currentAdBannerView = AdManager.loadBannerAd(in: self)
-        self.view.addSubview(currentAdBannerView!)
+        currentBannerAdView = AdManager.loadBannerAd(in: self)
+        self.view.addSubview(currentBannerAdView!)
     }
     
+    private func loadFullVideoAdIfNeeded() {
+        currentFullScreenAd = AdManager.loadFullVideoAd(in: self)
+    }
     
     private func refreshDataSource() {
         pageIndex = 0
@@ -327,4 +326,17 @@ extension LivePhotoDetailViewController: BUNativeExpressBannerViewDelegate {
     }
 }
 
-
+extension LivePhotoDetailViewController: BUNativeExpressFullscreenVideoAdDelegate {
+    func nativeExpressFullscreenVideoAdDidLoad(_ fullscreenVideoAd: BUNativeExpressFullscreenVideoAd) {
+        print("nativeExpressFullscreenVideoAdDidLoad")
+        fullscreenVideoAd.show(fromRootViewController: self)
+    }
+    
+    func nativeExpressBannerAdViewRenderFail(_ bannerAdView: BUNativeExpressBannerView, error: Error?) {
+        print("nativeExpressBannerAdViewRenderFail")
+    }
+    
+    func nativeExpressFullscreenVideoAd(_ fullscreenVideoAd: BUNativeExpressFullscreenVideoAd, didFailWithError error: Error?) {
+        print("nativeExpressFullscreenVideoAd didFailWithError\(error)")
+    }
+}
