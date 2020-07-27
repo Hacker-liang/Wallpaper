@@ -24,13 +24,12 @@ class LivePhotoDetailViewController: UIViewController {
     var moreButton: UIButton!
     var collectionView: UICollectionView!
     
-    private lazy var adManager: AdManager = {
-        let m = AdManager()
-        return m
-    }()
+//    private lazy var adManager: AdManager = {
+//        let m = AdManager()
+//        return m
+//    }()
     
     var currentAdBannerView: BUNativeExpressBannerView?
-    var currentRewardAd: BUNativeExpressRewardedVideoAd?
 
     var currentCellIndex: IndexPath = IndexPath(row: -1, section: 0)
 
@@ -44,8 +43,7 @@ class LivePhotoDetailViewController: UIViewController {
         self.view.backgroundColor = UIColor.white
         self.setupContentView()
         self.updateSelectedSubCategoryId(id: 1001)
-//        loadBannerAdIfNeeded()
-        loadRewardAdIfNeeded()
+        loadBannerAdIfNeeded()
     }
     
     public func updateSelectedSubCategoryId(id: Int) {
@@ -69,18 +67,13 @@ class LivePhotoDetailViewController: UIViewController {
             make.centerY.equalTo(saveButton.snp.centerY).offset(70)
         }
         self.currentAdBannerView?.isHidden = true
-
     }
     
     private func loadBannerAdIfNeeded() {
-        currentAdBannerView = self.adManager.loadBannerAd(in: self)
+        currentAdBannerView = AdManager.loadBannerAd(in: self)
         self.view.addSubview(currentAdBannerView!)
     }
     
-    private func loadRewardAdIfNeeded() {
-        currentRewardAd = self.adManager.loadRewardAd(in: self)
-//        currentRewardAd?.show(fromRootViewController: self)
-    }
     
     private func refreshDataSource() {
         pageIndex = 0
@@ -334,21 +327,4 @@ extension LivePhotoDetailViewController: BUNativeExpressBannerViewDelegate {
     }
 }
 
-extension LivePhotoDetailViewController: BUNativeExpressRewardedVideoAdDelegate {
-    func nativeExpressRewardedVideoAdDidLoad(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd) {
-        let success = rewardedVideoAd.show(fromRootViewController: self)
-        print("\(success)")
-    }
-    
-    func nativeExpressBannerAdViewRenderFail(_ bannerAdView: BUNativeExpressBannerView, error: Error?) {
-        
-    }
-    
-    func nativeExpressRewardedVideoAdViewRenderSuccess(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd) {
-        
-    }
-    
-    func nativeExpressRewardedVideoAdServerRewardDidFail(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd) {
-        
-    }
-}
+

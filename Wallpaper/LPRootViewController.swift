@@ -18,10 +18,17 @@ class LPRootViewController: UIViewController {
     
     var purchaseManager: LPPurchaseManager!
     
+    var currentRewardAd: BUNativeExpressRewardedVideoAd?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         setupChildVC()
+        self.loadRewardAdIfNeeded()
+    }
+    
+    private func loadRewardAdIfNeeded() {
+        currentRewardAd = AdManager.loadRewardAd(in: self)
     }
     
     private func setupChildVC() {
@@ -82,3 +89,29 @@ class LPRootViewController: UIViewController {
     }
 }
 
+extension LPRootViewController: BUNativeExpressRewardedVideoAdDelegate {
+    func nativeExpressRewardedVideoAdDidLoad(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd) {
+        let success = rewardedVideoAd.show(fromRootViewController: self)
+        print("\(success)")
+    }
+    
+    func nativeExpressBannerAdViewRenderFail(_ bannerAdView: BUNativeExpressBannerView, error: Error?) {
+        
+    }
+    
+    func nativeExpressRewardedVideoAdViewRenderSuccess(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd) {
+        
+    }
+    
+    func nativeExpressRewardedVideoAdServerRewardDidFail(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd) {
+        
+    }
+    
+    func nativeExpressRewardedVideoAdDidPlayFinish(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd, didFailWithError error: Error?) {
+        print("nativeExpressRewardedVideoAdDidPlayFinish")
+    }
+    
+    func nativeExpressRewardedVideoAdServerRewardDidSucceed(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd, verify: Bool) {
+        print("nativeExpressRewardedVideoAdServerRewardDidSucceed")
+    }
+}

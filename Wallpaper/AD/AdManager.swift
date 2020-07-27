@@ -10,10 +10,10 @@ import UIKit
 
 class AdManager: NSObject {
     
-    private let Banner_600x90_Id = "945348135"
-    private let Reward_Video_Id = "945348230"
+    private static let Banner_600x90_Id = "945348135"
+    private static let Reward_Video_Id = "945348230"
 
-    func loadBannerAd<T: UIViewController & BUNativeExpressBannerViewDelegate>(in controller: T) -> BUNativeExpressBannerView {
+    class func loadBannerAd<T: UIViewController & BUNativeExpressBannerViewDelegate>(in controller: T) -> BUNativeExpressBannerView {
         
         let bannerViewWidth = controller.view.bounds.size.width
         let bannerViewHeight = bannerViewWidth/UIScreen.main.bounds.size.width*90
@@ -27,7 +27,7 @@ class AdManager: NSObject {
         return bannerView
     }
     
-    func loadRewardAd<T: UIViewController & BUNativeExpressRewardedVideoAdDelegate>(in controller: T) -> BUNativeExpressRewardedVideoAd {
+    class func loadRewardAd<T: UIViewController & BUNativeExpressRewardedVideoAdDelegate>(in controller: T) -> BUNativeExpressRewardedVideoAd {
         
         let model = BURewardedVideoModel()
         model.userId = "123"
