@@ -52,10 +52,7 @@ extension LPPurchaseViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let product = purchaseManager.products[indexPath.row]
-        purchaseManager.purchase(product) { (transaction) in
-            
-        }
+        
     }
 }
 

@@ -32,6 +32,16 @@ class LivePhotoModel: NSObject {
         }
     }
     
+    var coverImageUrl: String? {
+        get {
+            if let name = self.imageName {
+                return QiniuHelper.requestQiniuCoverImageDownloadUrl(imageName: name.fullImageName)
+            } else {
+                return nil
+            }
+        }
+    }
+    
     var movUrl: String? {
         get {
             if let name = self.movName {
@@ -41,7 +51,6 @@ class LivePhotoModel: NSObject {
             }
         }
     }
-    
 }
 
 extension String {

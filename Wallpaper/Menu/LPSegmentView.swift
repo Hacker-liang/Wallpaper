@@ -42,6 +42,12 @@ class LPSegmentView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func updateTitleFont(font: UIFont) {
+        titleLabels.forEach { (label) in
+            label.font = font
+        }
+    }
+    
     public func markSelected(at index: Int) {
         guard index >= 0 && index < titleLabels.count else {
             return
@@ -54,20 +60,20 @@ class LPSegmentView: UIView {
         }
     }
     
-    @objc func itemButtonAction(sender: UIButton) {
+    @objc func itemSelectAction(tap: UIGestureRecognizer) {
         titleLabels.forEach { (label) in
-            label.textColor = (label == titleLabels[sender.tag] ? .white : .gray)
+            label.textColor = (label == titleLabels[tap.view?.tag ?? 0] ? .white : .gray)
         }
         buttons.forEach { (button) in
-            button.isSelected = button==sender
+            button.isSelected = (button == buttons[tap.view?.tag ?? 0] ? true : false)
         }
-        delegate?.didSelected(at: sender.tag)
+        delegate?.didSelected(at: tap.view?.tag ?? 0)
     }
     
     private func setupContents() {
         
         stackView = UIStackView()
-        stackView.spacing = 10
+        stackView.spacing = 0
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
         stackView.axis = .horizontal
@@ -79,6 +85,13 @@ class LPSegmentView: UIView {
         
         for (i,title) in titles.enumerated() {
             let itemView = UIView()
+            itemView.tag = i
+            
+            let tap = UITapGestureRecognizer()
+            tap.numberOfTouchesRequired = 1
+            tap.numberOfTapsRequired = 1
+            tap.addTarget(self, action: #selector(itemSelectAction))
+            itemView.addGestureRecognizer(tap)
             
             let label = UILabel()
             label.text = title
@@ -93,9 +106,9 @@ class LPSegmentView: UIView {
             
             let button = UIButton()
             button.tag = i
-            button.addTarget(self, action: #selector(itemButtonAction), for: .touchUpInside)
             button.setImage(UIImage(named: normalImageNames[i]), for: .normal)
             button.setImage(UIImage(named: selectedImageNames[i]), for: .selected)
+            button.isUserInteractionEnabled = false
             buttons.append(button)
             itemView.addSubview(button)
             

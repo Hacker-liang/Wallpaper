@@ -34,6 +34,16 @@ class QiniuHelper: NSObject {
         let toke = authPolicy.makedownloadToken(url: url, accessKey: qiniuKey, secretKey: qiniuSecret)
         return "\(url)&token=\(toke)"
     }
+    
+    class func requestQiniuCoverImageDownloadUrl(imageName: String) -> String {
+        let CutImage = "coverImage"
+        let expires = 60 //分钟失效
+        let authPolicy = QiniuAuthPolicy("5v-livephotos", expires: expires)
+        let expiresDate = Int(Date().timeIntervalSince1970)+expires
+        let url = "\(qiniuDownloadUrl)\(imageName)-\(CutImage)?e=\(expiresDate)"
+        let toke = authPolicy.makedownloadToken(url: url, accessKey: qiniuKey, secretKey: qiniuSecret)
+        return "\(url)&token=\(toke)"
+    }
 }
 
 final class QiniuAuthPolicy {

@@ -22,7 +22,10 @@ class LivePhotoDetailViewController: UIViewController {
     var saveButton: UIButton!
     var favoriteButton: UIButton!
     var moreButton: UIButton!
-    var collectionView: UICollectionView!
+    var detailCollectionView: UICollectionView!
+    var albumCollectionView: UICollectionView!
+    
+    var vipBannerView: LPBuyVipBannerView!
     
     var currentBannerAdView: BUNativeExpressBannerView?
     var currentFullScreenAd: BUNativeExpressFullscreenVideoAd?
@@ -39,7 +42,6 @@ class LivePhotoDetailViewController: UIViewController {
         self.setupContentView()
         self.updateSelectedSubCategoryId(id: 1001)
         loadBannerAdIfNeeded()
-        loadFullVideoAdIfNeeded()
     }
     
     public func updateSelectedSubCategoryId(id: Int) {
@@ -54,6 +56,8 @@ class LivePhotoDetailViewController: UIViewController {
             make.centerY.equalTo(saveButton.snp.centerY)
         }
         self.currentBannerAdView?.isHidden = false
+        self.albumCollectionView.isHidden = false
+        self.vipBannerView.isHidden = false
     }
        
     public func hideDetail() {
@@ -63,6 +67,8 @@ class LivePhotoDetailViewController: UIViewController {
             make.centerY.equalTo(saveButton.snp.centerY).offset(70)
         }
         self.currentBannerAdView?.isHidden = true
+        self.albumCollectionView.isHidden = true
+        self.vipBannerView.isHidden = true
     }
     
     private func loadBannerAdIfNeeded() {
@@ -94,7 +100,8 @@ class LivePhotoDetailViewController: UIViewController {
                 self?.dataSource.append(contentsOf: list)
                 
                 self?.pageIndex += 1
-                self?.collectionView.reloadData()
+                self?.detailCollectionView.reloadData()
+                self?.albumCollectionView.reloadData()
                 if weakSelf.pageIndex == 1 {
                     self?.pageDidChanged()
                 }
@@ -103,8 +110,8 @@ class LivePhotoDetailViewController: UIViewController {
     }
     
     private func pageDidChanged() {
-        let contentOffset = collectionView.contentOffset
-        let index = Int((contentOffset.x+100)/collectionView.bounds.size.width)
+        let contentOffset = detailCollectionView.contentOffset
+        let index = Int((contentOffset.x+100)/detailCollectionView.bounds.size.width)
         print("当前是第:\(index)页")
         if currentCellIndex.row != index {
             if currentCellIndex.row >= 0 {
@@ -140,7 +147,7 @@ class LivePhotoDetailViewController: UIViewController {
                     guard let weakSelf = self else {
                         return
                     }
-                    weakSelf.collectionView.reloadItems(at: [weakSelf.currentCellIndex])
+                    weakSelf.detailCollectionView.reloadItems(at: [weakSelf.currentCellIndex])
                 }
             }
         } else if let name = model.imageName {
@@ -156,7 +163,7 @@ class LivePhotoDetailViewController: UIViewController {
                     guard let weakSelf = self else {
                         return
                     }
-                    weakSelf.collectionView.reloadItems(at: [weakSelf.currentCellIndex])
+                    weakSelf.detailCollectionView.reloadItems(at: [weakSelf.currentCellIndex])
                 }
             }
         }
@@ -164,7 +171,7 @@ class LivePhotoDetailViewController: UIViewController {
     
     @objc private func saveLivePhoto(sender: UIButton) {
         
-        if let index = collectionView.indexPathsForVisibleItems.first {
+        if let index = detailCollectionView.indexPathsForVisibleItems.first {
             let model = dataSource[index.row]
             if model.isLivePhoto {
                 if let name = model.movName {
@@ -207,14 +214,20 @@ class LivePhotoDetailViewController: UIViewController {
         }
     }
     
+    @objc private func purchaseVip() {
+        let purchaseVC = LPPurchaseViewController()
+        purchaseVC.modalPresentationStyle = .fullScreen
+        self.present(purchaseVC, animated: true, completion: nil)
+    }
+    
     private func setupContentView() {
         
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
-        layout.minimumLineSpacing = 0.0
-        layout.minimumInteritemSpacing = 0.0
-        collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
+        let detail_layout = UICollectionViewFlowLayout()
+        detail_layout.scrollDirection = .horizontal
+        detail_layout.itemSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
+        detail_layout.minimumLineSpacing = 0.0
+        detail_layout.minimumInteritemSpacing = 0.0
+        let collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: detail_layout)
         collectionView.register(UINib.init(nibName: "LivePhotoDetailCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "livephotodetailCell")
         collectionView.isPagingEnabled = true
         collectionView.delegate = self
@@ -225,6 +238,28 @@ class LivePhotoDetailViewController: UIViewController {
         collectionView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+        detailCollectionView = collectionView
+        
+        let list_layout = UICollectionViewFlowLayout()
+        list_layout.scrollDirection = .horizontal
+        list_layout.itemSize = CGSize(width: 46, height: 82)
+        list_layout.minimumLineSpacing = 0.5
+        list_layout.minimumInteritemSpacing = 0.5
+        
+        let listCollectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: list_layout)
+        
+        listCollectionView.register(UINib.init(nibName: "LivePhotoAlubmCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "livephotoAlbumCell")
+        listCollectionView.delegate = self
+        listCollectionView.dataSource = self
+        listCollectionView.backgroundColor = .clear
+        
+        self.view.addSubview(listCollectionView)
+        listCollectionView.snp.makeConstraints { (make) in
+            make.leading.equalTo(0.5)
+            make.bottom.trailing.equalTo(-0.5)
+            make.height.equalTo(82)
+        }
+        albumCollectionView = listCollectionView
         
         saveButton = UIButton(frame: .zero)
         saveButton.backgroundColor = UIColor.gray
@@ -232,7 +267,7 @@ class LivePhotoDetailViewController: UIViewController {
         saveButton.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.width.height.equalTo(60)
-            make.bottom.equalToSuperview().offset(-100)
+            make.bottom.equalTo(listCollectionView.snp.top).offset(-28.0)
         }
         saveButton.addTarget(self, action: #selector(saveLivePhoto), for: .touchUpInside)
         
@@ -253,6 +288,14 @@ class LivePhotoDetailViewController: UIViewController {
             make.left.equalTo(saveButton.snp.right).offset(20)
             make.width.height.equalTo(saveButton.snp.width)
         }
+        
+        vipBannerView = LPBuyVipBannerView()
+        vipBannerView.purchaseButton.addTarget(self, action: #selector(purchaseVip), for: .touchUpInside)
+        self.view.addSubview(vipBannerView)
+        vipBannerView?.snp.makeConstraints({ (make) in
+            make.leading.trailing.bottom.equalTo(0)
+            make.height.equalTo(99)
+        })
     }
 }
 
@@ -266,24 +309,34 @@ extension LivePhotoDetailViewController: UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "livephotodetailCell", for: indexPath) as! LivePhotoDetailCollectionViewCell
+        if collectionView == self.detailCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "livephotodetailCell", for: indexPath) as! LivePhotoDetailCollectionViewCell
+            let model = dataSource[indexPath.row]
+            if model.isLivePhoto, let name = model.movName {
+                if LPLivePhotoSourceManager.livePhotoIsExitInSandbox(with: name) {
+                    let paths = LPLivePhotoSourceManager.livePhotoSavedPath(with: name)
+                    LivePhotoHelper.requestLivePhotoFromCache(jpgPath: paths.jpgSavedPath, movPath: paths.movSavedPath, targetSize: CGSize(width: cell.bounds.size.width*UIScreen.main.scale, height: cell.bounds.size.height*UIScreen.main.scale), callback: { (photo) in
+                        if let p = photo {
+                            cell.updateLivePhoto(livePhoto: p)
+                        }
+                    })
+                }
+            } else if let name = model.imageName, LPLivePhotoSourceManager.staticImageIsExitInSandbox(with: name) {
+                if let data = try? Data(contentsOf: URL(fileURLWithPath: LPLivePhotoSourceManager.staticSavedPath(with: name))), let image = UIImage(data: data) {
+                    cell.updateStaticPhoto(staticImage: image)
+                }
+            } else {
+                cell.updateLivePhoto(livePhoto: nil)
+                cell.updateStaticPhoto(staticImage: nil)
+            }
+            return cell
+        } 
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "livephotoAlbumCell", for: indexPath) as! LivePhotoAlubmCollectionViewCell
+        
         let model = dataSource[indexPath.row]
-        if model.isLivePhoto, let name = model.movName {
-            if LPLivePhotoSourceManager.livePhotoIsExitInSandbox(with: name) {
-                let paths = LPLivePhotoSourceManager.livePhotoSavedPath(with: name)
-                LivePhotoHelper.requestLivePhotoFromCache(jpgPath: paths.jpgSavedPath, movPath: paths.movSavedPath, targetSize: CGSize(width: cell.bounds.size.width*UIScreen.main.scale, height: cell.bounds.size.height*UIScreen.main.scale), callback: { (photo) in
-                    if let p = photo {
-                        cell.updateLivePhoto(livePhoto: p)
-                    }
-                })
-            }
-        } else if let name = model.imageName, LPLivePhotoSourceManager.staticImageIsExitInSandbox(with: name) {
-            if let data = try? Data(contentsOf: URL(fileURLWithPath: LPLivePhotoSourceManager.staticSavedPath(with: name))), let image = UIImage(data: data) {
-                cell.updateStaticPhoto(staticImage: image)
-            }
-        } else {
-            cell.updateLivePhoto(livePhoto: nil)
-            cell.updateStaticPhoto(staticImage: nil)
+        if let imageUrl = model.coverImageUrl {
+            cell.imageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: nil, completed: nil)
         }
         return cell
     }

@@ -16,13 +16,12 @@ class AdManager: NSObject {
 
     class func loadBannerAd<T: UIViewController & BUNativeExpressBannerViewDelegate>(in controller: T) -> BUNativeExpressBannerView {
         
-        let bannerViewWidth = controller.view.bounds.size.width
-        let bannerViewHeight = bannerViewWidth/UIScreen.main.bounds.size.width*90
+        let bannerViewWidth = controller.view.bounds.size.width-40
+        let bannerViewHeight = (bannerViewWidth/UIScreen.main.bounds.size.width)*60
         
         let bannerView = BUNativeExpressBannerView(slotID: Banner_600x90_Id, rootViewController: controller, adSize: CGSize(width: bannerViewWidth, height: bannerViewHeight), isSupportDeepLink: true)
         
-        bannerView.frame = CGRect(x: 0, y: controller.view.bounds.size.height-bannerViewHeight, width: bannerViewWidth, height: bannerViewHeight)
-        
+        bannerView.frame = CGRect(x: 20, y: 30, width: bannerViewWidth, height: bannerViewHeight)
         bannerView.delegate = controller
         bannerView.loadAdData()
         return bannerView

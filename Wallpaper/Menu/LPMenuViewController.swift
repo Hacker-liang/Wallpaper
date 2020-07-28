@@ -29,7 +29,7 @@ class LPMenuViewController: UIViewController {
     
     private func gotoSettingVC() {
         let settingVC = LPSettingViewController()
-        settingVC.modalPresentationStyle = .fullScreen
+//        settingVC.modalPresentationStyle = .fullScreen
         self.present(settingVC, animated: true, completion: nil)
     }
     
