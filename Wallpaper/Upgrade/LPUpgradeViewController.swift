@@ -10,21 +10,32 @@ import UIKit
 import StoreKit
 
 class LPUpgradeViewController: UIViewController {
-
-    @IBOutlet weak var productTableView: UITableView!
+    
     @IBOutlet weak var purchaseButton: UIButton!
+    
+    @IBOutlet weak var restoreButton: UIButton!
     
     var currentSelectedIndex: Int = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         LPPurchaseManager.shared.addTarget(target: self)
-        
-        productTableView.dataSource = self
-        productTableView.delegate = self
         LPPurchaseManager.shared.loadPurchaseItems()
+        restoreButton.layer.cornerRadius = 18.5
+        restoreButton.layer.borderColor = UIColor.rgb(0x9A90A1).cgColor
+        restoreButton.layer.borderWidth = 1.0
+        
+        purchaseButton.layer.cornerRadius = 29.5
+        purchaseButton.layer.masksToBounds = true
+        let layer = CAGradientLayer()
+        layer.frame = purchaseButton.bounds
+        layer.startPoint = CGPoint(x: 0, y: 0)
+        layer.endPoint = CGPoint(x: 1, y: 0)
+        layer.colors = [UIColor.rgb(0xDE5E97).cgColor, UIColor.rgb(0xD2310C).cgColor]
+        purchaseButton.layer.insertSublayer(layer, at: 0)
+        
     }
-
+    
     @IBAction func puchaseButtonAction(_ sender: Any) {
         guard currentSelectedIndex >= 0 && currentSelectedIndex < LPPurchaseManager.shared.products.count else {
             return
@@ -34,41 +45,20 @@ class LPUpgradeViewController: UIViewController {
         }
     }
     
+    @IBAction func restoreButtonAction(_ sender: Any) {
+    }
     @IBAction func gobackAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
 }
 
-extension LPUpgradeViewController: UITableViewDataSource, UITableViewDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return LPPurchaseManager.shared.products.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = "\(LPPurchaseManager.shared.products[indexPath.row].localizedTitle)"
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        currentSelectedIndex = indexPath.row
-    }
-}
-
-
 extension LPUpgradeViewController: LPPurchaseManagerDelegate {
     
     func productRequestDidFinish() {
-        self.productTableView.reloadData()
         currentSelectedIndex = -1
     }
     
     func productRequestOnError() {
-        self.productTableView.reloadData()
         currentSelectedIndex = -1
     }
     

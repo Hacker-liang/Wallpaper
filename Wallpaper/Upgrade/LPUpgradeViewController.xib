@@ -10,7 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LPUpgradeViewController" customModule="Wallpaper" customModuleProvider="target">
             <connections>
-                <outlet property="purchaseButton" destination="OV3-V1-dUU" id="eKY-qO-5Wg"/>
+                <outlet property="purchaseButton" destination="wF8-me-k0E" id="LNq-No-YPX"/>
+                <outlet property="restoreButton" destination="4HO-fM-nsr" id="E18-jJ-PCW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -34,23 +35,38 @@
                         <action selector="gobackAction:" destination="-1" eventType="touchUpInside" id="nHL-bT-jUn"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wF8-me-k0E">
-                    <rect key="frame" x="30" y="723.5" width="354" height="50"/>
-                    <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wF8-me-k0E">
+                    <rect key="frame" x="17" y="656" width="380" height="59"/>
+                    <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="CjY-Pj-P7r"/>
+                        <constraint firstAttribute="height" constant="59" id="orK-8i-Jop"/>
                     </constraints>
-                    <state key="normal" title="开启自动订阅"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                    <state key="normal" title="开启自动订阅">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
                     <connections>
                         <action selector="puchaseButtonAction:" destination="-1" eventType="touchUpInside" id="w9h-Bf-0ya"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOe-2r-Gz4">
-                    <rect key="frame" x="30" y="816.5" width="354" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOe-2r-Gz4">
+                    <rect key="frame" x="30" y="785" width="354" height="41"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="41" id="qWY-h1-D1M"/>
+                    </constraints>
+                    <string key="text">开始为期3天的免费试用
+3天内可随时退订</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_upgrade_vip_tips" translatesAutoresizingMaskIntoConstraints="NO" id="GgH-aa-mvf">
+                    <rect key="frame" x="102" y="296" width="210" height="107"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="210" id="fK2-Gs-Ula"/>
+                        <constraint firstAttribute="height" constant="107" id="wrB-sh-wX1"/>
+                    </constraints>
+                </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_upgrade_vip_text" translatesAutoresizingMaskIntoConstraints="NO" id="MWD-03-joB">
                     <rect key="frame" x="82.5" y="171" width="249" height="80"/>
                     <constraints>
@@ -79,32 +95,54 @@
                         <constraint firstAttribute="height" constant="0.5" id="XN4-cz-ETg"/>
                     </constraints>
                 </view>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_upgrade_vip_tips" translatesAutoresizingMaskIntoConstraints="NO" id="GgH-aa-mvf">
-                    <rect key="frame" x="102" y="296" width="210" height="107"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4HO-fM-nsr">
+                    <rect key="frame" x="105" y="737" width="204" height="37"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="210" id="fK2-Gs-Ula"/>
-                        <constraint firstAttribute="height" constant="107" id="wrB-sh-wX1"/>
+                        <constraint firstAttribute="height" constant="37" id="Ke5-QP-SPD"/>
+                        <constraint firstAttribute="width" constant="204" id="R0o-fh-geN"/>
+                    </constraints>
+                    <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="2"/>
+                    <state key="normal" title="恢复购买" image="icon_upgrade_restore">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="restoreButtonAction:" destination="-1" eventType="touchUpInside" id="krV-2c-Czd"/>
+                    </connections>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_upgrade_vip_bug" translatesAutoresizingMaskIntoConstraints="NO" id="qch-re-Stw">
+                    <rect key="frame" x="342" y="672.5" width="39" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="26" id="Sp3-q7-Gnh"/>
+                        <constraint firstAttribute="width" constant="39" id="uyN-BE-ovC"/>
                     </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qch-re-Stw" secondAttribute="trailing" constant="33" id="1VP-lC-Dsx"/>
                 <constraint firstItem="GgH-aa-mvf" firstAttribute="top" secondItem="MWD-03-joB" secondAttribute="bottom" constant="45" id="9V4-Qc-1K9"/>
                 <constraint firstItem="OV3-V1-dUU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="52" id="BS3-yN-2hi"/>
                 <constraint firstItem="YYA-n5-fib" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ElZ-0f-KMs"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wF8-me-k0E" secondAttribute="trailing" constant="17" id="G8q-KN-id5"/>
                 <constraint firstItem="YYA-n5-fib" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="99" id="GL6-h5-uN0"/>
-                <constraint firstItem="mOe-2r-Gz4" firstAttribute="top" secondItem="wF8-me-k0E" secondAttribute="bottom" constant="43" id="HMq-HM-3Uv"/>
                 <constraint firstItem="4PP-Jj-emq" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="39" id="JaN-zy-oiW"/>
-                <constraint firstItem="wF8-me-k0E" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="NXJ-rn-BFe"/>
+                <constraint firstItem="4HO-fM-nsr" firstAttribute="top" secondItem="wF8-me-k0E" secondAttribute="bottom" constant="22" id="Nrd-sc-5fl"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mOe-2r-Gz4" secondAttribute="trailing" constant="30" id="PmV-wE-LUT"/>
                 <constraint firstItem="MWD-03-joB" firstAttribute="top" secondItem="YYA-n5-fib" secondAttribute="bottom" constant="27.5" id="S3y-Tm-K9m"/>
                 <constraint firstItem="GgH-aa-mvf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="UZn-En-uOZ"/>
+                <constraint firstItem="4HO-fM-nsr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Z9w-qP-Ek0"/>
                 <constraint firstAttribute="trailing" secondItem="YYA-n5-fib" secondAttribute="trailing" id="bYZ-SP-iHK"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="F9A-0O-wEy" secondAttribute="trailing" constant="8" id="dPa-1r-Cc3"/>
                 <constraint firstItem="F9A-0O-wEy" firstAttribute="top" secondItem="4PP-Jj-emq" secondAttribute="bottom" constant="7" id="dyL-iK-wOr"/>
+                <constraint firstItem="mOe-2r-Gz4" firstAttribute="top" secondItem="4HO-fM-nsr" secondAttribute="bottom" constant="11" id="eIE-3k-X06"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4PP-Jj-emq" secondAttribute="trailing" constant="21" id="hxn-5M-vhP"/>
                 <constraint firstItem="OV3-V1-dUU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="18" id="j0a-aZ-lHb"/>
                 <constraint firstItem="MWD-03-joB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="nOj-E4-iEW"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wF8-me-k0E" secondAttribute="trailing" constant="30" id="wWQ-bC-LGi"/>
+                <constraint firstItem="wF8-me-k0E" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="17" id="rDQ-wn-R79"/>
+                <constraint firstItem="qch-re-Stw" firstAttribute="centerY" secondItem="wF8-me-k0E" secondAttribute="centerY" id="suY-Xt-oyZ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="mOe-2r-Gz4" secondAttribute="bottom" constant="36" id="u9a-Bw-jFj"/>
+                <constraint firstItem="mOe-2r-Gz4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="yLz-ja-db3"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="130.58035714285714"/>
@@ -115,6 +153,8 @@
         <image name="icon_upgrade_close" width="31" height="31"/>
         <image name="icon_upgrade_king" width="35.5" height="26.5"/>
         <image name="icon_upgrade_king_text" width="66.5" height="8.5"/>
+        <image name="icon_upgrade_restore" width="25" height="19"/>
+        <image name="icon_upgrade_vip_bug" width="39" height="26"/>
         <image name="icon_upgrade_vip_text" width="249" height="80"/>
         <image name="icon_upgrade_vip_tips" width="210.5" height="107.5"/>
     </resources>
