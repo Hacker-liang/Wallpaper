@@ -37,12 +37,14 @@ class LPUpgradeViewController: UIViewController {
     }
     
     @IBAction func puchaseButtonAction(_ sender: Any) {
-        let purchaseVC = LPPurchaseViewController()
-        
+        let advanceVC = LPAdvanceViewController()
+        advanceVC.modalPresentationStyle = .fullScreen
+        self.present(advanceVC, animated: false, completion: nil)
     }
     
     @IBAction func restoreButtonAction(_ sender: Any) {
     }
+    
     @IBAction func gobackAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
