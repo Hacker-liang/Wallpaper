@@ -248,7 +248,7 @@
 				661A6A6224C59D9C0005E91F /* LivePhotoManager */,
 				660DD79324C59A5D00A26AD1 /* Cagegory */,
 				661A6A6324C59DBF0005E91F /* Downloader */,
-				66515E4024C024B00075095C /* Purchase */,
+				66515E4024C024B00075095C /* Upgrade */,
 				660AF22224B73E760042C2FB /* AppDelegate.swift */,
 				660AF22824B73E760042C2FB /* Main.storyboard */,
 				660AF22D24B73E770042C2FB /* LaunchScreen.storyboard */,
@@ -447,7 +447,7 @@
 			path = AD;
 			sourceTree = "<group>";
 		};
-		66515E4024C024B00075095C /* Purchase */ = {
+		66515E4024C024B00075095C /* Upgrade */ = {
 			isa = PBXGroup;
 			children = (
 				6675D4C124CED8BD007DC3A7 /* Views */,
@@ -455,7 +455,7 @@
 				66607CEA24C0376D005CEEB5 /* LPPurchaseViewController.swift */,
 				66607CEB24C0376D005CEEB5 /* LPPurchaseViewController.xib */,
 			);
-			path = Purchase;
+			path = Upgrade;
 			sourceTree = "<group>";
 		};
 		6675D4C124CED8BD007DC3A7 /* Views */ = {

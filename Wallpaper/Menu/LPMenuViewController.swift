@@ -13,7 +13,9 @@ class LPMenuViewController: UIViewController {
     var segmentControl: LPSegmentView!
     
     let dataSource = ["分类", "高级版", "设置中心"]
-    
+    let normalImageName = ["icon_menu_category_normal", "icon_menu_advance_normal", "icon_menu_setting_normal"]
+    let selectedImageName = ["icon_menu_category_normal", "icon_menu_advance_normal", "icon_menu_setting_normal"]
+
     var categoryListVC: LivePhotoCategoryViewController!
     
     override func viewDidLoad() {
@@ -40,7 +42,7 @@ class LPMenuViewController: UIViewController {
     }
     
     private func setupContentView() {
-        segmentControl = LPSegmentView(titles: dataSource, normalImageNames: dataSource, selectedImageNames: dataSource)
+        segmentControl = LPSegmentView(titles: dataSource, normalImageNames: normalImageName, selectedImageNames: selectedImageName)
         segmentControl.delegate = self
         segmentControl.markSelected(at: 0)
         

@@ -59,7 +59,7 @@ class LPRootViewController: UIViewController {
     @objc func moreButtonAction(sender: UIButton) {
         if !sender.isSelected {
             UIView.animate(withDuration: 0.3, animations: {
-                let top: CGFloat = 120.0
+                let top: CGFloat = 66.0
                 
                 self.livePhotoDetailVC.view.frame = CGRect(x: 0, y: top-self.livePhotoDetailVC.view.bounds.size.height, width: self.livePhotoDetailVC.view.bounds.size.width, height: self.livePhotoDetailVC.view.bounds.size.height)
                 

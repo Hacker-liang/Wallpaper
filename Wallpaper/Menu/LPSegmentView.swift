@@ -53,7 +53,7 @@ class LPSegmentView: UIView {
             return
         }
         titleLabels.forEach { (label) in
-            label.textColor = (label == titleLabels[index] ? .white : .gray)
+            label.textColor = (label == titleLabels[index] ? .white : .rgb(0x4E4E4E))
         }
         buttons.forEach { (button) in
             button.isSelected = (buttons[index]==button)
@@ -62,7 +62,7 @@ class LPSegmentView: UIView {
     
     @objc func itemSelectAction(tap: UIGestureRecognizer) {
         titleLabels.forEach { (label) in
-            label.textColor = (label == titleLabels[tap.view?.tag ?? 0] ? .white : .gray)
+            label.textColor = (label == titleLabels[tap.view?.tag ?? 0] ? .white : .rgb(0x4E4E4E))
         }
         buttons.forEach { (button) in
             button.isSelected = (button == buttons[tap.view?.tag ?? 0] ? true : false)
@@ -95,12 +95,14 @@ class LPSegmentView: UIView {
             
             let label = UILabel()
             label.text = title
-            label.textColor = .gray
+            label.font = UIFont.systemFont(ofSize: 14.0)
+            label.textColor = .rgb(0x4E4E4E)
             label.textAlignment = .center
             itemView.addSubview(label)
             label.snp.makeConstraints { (make) in
-                make.leading.trailing.bottom.equalToSuperview()
-                make.height.equalTo(20)
+                make.leading.trailing.equalToSuperview()
+                make.bottom.equalTo(-2)
+                make.height.equalTo(18)
             }
             titleLabels.append(label)
             

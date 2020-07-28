@@ -64,7 +64,7 @@ class LivePhotoDetailViewController: UIViewController {
         self.saveButton.alpha = 0.0
         self.favoriteButton.alpha = 0.0
         self.moreButton.snp.updateConstraints { (make) in
-            make.centerY.equalTo(saveButton.snp.centerY).offset(70)
+            make.centerY.equalTo(saveButton.snp.centerY).offset(120)
         }
         self.currentBannerAdView?.isHidden = true
         self.albumCollectionView.isHidden = true

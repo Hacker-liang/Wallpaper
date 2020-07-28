@@ -9,7 +9,7 @@
 import UIKit
 
 class LPUpgradeBannerView: UIView {
-
+    
     public var upgradeButton: UIButton!
     
     override init(frame: CGRect) {
@@ -70,10 +70,11 @@ class LPUpgradeBannerView: UIView {
         
         upgradeButton = UIButton()
         upgradeButton.layer.cornerRadius = 14.5
+        upgradeButton.layer.masksToBounds = true
         upgradeButton.setTitle("现在升级", for: .normal)
         upgradeButton.setTitleColor(.white, for: .normal)
-        upgradeButton.backgroundColor = UIColor.red
         upgradeButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18.0)
+        
         addSubview(upgradeButton)
         upgradeButton.snp.makeConstraints { (make) in
             make.centerX.equalTo(self.snp.centerX)
@@ -81,5 +82,13 @@ class LPUpgradeBannerView: UIView {
             make.height.equalTo(29)
             make.bottom.equalTo(-14.5)
         }
+        self.layoutIfNeeded()
+        
+        let layer = CAGradientLayer()
+        layer.frame = upgradeButton.bounds
+        layer.startPoint = CGPoint(x: 0, y: 0)
+        layer.endPoint = CGPoint(x: 1, y: 0)
+        layer.colors = [UIColor.rgb(0xDE5E97).cgColor, UIColor.rgb(0xD2310C).cgColor]
+        upgradeButton.layer.insertSublayer(layer, at: 0)
     }
 }
