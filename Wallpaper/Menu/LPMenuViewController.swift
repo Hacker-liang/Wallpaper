@@ -14,7 +14,7 @@ class LPMenuViewController: UIViewController {
     
     let dataSource = ["分类", "高级版", "设置中心"]
     let normalImageName = ["icon_menu_category_normal", "icon_menu_advance_normal", "icon_menu_setting_normal"]
-    let selectedImageName = ["icon_menu_category_normal", "icon_menu_advance_normal", "icon_menu_setting_normal"]
+    let selectedImageName = ["icon_menu_category_selected", "icon_menu_advance_selected", "icon_menu_setting_selected"]
 
     var categoryListVC: LivePhotoCategoryViewController!
     

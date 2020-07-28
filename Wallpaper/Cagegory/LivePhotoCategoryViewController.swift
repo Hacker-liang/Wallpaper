@@ -32,14 +32,30 @@ class LivePhotoCategoryViewController: UIViewController {
         loadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.updateContent()
+    }
+    
     private func setupContentView() {
         tableView = UITableView()
+        tableView.showsVerticalScrollIndicator = false
         self.view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    private func updateContent() {
+        if !LPAccount.shared.isVip {
+            let header = LPUpgradeBannerView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 99))
+            header.upgradeButton.addTarget(self, action: #selector(upgradeButtonAction), for: .touchUpInside)
+            tableView.tableHeaderView = header
+        } else {
+            tableView.tableHeaderView = nil
+        }
     }
     
     private func loadData() {
@@ -53,6 +69,10 @@ class LivePhotoCategoryViewController: UIViewController {
                 weakSelf.tableView.reloadData()
             }
         }
+    }
+    
+    @objc func upgradeButtonAction() {
+        
     }
 }
 
