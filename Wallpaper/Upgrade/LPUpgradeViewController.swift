@@ -37,12 +37,8 @@ class LPUpgradeViewController: UIViewController {
     }
     
     @IBAction func puchaseButtonAction(_ sender: Any) {
-        guard currentSelectedIndex >= 0 && currentSelectedIndex < LPPurchaseManager.shared.products.count else {
-            return
-        }
-        LPPurchaseManager.shared.purchase(LPPurchaseManager.shared.products[currentSelectedIndex]) { (transaction) in
-            
-        }
+        let purchaseVC = LPPurchaseViewController()
+        
     }
     
     @IBAction func restoreButtonAction(_ sender: Any) {
