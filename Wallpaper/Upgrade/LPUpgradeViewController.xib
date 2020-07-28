@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LPUpgradeViewController" customModule="Wallpaper" customModuleProvider="target">
+            <connections>
+                <outlet property="productTableView" destination="6Hj-3d-hY1" id="geC-BH-bzT"/>
+                <outlet property="purchaseButton" destination="wF8-me-k0E" id="rg7-JG-llW"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_upgrade_bg" translatesAutoresizingMaskIntoConstraints="NO" id="w0D-Q9-82J" customClass="icon_upgrade_bg">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OV3-V1-dUU">
+                    <rect key="frame" x="18" y="96" width="31" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="31" id="fjm-8H-tTt"/>
+                        <constraint firstAttribute="height" constant="31" id="plT-sS-l0U"/>
+                    </constraints>
+                    <state key="normal" image="icon_upgrade_close"/>
+                    <connections>
+                        <action selector="gobackAction:" destination="-1" eventType="touchUpInside" id="nHL-bT-jUn"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wF8-me-k0E">
+                    <rect key="frame" x="30" y="723.5" width="354" height="50"/>
+                    <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="CjY-Pj-P7r"/>
+                    </constraints>
+                    <state key="normal" title="开启自动订阅"/>
+                    <connections>
+                        <action selector="puchaseButtonAction:" destination="-1" eventType="touchUpInside" id="PlO-Cl-OTZ"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOe-2r-Gz4">
+                    <rect key="frame" x="30" y="816.5" width="354" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_upgrade_vip_text" translatesAutoresizingMaskIntoConstraints="NO" id="MWD-03-joB">
+                    <rect key="frame" x="82.5" y="171" width="249" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="249" id="j5S-5r-Hh9"/>
+                        <constraint firstAttribute="height" constant="80" id="sww-En-ByF"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_upgrade_king" translatesAutoresizingMaskIntoConstraints="NO" id="4PP-Jj-emq">
+                    <rect key="frame" x="358" y="83" width="35" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="26" id="krU-2J-xbe"/>
+                        <constraint firstAttribute="width" constant="35" id="s8h-Oc-odC"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_upgrade_king_text" translatesAutoresizingMaskIntoConstraints="NO" id="F9A-0O-wEy">
+                    <rect key="frame" x="340" y="116" width="66" height="9"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="66" id="GUO-zk-Ip4"/>
+                        <constraint firstAttribute="height" constant="9" id="Gxi-ZX-GHT"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YYA-n5-fib">
+                    <rect key="frame" x="0.0" y="143" width="414" height="0.5"/>
+                    <color key="backgroundColor" red="0.85098039215686272" green="0.59215686274509804" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="XN4-cz-ETg"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Hj-3d-hY1">
+                    <rect key="frame" x="20" y="326" width="354" height="179"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="OV3-V1-dUU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="52" id="BS3-yN-2hi"/>
+                <constraint firstItem="YYA-n5-fib" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ElZ-0f-KMs"/>
+                <constraint firstItem="YYA-n5-fib" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="99" id="GL6-h5-uN0"/>
+                <constraint firstItem="mOe-2r-Gz4" firstAttribute="top" secondItem="wF8-me-k0E" secondAttribute="bottom" constant="43" id="HMq-HM-3Uv"/>
+                <constraint firstItem="4PP-Jj-emq" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="39" id="JaN-zy-oiW"/>
+                <constraint firstItem="wF8-me-k0E" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="NXJ-rn-BFe"/>
+                <constraint firstItem="MWD-03-joB" firstAttribute="top" secondItem="YYA-n5-fib" secondAttribute="bottom" constant="27.5" id="S3y-Tm-K9m"/>
+                <constraint firstAttribute="trailing" secondItem="YYA-n5-fib" secondAttribute="trailing" id="bYZ-SP-iHK"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="F9A-0O-wEy" secondAttribute="trailing" constant="8" id="dPa-1r-Cc3"/>
+                <constraint firstItem="F9A-0O-wEy" firstAttribute="top" secondItem="4PP-Jj-emq" secondAttribute="bottom" constant="7" id="dyL-iK-wOr"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4PP-Jj-emq" secondAttribute="trailing" constant="21" id="hxn-5M-vhP"/>
+                <constraint firstItem="OV3-V1-dUU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="18" id="j0a-aZ-lHb"/>
+                <constraint firstItem="MWD-03-joB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="nOj-E4-iEW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wF8-me-k0E" secondAttribute="trailing" constant="30" id="wWQ-bC-LGi"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="137.68115942028987" y="130.58035714285714"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_upgrade_bg" width="375" height="678"/>
+        <image name="icon_upgrade_close" width="31" height="31"/>
+        <image name="icon_upgrade_king" width="35.5" height="26.5"/>
+        <image name="icon_upgrade_king_text" width="66.5" height="8.5"/>
+        <image name="icon_upgrade_vip_text" width="249" height="80"/>
+    </resources>
+</document>

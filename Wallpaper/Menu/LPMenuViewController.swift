@@ -36,7 +36,7 @@ class LPMenuViewController: UIViewController {
     }
     
     private func gotoPurchaseVC() {
-        let purchaseVC = LPPurchaseViewController()
+        let purchaseVC = LPUpgradeViewController()
         purchaseVC.modalPresentationStyle = .fullScreen
         self.present(purchaseVC, animated: true, completion: nil)
     }

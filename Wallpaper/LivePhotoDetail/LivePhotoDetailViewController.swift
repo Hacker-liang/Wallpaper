@@ -215,7 +215,7 @@ class LivePhotoDetailViewController: UIViewController {
     }
     
     @objc private func purchaseVip() {
-        let purchaseVC = LPPurchaseViewController()
+        let purchaseVC = LPUpgradeViewController()
         purchaseVC.modalPresentationStyle = .fullScreen
         self.present(purchaseVC, animated: true, completion: nil)
     }

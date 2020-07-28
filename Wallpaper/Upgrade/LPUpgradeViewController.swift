@@ -1,5 +1,5 @@
 //
-//  LPPurchaseViewController.swift
+//  LPUpgradeViewController.swift
 //  Wallpaper
 //
 //  Created by langren on 2020/7/16.
@@ -9,7 +9,7 @@
 import UIKit
 import StoreKit
 
-class LPPurchaseViewController: UIViewController {
+class LPUpgradeViewController: UIViewController {
 
     @IBOutlet weak var productTableView: UITableView!
     @IBOutlet weak var purchaseButton: UIButton!
@@ -39,7 +39,7 @@ class LPPurchaseViewController: UIViewController {
     }
 }
 
-extension LPPurchaseViewController: UITableViewDataSource, UITableViewDelegate {
+extension LPUpgradeViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -60,7 +60,7 @@ extension LPPurchaseViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 
-extension LPPurchaseViewController: LPPurchaseManagerDelegate {
+extension LPUpgradeViewController: LPPurchaseManagerDelegate {
     
     func productRequestDidFinish() {
         self.productTableView.reloadData()
