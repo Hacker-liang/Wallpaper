@@ -25,7 +25,7 @@ class LivePhotoDetailViewController: UIViewController {
     var detailCollectionView: UICollectionView!
     var albumCollectionView: UICollectionView!
     
-    var vipBannerView: LPBuyVipBannerView!
+    var vipBannerView: LPUpgradeBannerView!
     
     var currentBannerAdView: BUNativeExpressBannerView?
     var currentFullScreenAd: BUNativeExpressFullscreenVideoAd?
@@ -262,7 +262,7 @@ class LivePhotoDetailViewController: UIViewController {
         albumCollectionView = listCollectionView
         
         saveButton = UIButton(frame: .zero)
-        saveButton.backgroundColor = UIColor.gray
+        saveButton.setImage(UIImage(named: "icon_detail_save"), for: .normal)
         self.view.addSubview(saveButton)
         saveButton.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
@@ -272,7 +272,8 @@ class LivePhotoDetailViewController: UIViewController {
         saveButton.addTarget(self, action: #selector(saveLivePhoto), for: .touchUpInside)
         
         moreButton = UIButton(frame: .zero)
-        moreButton.backgroundColor = UIColor.gray
+        moreButton.setImage(UIImage(named: "icon_detail_menu"), for: .normal)
+
         self.view.addSubview(moreButton)
         moreButton.snp.makeConstraints { (make) in
             make.right.equalTo(saveButton.snp.left).offset(-20)
@@ -281,7 +282,9 @@ class LivePhotoDetailViewController: UIViewController {
         }
         
         favoriteButton = UIButton(frame: .zero)
-        favoriteButton.backgroundColor = UIColor.gray
+        favoriteButton.setImage(UIImage(named: "icon_detail_like_normal"), for: .normal)
+        favoriteButton.setImage(UIImage(named: "icon_detail_like_selected"), for: .selected)
+
         self.view.addSubview(favoriteButton)
         favoriteButton.snp.makeConstraints { (make) in
             make.centerY.equalTo(saveButton.snp.centerY)
@@ -289,8 +292,8 @@ class LivePhotoDetailViewController: UIViewController {
             make.width.height.equalTo(saveButton.snp.width)
         }
         
-        vipBannerView = LPBuyVipBannerView()
-        vipBannerView.purchaseButton.addTarget(self, action: #selector(purchaseVip), for: .touchUpInside)
+        vipBannerView = LPUpgradeBannerView()
+        vipBannerView.upgradeButton.addTarget(self, action: #selector(purchaseVip), for: .touchUpInside)
         self.view.addSubview(vipBannerView)
         vipBannerView?.snp.makeConstraints({ (make) in
             make.leading.trailing.bottom.equalTo(0)

@@ -9,23 +9,34 @@
 import UIKit
 import StoreKit
 
-protocol LPPurchaseManagerDelegate: class {
+protocol LPPurchaseManagerDelegate: NSObject {
     
     func productRequestDidFinish()
     
     func productRequestOnError()
 }
 
+private class WeakTargetBox: NSObject {
+    weak var target: LPPurchaseManagerDelegate?
+    
+    convenience init(_ target: LPPurchaseManagerDelegate) {
+        self.init()
+        self.target = target
+    }
+}
+
 class LPPurchaseManager: NSObject {
     
+    public static let shared = LPPurchaseManager()
+    
     private (set) var products = [SKProduct]()
+    
+    private var targets = [WeakTargetBox]()
     
     /// 保存购买的交易回调
     private var purchaseCallbackQueue = [String: ((SKPaymentTransaction)->Void)]()
     
-    private var restorePurchaseCallback: ((SKPaymentTransaction)->Void)?
-
-    public weak var delegate: LPPurchaseManagerDelegate?
+    private var restorePurchaseCallback: ((SKPaymentTransaction?)->Void)?
     
     override init() {
         super.init()
@@ -36,6 +47,19 @@ class LPPurchaseManager: NSObject {
     deinit {
         //移除支付监听
         SKPaymentQueue.default().remove(self)
+    }
+    
+    func addTarget(target: LPPurchaseManagerDelegate) {
+        
+        var exit = false
+        self.targets.forEach { (box) in
+            if let t = box.target, t == target {
+                exit = true
+            }
+        }
+        if !exit {
+            self.targets.append(WeakTargetBox(target))
+        }
     }
     
     func loadPurchaseItems() {
@@ -54,7 +78,7 @@ class LPPurchaseManager: NSObject {
         SKPaymentQueue.default().add(payment)
     }
     
-    func restorePurchase(transcationCompletion:@escaping ((_ transaction: SKPaymentTransaction)->Void)) {
+    func restorePurchase(transcationCompletion:@escaping ((_ transaction: SKPaymentTransaction?)->Void)) {
         self.restorePurchaseCallback = transcationCompletion
         SKPaymentQueue.default().restoreCompletedTransactions()
     }
@@ -78,7 +102,9 @@ extension LPPurchaseManager: SKProductsRequestDelegate {
     func requestDidFinish(_ request: SKRequest) {
         print("requestDidFinish\(request)")
         DispatchQueue.main.async {
-            self.delegate?.productRequestDidFinish()
+            self.targets.forEach { (box) in
+                box.target?.productRequestDidFinish()
+            }
         }
     }
     
@@ -86,7 +112,9 @@ extension LPPurchaseManager: SKProductsRequestDelegate {
         print("didFailWithError \(error)")
         self.products.removeAll()
         DispatchQueue.main.async {
-            self.delegate?.productRequestOnError()
+            self.targets.forEach { (box) in
+                box.target?.productRequestOnError()
+            }
         }
     }
 }
@@ -97,28 +125,34 @@ extension LPPurchaseManager: SKPaymentTransactionObserver {
         for transaction in transactions {
             if transaction.transactionState == .purchased {
                 SKPaymentQueue.default().finishTransaction(transaction)
-            }
-            
-            if transaction.transactionState == .failed {
+                print("购买成功")
+                
+            } else if transaction.transactionState == .failed {
                 SKPaymentQueue.default().finishTransaction(transaction)
-            }
-            
-            if transaction.transactionState == .purchasing {
-                SKPaymentQueue.default().finishTransaction(transaction)
-            }
-            
-            if transaction.transactionState == .restored {
+                print("购买失败")
+
+            } else if transaction.transactionState == .purchasing {
+                print("正在购买")
+                
+            } else if transaction.transactionState == .restored {
+                print("恢复购买成功")
                 SKPaymentQueue.default().finishTransaction(transaction)
             }
         }
     }
     
     func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
-        
+        if let callback = restorePurchaseCallback {
+            callback(queue.transactions.first)
+        }
         print("paymentQueueRestoreCompletedTransactionsFinished")
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
         print("restoreCompletedTransactionsFailedWithError error:\(error)")
+    }
+    
+    func paymentQueue(_ queue: SKPaymentQueue, removedTransactions transactions: [SKPaymentTransaction]) {
+        print("paymentQueue removedTransactions \(transactions)")
     }
 }

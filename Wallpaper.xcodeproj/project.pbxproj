@@ -76,7 +76,7 @@
 		66607CED24C0376D005CEEB5 /* LPPurchaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66607CEB24C0376D005CEEB5 /* LPPurchaseViewController.xib */; };
 		6675D4BF24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6675D4BD24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.swift */; };
 		6675D4C024CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6675D4BE24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.xib */; };
-		6675D4C324CED8E4007DC3A7 /* LPBuyVipBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6675D4C224CED8E4007DC3A7 /* LPBuyVipBannerView.swift */; };
+		6675D4C324CED8E4007DC3A7 /* LPUpgradeBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6675D4C224CED8E4007DC3A7 /* LPUpgradeBannerView.swift */; };
 		66F3C84824CEDED2009DE086 /* LPAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F3C84724CEDED2009DE086 /* LPAccount.swift */; };
 		CE9D1A95F96E447E7AA7553A /* libPods-Wallpaper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EADB868DCF283667142BE229 /* libPods-Wallpaper.a */; };
 /* End PBXBuildFile section */
@@ -179,7 +179,7 @@
 		66607CEB24C0376D005CEEB5 /* LPPurchaseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LPPurchaseViewController.xib; sourceTree = "<group>"; };
 		6675D4BD24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoAlubmCollectionViewCell.swift; sourceTree = "<group>"; };
 		6675D4BE24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePhotoAlubmCollectionViewCell.xib; sourceTree = "<group>"; };
-		6675D4C224CED8E4007DC3A7 /* LPBuyVipBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPBuyVipBannerView.swift; sourceTree = "<group>"; };
+		6675D4C224CED8E4007DC3A7 /* LPUpgradeBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPUpgradeBannerView.swift; sourceTree = "<group>"; };
 		66F3C84724CEDED2009DE086 /* LPAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPAccount.swift; sourceTree = "<group>"; };
 		B404D6B80DB9C3AF34207F6D /* Pods-Wallpaper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper.debug.xcconfig"; path = "Target Support Files/Pods-Wallpaper/Pods-Wallpaper.debug.xcconfig"; sourceTree = "<group>"; };
 		EADB868DCF283667142BE229 /* libPods-Wallpaper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wallpaper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -461,7 +461,7 @@
 		6675D4C124CED8BD007DC3A7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6675D4C224CED8E4007DC3A7 /* LPBuyVipBannerView.swift */,
+				6675D4C224CED8E4007DC3A7 /* LPUpgradeBannerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -725,7 +725,7 @@
 				6646523924CAB43D001B9B2C /* UIViewShadowExtension.swift in Sources */,
 				660DD79224C59A5900A26AD1 /* LivePhotoCategoryViewController.swift in Sources */,
 				660AF26F24B8A94B0042C2FB /* QiniuHelper.swift in Sources */,
-				6675D4C324CED8E4007DC3A7 /* LPBuyVipBannerView.swift in Sources */,
+				6675D4C324CED8E4007DC3A7 /* LPUpgradeBannerView.swift in Sources */,
 				66F3C84824CEDED2009DE086 /* LPAccount.swift in Sources */,
 				660AF25324B73F5B0042C2FB /* LivePhotoHelper.swift in Sources */,
 				6646523E24CAC279001B9B2C /* LPColor.swift in Sources */,

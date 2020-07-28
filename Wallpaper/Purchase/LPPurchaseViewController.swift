@@ -14,19 +14,22 @@ class LPPurchaseViewController: UIViewController {
     @IBOutlet weak var productTableView: UITableView!
     @IBOutlet weak var purchaseButton: UIButton!
     
-    var purchaseManager: LPPurchaseManager!
+    var currentSelectedIndex: Int = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        purchaseManager = LPPurchaseManager()
-        purchaseManager.delegate = self
+        LPPurchaseManager.shared.addTarget(target: self)
+        
         productTableView.dataSource = self
         productTableView.delegate = self
-        purchaseManager.loadPurchaseItems()
+        LPPurchaseManager.shared.loadPurchaseItems()
     }
 
     @IBAction func puchaseButtonAction(_ sender: Any) {
-        purchaseManager.restorePurchase { (transaction) in
+        guard currentSelectedIndex >= 0 && currentSelectedIndex < LPPurchaseManager.shared.products.count else {
+            return
+        }
+        LPPurchaseManager.shared.purchase(LPPurchaseManager.shared.products[currentSelectedIndex]) { (transaction) in
             
         }
     }
@@ -42,17 +45,17 @@ extension LPPurchaseViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return purchaseManager.products.count
+        return LPPurchaseManager.shared.products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = "\(purchaseManager.products[indexPath.row].localizedTitle)"
+        cell.textLabel?.text = "\(LPPurchaseManager.shared.products[indexPath.row].localizedTitle)"
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        currentSelectedIndex = indexPath.row
     }
 }
 
@@ -61,10 +64,12 @@ extension LPPurchaseViewController: LPPurchaseManagerDelegate {
     
     func productRequestDidFinish() {
         self.productTableView.reloadData()
+        currentSelectedIndex = -1
     }
     
     func productRequestOnError() {
         self.productTableView.reloadData()
+        currentSelectedIndex = -1
     }
     
 }
