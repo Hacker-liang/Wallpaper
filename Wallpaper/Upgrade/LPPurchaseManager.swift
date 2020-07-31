@@ -50,7 +50,6 @@ class LPPurchaseManager: NSObject {
     }
     
     func addTarget(target: LPPurchaseManagerDelegate) {
-        
         var exit = false
         self.targets.forEach { (box) in
             if let t = box.target, t == target {
@@ -71,11 +70,13 @@ class LPPurchaseManager: NSObject {
     }
     
     func purchase(_ product: SKProduct, transcationCompletion:@escaping ((_ transaction: SKPaymentTransaction)->Void)) {
-        
         self.purchaseCallbackQueue[product.productIdentifier] = transcationCompletion
-        
-        let payment = SKPayment(product: product)
-        SKPaymentQueue.default().add(payment)
+        if SKPaymentQueue.canMakePayments() {
+            let payment = SKPayment(product: product)
+            SKPaymentQueue.default().add(payment)
+        } else {
+            print("购买失败")
+        }
     }
     
     func restorePurchase(transcationCompletion:@escaping ((_ transaction: SKPaymentTransaction?)->Void)) {
@@ -135,7 +136,7 @@ extension LPPurchaseManager: SKPaymentTransactionObserver {
                 print("正在购买")
                 
             } else if transaction.transactionState == .restored {
-                print("恢复购买成功")
+                print("恢复购买成功：\(transaction.transactionIdentifier)")
                 SKPaymentQueue.default().finishTransaction(transaction)
             }
         }

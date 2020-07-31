@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setupLeanCloud()
         self.setupBUAd()
         LPAccount.shared.userDidLogin()
+        LPPurchaseManager.shared.loadPurchaseItems()
         return true
     }
 }

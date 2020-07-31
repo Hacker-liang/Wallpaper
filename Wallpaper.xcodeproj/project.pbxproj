@@ -72,13 +72,15 @@
 		6646524124CAD098001B9B2C /* LPSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646524024CAD098001B9B2C /* LPSettingViewController.swift */; };
 		6646524624CAD733001B9B2C /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646524524CAD733001B9B2C /* AdManager.swift */; };
 		66515E4224C024DC0075095C /* LPPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66515E4124C024DC0075095C /* LPPurchaseManager.swift */; };
-		66607CEC24C0376D005CEEB5 /* LPPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66607CEA24C0376D005CEEB5 /* LPPurchaseViewController.swift */; };
-		66607CED24C0376D005CEEB5 /* LPPurchaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66607CEB24C0376D005CEEB5 /* LPPurchaseViewController.xib */; };
 		6675D4BF24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6675D4BD24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.swift */; };
 		6675D4C024CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6675D4BE24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.xib */; };
 		6675D4C324CED8E4007DC3A7 /* LPUpgradeBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6675D4C224CED8E4007DC3A7 /* LPUpgradeBannerView.swift */; };
 		667716A224D02472005CD7EF /* LPAdvanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667716A024D02472005CD7EF /* LPAdvanceViewController.swift */; };
 		667716A324D02472005CD7EF /* LPAdvanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 667716A124D02472005CD7EF /* LPAdvanceViewController.xib */; };
+		667716A624D12765005CD7EF /* LPProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667716A424D12765005CD7EF /* LPProductTableViewCell.swift */; };
+		667716A724D12765005CD7EF /* LPProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 667716A524D12765005CD7EF /* LPProductTableViewCell.xib */; };
+		667716AC24D455FE005CD7EF /* LivePhotoCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667716AA24D455FE005CD7EF /* LivePhotoCategoryTableViewCell.swift */; };
+		667716AD24D455FE005CD7EF /* LivePhotoCategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 667716AB24D455FE005CD7EF /* LivePhotoCategoryTableViewCell.xib */; };
 		66A749BE24D0137A0034C916 /* LPUpgradeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66A749BC24D0137A0034C916 /* LPUpgradeViewController.xib */; };
 		66A749BF24D0137A0034C916 /* LPUpgradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A749BD24D0137A0034C916 /* LPUpgradeViewController.swift */; };
 		66F3C84824CEDED2009DE086 /* LPAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F3C84724CEDED2009DE086 /* LPAccount.swift */; };
@@ -179,13 +181,15 @@
 		6646524324CAD5BB001B9B2C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		6646524524CAD733001B9B2C /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
 		66515E4124C024DC0075095C /* LPPurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPPurchaseManager.swift; sourceTree = "<group>"; };
-		66607CEA24C0376D005CEEB5 /* LPPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPPurchaseViewController.swift; sourceTree = "<group>"; };
-		66607CEB24C0376D005CEEB5 /* LPPurchaseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LPPurchaseViewController.xib; sourceTree = "<group>"; };
 		6675D4BD24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoAlubmCollectionViewCell.swift; sourceTree = "<group>"; };
 		6675D4BE24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePhotoAlubmCollectionViewCell.xib; sourceTree = "<group>"; };
 		6675D4C224CED8E4007DC3A7 /* LPUpgradeBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPUpgradeBannerView.swift; sourceTree = "<group>"; };
 		667716A024D02472005CD7EF /* LPAdvanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPAdvanceViewController.swift; sourceTree = "<group>"; };
 		667716A124D02472005CD7EF /* LPAdvanceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LPAdvanceViewController.xib; sourceTree = "<group>"; };
+		667716A424D12765005CD7EF /* LPProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPProductTableViewCell.swift; sourceTree = "<group>"; };
+		667716A524D12765005CD7EF /* LPProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LPProductTableViewCell.xib; sourceTree = "<group>"; };
+		667716AA24D455FE005CD7EF /* LivePhotoCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoCategoryTableViewCell.swift; sourceTree = "<group>"; };
+		667716AB24D455FE005CD7EF /* LivePhotoCategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePhotoCategoryTableViewCell.xib; sourceTree = "<group>"; };
 		66A749BC24D0137A0034C916 /* LPUpgradeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPUpgradeViewController.xib; sourceTree = "<group>"; };
 		66A749BD24D0137A0034C916 /* LPUpgradeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LPUpgradeViewController.swift; sourceTree = "<group>"; };
 		66F3C84724CEDED2009DE086 /* LPAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPAccount.swift; sourceTree = "<group>"; };
@@ -309,6 +313,8 @@
 			isa = PBXGroup;
 			children = (
 				660DD79124C59A5900A26AD1 /* LivePhotoCategoryViewController.swift */,
+				667716AA24D455FE005CD7EF /* LivePhotoCategoryTableViewCell.swift */,
+				667716AB24D455FE005CD7EF /* LivePhotoCategoryTableViewCell.xib */,
 				661A6A6024C59C570005E91F /* LivePhotoCategory.swift */,
 				664651D724C5BB5E001B9B2C /* LivePhotoModel.swift */,
 			);
@@ -462,8 +468,6 @@
 				66515E4124C024DC0075095C /* LPPurchaseManager.swift */,
 				66A749BD24D0137A0034C916 /* LPUpgradeViewController.swift */,
 				66A749BC24D0137A0034C916 /* LPUpgradeViewController.xib */,
-				66607CEA24C0376D005CEEB5 /* LPPurchaseViewController.swift */,
-				66607CEB24C0376D005CEEB5 /* LPPurchaseViewController.xib */,
 				667716A024D02472005CD7EF /* LPAdvanceViewController.swift */,
 				667716A124D02472005CD7EF /* LPAdvanceViewController.xib */,
 			);
@@ -474,6 +478,8 @@
 			isa = PBXGroup;
 			children = (
 				6675D4C224CED8E4007DC3A7 /* LPUpgradeBannerView.swift */,
+				667716A424D12765005CD7EF /* LPProductTableViewCell.swift */,
+				667716A524D12765005CD7EF /* LPProductTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -625,6 +631,7 @@
 				660AF22C24B73E770042C2FB /* Assets.xcassets in Resources */,
 				6646520124C97701001B9B2C /* 200w_00016.png in Resources */,
 				6646520324C97701001B9B2C /* 200w_00003.png in Resources */,
+				667716AD24D455FE005CD7EF /* LivePhotoCategoryTableViewCell.xib in Resources */,
 				6646520724C97701001B9B2C /* 200w_00029.png in Resources */,
 				664651E024C81DF6001B9B2C /* LivePhotoDetailCollectionViewCell.xib in Resources */,
 				6646520924C97701001B9B2C /* 200w_00014.png in Resources */,
@@ -638,9 +645,9 @@
 				6646521424C97701001B9B2C /* 200w_00022.png in Resources */,
 				6646520E24C97701001B9B2C /* 200w_00005.png in Resources */,
 				6646521D24C97701001B9B2C /* 200w_00026.png in Resources */,
+				667716A724D12765005CD7EF /* LPProductTableViewCell.xib in Resources */,
 				6646521324C97701001B9B2C /* 200w_00023.png in Resources */,
 				6646520624C97701001B9B2C /* 200w_00015.png in Resources */,
-				66607CED24C0376D005CEEB5 /* LPPurchaseViewController.xib in Resources */,
 				6646520824C97701001B9B2C /* 200w_00028.png in Resources */,
 				6646521624C97701001B9B2C /* 200w_00008.png in Resources */,
 				6646520F24C97701001B9B2C /* 200w_00013.png in Resources */,
@@ -742,14 +749,15 @@
 				660AF26F24B8A94B0042C2FB /* QiniuHelper.swift in Sources */,
 				6675D4C324CED8E4007DC3A7 /* LPUpgradeBannerView.swift in Sources */,
 				66F3C84824CEDED2009DE086 /* LPAccount.swift in Sources */,
+				667716A624D12765005CD7EF /* LPProductTableViewCell.swift in Sources */,
 				660AF25324B73F5B0042C2FB /* LivePhotoHelper.swift in Sources */,
 				66A749BF24D0137A0034C916 /* LPUpgradeViewController.swift in Sources */,
+				667716AC24D455FE005CD7EF /* LivePhotoCategoryTableViewCell.swift in Sources */,
 				6646523E24CAC279001B9B2C /* LPColor.swift in Sources */,
 				66515E4224C024DC0075095C /* LPPurchaseManager.swift in Sources */,
 				6646524124CAD098001B9B2C /* LPSettingViewController.swift in Sources */,
 				660AF22324B73E760042C2FB /* AppDelegate.swift in Sources */,
 				660AF25524B743600042C2FB /* LivePhotoDownloader.swift in Sources */,
-				66607CEC24C0376D005CEEB5 /* LPPurchaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
