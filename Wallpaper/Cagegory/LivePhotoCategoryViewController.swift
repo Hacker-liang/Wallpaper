@@ -13,6 +13,12 @@ protocol LivePhotoCategoryViewControllerDelegate: class {
     
     func didSelectedCagetory(category: LivePhotoCategory, subCagetoryId: Int, subCagetoryName: String)
     
+    func didSelectedFindNewCagetory()
+    
+    func didSelectedFindHotCagetory()
+    
+    func didSelectedFindLikeCagetory()
+
 }
 
 class LivePhotoCategoryViewController: UIViewController {
@@ -70,6 +76,7 @@ class LivePhotoCategoryViewController: UIViewController {
             }
             if let l = list {
                 weakSelf.dataSource.removeAll()
+                
                 weakSelf.dataSource.append(contentsOf: l)
                 weakSelf.tableView.reloadData()
             }
@@ -104,7 +111,7 @@ extension LivePhotoCategoryViewController: UITableViewDataSource, UITableViewDel
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return dataSource.count
+        return dataSource.count+1
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -113,11 +120,14 @@ extension LivePhotoCategoryViewController: UITableViewDataSource, UITableViewDel
             view.backgroundColor = .black
             return view
         }
-        return self.createSectionHeaderView(category: dataSource[section])
+        return self.createSectionHeaderView(category: dataSource[section-1])
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource[section].subCategories.count
+        if section == 0 {
+            return 3
+        }
+        return dataSource[section-1].subCategories.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -151,8 +161,9 @@ extension LivePhotoCategoryViewController: UITableViewDataSource, UITableViewDel
             retCell = cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LivePhotoCategoryTableViewCell", for: indexPath) as! LivePhotoCategoryTableViewCell
-            cell.categoryImageView.sd_setImage(with: URL(string: dataSource[indexPath.section].subCategories[indexPath.row].icon ?? ""), completed: nil)
-            cell.categoryLabel.text = dataSource[indexPath.section].subCategories[indexPath.row].subCategoryName
+            let category = dataSource[indexPath.section-1]
+            cell.categoryImageView.sd_setImage(with: URL(string: category.subCategories[indexPath.row].icon ?? ""), completed: nil)
+            cell.categoryLabel.text = category.subCategories[indexPath.row].subCategoryName
             retCell = cell
         }
         
@@ -168,5 +179,17 @@ extension LivePhotoCategoryViewController: UITableViewDataSource, UITableViewDel
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         currentSelectedIndex = indexPath
         self.tableView.reloadData()
+        if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                self.delegate?.didSelectedFindNewCagetory()
+            } else if indexPath.row == 1 {
+                self.delegate?.didSelectedFindHotCagetory()
+            } else if indexPath.row == 2 {
+                self.delegate?.didSelectedFindLikeCagetory()
+            }
+        } else {
+            let category = dataSource[indexPath.section-1]
+            self.delegate?.didSelectedCagetory(category: category, subCagetoryId: category.subCategories[indexPath.row].subCategoryId, subCagetoryName: category.subCategories[indexPath.row].subCategoryName)
+        }
     }
 }
