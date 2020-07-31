@@ -13,7 +13,7 @@ class LivePhotoNetworkHelper: NSObject {
     
     fileprivate static let LeanCloud_LivePhotosCategoryClass = "LivePhotosCategory"
     fileprivate static let LeanCloud_LivePhotosList = "LivePhotosList"
-
+    
     fileprivate static let pageSize = 10
     
     class func requseLivePhotoCagetory(_ callback: @escaping ((_ list: [LivePhotoCategory]?)->Void)) {
@@ -43,7 +43,51 @@ class LivePhotoNetworkHelper: NSObject {
         query.limit = 10
         query.skip = pageSize*page
         query.whereKey("updatedAt", .descending)
-        
+        query.whereKey("subCategoryId", .equalTo(category))
+        query.find { (result) in
+            switch result {
+            case .success(objects: let livePhotos):
+                var list = [LivePhotoModel]()
+                //livePhotos包含所有的列表
+                for model in livePhotos {
+                    list.append(self.parseLivePhotoData(object: model))
+                }
+                callback(list)
+                
+            case .failure(error: let error):
+                print(error)
+                callback(nil)
+            }
+        }
+    }
+    
+    class func requestLatestLivePhotoList(at page: Int, _ callback: @escaping ((_ list: [LivePhotoModel]?)->Void)) {
+        let query = LCQuery(className: LeanCloud_LivePhotosList)
+        query.limit = 10
+        query.skip = pageSize*page
+        query.whereKey("updatedAt", .descending)
+        query.find { (result) in
+            switch result {
+            case .success(objects: let livePhotos):
+                var list = [LivePhotoModel]()
+                //livePhotos包含所有的列表
+                for model in livePhotos {
+                    list.append(self.parseLivePhotoData(object: model))
+                }
+                callback(list)
+                
+            case .failure(error: let error):
+                print(error)
+                callback(nil)
+            }
+        }
+    }
+    
+    class func requestHotLivePhotoList(at page: Int, _ callback: @escaping ((_ list: [LivePhotoModel]?)->Void)) {
+        let query = LCQuery(className: LeanCloud_LivePhotosList)
+        query.limit = 10
+        query.skip = pageSize*page
+        query.whereKey("updatedAt", .descending)
         query.find { (result) in
             switch result {
             case .success(objects: let livePhotos):

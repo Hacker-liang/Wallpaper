@@ -118,7 +118,9 @@ class LivePhotoDetailViewController: UIViewController {
                 self.cancelDownloadIfNeeded(model: dataSource[currentCellIndex.row])
             }
             currentCellIndex = IndexPath(row: index, section: 0)
-            self.startDownloadIfNeeded(model: dataSource[currentCellIndex.row])
+            if dataSource.count > 0 {
+                self.startDownloadIfNeeded(model: dataSource[currentCellIndex.row])
+            }
         }
     }
     

@@ -27,6 +27,7 @@ class LivePhotoDetailCollectionViewCell: UICollectionViewCell {
         }
         
         staticImageView = UIImageView()
+        staticImageView.contentMode = .scaleAspectFill
         self.addSubview(staticImageView)
         staticImageView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
