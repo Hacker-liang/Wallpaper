@@ -17,8 +17,6 @@ class LivePhotoDetailViewController: UIViewController {
     
     var livePhotoManager: LivePhotoHelper!
     
-    var livePhotoView: PHLivePhotoView!
-    
     var saveButton: UIButton!
     var favoriteButton: UIButton!
     var moreButton: UIButton!
@@ -152,6 +150,9 @@ class LivePhotoDetailViewController: UIViewController {
             let model = self.dataSource[currentCellIndex.row]
             if let name = model.imageName {
                 self.favoriteButton.isSelected = LivePhotoHelper.isUserLike(name)
+            }
+            if model.isLivePhoto {
+                (detailCollectionView.cellForItem(at: currentCellIndex) as? LivePhotoDetailCollectionViewCell)?.livePhotoView.startPlayback(with: .full)
             }
         }
         reloadAlbumCollection()
