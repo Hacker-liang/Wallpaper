@@ -44,6 +44,11 @@ class LivePhotoDetailViewController: UIViewController {
         loadBannerAdIfNeeded()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.updateContentViewVisiable()
+    }
+    
     public func updateSelectedSubCategoryId(id: Int) {
         selectedSubCategoryId = id
         self.refreshDataSource()
@@ -64,7 +69,11 @@ class LivePhotoDetailViewController: UIViewController {
         self.saveButton.alpha = 0.0
         self.favoriteButton.alpha = 0.0
         self.moreButton.snp.updateConstraints { (make) in
-            make.centerY.equalTo(saveButton.snp.centerY).offset(120)
+            if IS_IPHONE_X {
+                make.centerY.equalTo(saveButton.snp.centerY).offset(140)
+            } else {
+                make.centerY.equalTo(saveButton.snp.centerY).offset(120)
+            }
         }
         self.currentBannerAdView?.isHidden = true
         self.albumCollectionView.isHidden = true
@@ -78,6 +87,16 @@ class LivePhotoDetailViewController: UIViewController {
     
     private func loadFullVideoAdIfNeeded() {
         currentFullScreenAd = AdManager.loadFullVideoAd(in: self)
+    }
+    
+    private func updateContentViewVisiable() {
+        if LPAccount.shared.isVip {
+            self.vipBannerView.isHidden = true
+            self.currentBannerAdView?.isHidden = true
+            
+        } else {
+            
+        }
     }
     
     private func refreshDataSource() {
@@ -121,6 +140,10 @@ class LivePhotoDetailViewController: UIViewController {
             if dataSource.count > 0 {
                 self.startDownloadIfNeeded(model: dataSource[currentCellIndex.row])
             }
+        }
+        let model = self.dataSource[currentCellIndex.row]
+        if let name = model.imageName {
+            self.favoriteButton.isSelected = LivePhotoHelper.isUserLike(name)
         }
     }
     
@@ -169,6 +192,18 @@ class LivePhotoDetailViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @objc private func favoriteButtonAction(sender: UIButton) {
+        let model = self.dataSource[currentCellIndex.row]
+        if let name = model.imageName {
+            if sender.isSelected {
+                LivePhotoHelper.cancelLikeLivePhoto(name)
+            } else {
+                LivePhotoHelper.likeLivePhoto(name)
+            }
+        }
+        sender.isSelected = !sender.isSelected
     }
     
     @objc private func saveLivePhoto(sender: UIButton) {
@@ -258,7 +293,12 @@ class LivePhotoDetailViewController: UIViewController {
         self.view.addSubview(listCollectionView)
         listCollectionView.snp.makeConstraints { (make) in
             make.leading.equalTo(0.5)
-            make.bottom.trailing.equalTo(-0.5)
+            make.trailing.equalTo(-0.5)
+            if IS_IPHONE_X {
+                make.bottom.equalTo(-20)
+            } else {
+                make.bottom.equalTo(-0.5)
+            }
             make.height.equalTo(82)
         }
         albumCollectionView = listCollectionView
@@ -286,7 +326,7 @@ class LivePhotoDetailViewController: UIViewController {
         favoriteButton = UIButton(frame: .zero)
         favoriteButton.setImage(UIImage(named: "icon_detail_like_normal"), for: .normal)
         favoriteButton.setImage(UIImage(named: "icon_detail_like_selected"), for: .selected)
-
+        favoriteButton.addTarget(self, action: #selector(favoriteButtonAction), for: .touchUpInside)
         self.view.addSubview(favoriteButton)
         favoriteButton.snp.makeConstraints { (make) in
             make.centerY.equalTo(saveButton.snp.centerY)
@@ -299,7 +339,11 @@ class LivePhotoDetailViewController: UIViewController {
         self.view.addSubview(vipBannerView)
         vipBannerView?.snp.makeConstraints({ (make) in
             make.leading.trailing.bottom.equalTo(0)
-            make.height.equalTo(99)
+            if IS_IPHONE_X {
+                make.height.equalTo(110)
+            } else {
+                make.height.equalTo(99)
+            }
         })
     }
 }
@@ -396,5 +440,24 @@ extension LivePhotoDetailViewController: BUNativeExpressFullscreenVideoAdDelegat
     
     func nativeExpressFullscreenVideoAd(_ fullscreenVideoAd: BUNativeExpressFullscreenVideoAd, didFailWithError error: Error?) {
         print("nativeExpressFullscreenVideoAd didFailWithError\(error)")
+    }
+}
+
+extension LivePhotoDetailViewController: LivePhotoCategoryViewControllerDelegate {
+    
+    func didSelectedFindLikeCagetory() {
+        
+    }
+    
+    func didSelectedFindNewCagetory() {
+        
+    }
+    
+    func didSelectedFindHotCagetory() {
+        
+    }
+    
+    func didSelectedCagetory(category: LivePhotoCategory, subCagetoryId: Int, subCagetoryName: String) {
+        self.updateSelectedSubCategoryId(id: subCagetoryId)
     }
 }

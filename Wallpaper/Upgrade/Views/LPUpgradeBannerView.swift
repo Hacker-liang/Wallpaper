@@ -30,28 +30,6 @@ class LPUpgradeBannerView: UIView {
             make.edges.equalToSuperview()
         }
         
-        let cornerView = UIImageView()
-        cornerView.contentMode = .scaleAspectFill
-        cornerView.image = UIImage(named: "icon_vip_banner_corner")
-        addSubview(cornerView)
-        cornerView.snp.makeConstraints { (make) in
-            make.bottom.equalTo(-16)
-            make.trailing.equalTo(-20)
-            make.width.equalTo(22.5)
-            make.height.equalTo(17)
-        }
-        
-        let cornerTextView = UIImageView()
-        cornerTextView.contentMode = .scaleAspectFill
-        cornerTextView.image = UIImage(named: "icon_vip_banner_corner_text")
-        addSubview(cornerTextView)
-        cornerTextView.snp.makeConstraints { (make) in
-            make.bottom.equalTo(-4.5)
-            make.trailing.equalTo(-7)
-            make.width.equalTo(55)
-            make.height.equalTo(8)
-        }
-        
         let tipsLabel = UILabel()
         tipsLabel.text = "解锁高级功能 定时更新 下载所有壁纸 无广告干扰"
         tipsLabel.textAlignment = .center
@@ -68,6 +46,29 @@ class LPUpgradeBannerView: UIView {
             make.top.equalTo(13)
         }
         
+        let cornerView = UIImageView()
+        cornerView.contentMode = .scaleAspectFill
+        cornerView.image = UIImage(named: "icon_vip_banner_corner")
+        addSubview(cornerView)
+        cornerView.snp.makeConstraints { (make) in
+            make.trailing.equalTo(-20)
+            make.width.equalTo(22.5)
+            make.height.equalTo(17)
+            make.top.equalTo(tipsLabel.snp.bottom).offset(25.5)
+
+        }
+        
+        let cornerTextView = UIImageView()
+        cornerTextView.contentMode = .scaleAspectFill
+        cornerTextView.image = UIImage(named: "icon_vip_banner_corner_text")
+        addSubview(cornerTextView)
+        cornerTextView.snp.makeConstraints { (make) in
+            make.top.equalTo(cornerView.snp.bottom).offset(5)
+            make.trailing.equalTo(-7)
+            make.width.equalTo(55)
+            make.height.equalTo(8)
+        }
+        
         upgradeButton = UIButton()
         upgradeButton.layer.cornerRadius = 14.5
         upgradeButton.layer.masksToBounds = true
@@ -80,7 +81,7 @@ class LPUpgradeBannerView: UIView {
             make.centerX.equalTo(self.snp.centerX)
             make.width.equalTo(167.5)
             make.height.equalTo(29)
-            make.bottom.equalTo(-14.5)
+            make.top.equalTo(tipsLabel.snp.bottom).offset(17)
         }
         self.layoutIfNeeded()
         

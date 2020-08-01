@@ -21,7 +21,7 @@ class AdManager: NSObject {
         
         let bannerView = BUNativeExpressBannerView(slotID: Banner_600x90_Id, rootViewController: controller, adSize: CGSize(width: bannerViewWidth, height: bannerViewHeight), isSupportDeepLink: true)
         
-        bannerView.frame = CGRect(x: 20, y: 30, width: bannerViewWidth, height: bannerViewHeight)
+        bannerView.frame = CGRect(x: 20, y: (IS_IPHONE_X ? 50:30), width: bannerViewWidth, height: bannerViewHeight)
         bannerView.delegate = controller
         bannerView.loadAdData()
         return bannerView

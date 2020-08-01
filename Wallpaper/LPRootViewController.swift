@@ -43,6 +43,7 @@ class LPRootViewController: UIViewController {
         livePhotoDetailVC.moreButton.addTarget(self, action: #selector(moreButtonAction), for: .touchUpInside)
         
         menuVC = LPMenuViewController()
+        menuVC.categoryListVC.delegate = livePhotoDetailVC
         menuVC.willMove(toParent: self)
         self.addChild(menuVC)
         self.view.addSubview(menuVC.view)
@@ -59,7 +60,12 @@ class LPRootViewController: UIViewController {
     @objc func moreButtonAction(sender: UIButton) {
         if !sender.isSelected {
             UIView.animate(withDuration: 0.3, animations: {
-                let top: CGFloat = 66.0
+                
+                var top: CGFloat = 66.0
+                
+                if IS_IPHONE_X {
+                    top = 106
+                }
                 
                 self.livePhotoDetailVC.view.frame = CGRect(x: 0, y: top-self.livePhotoDetailVC.view.bounds.size.height, width: self.livePhotoDetailVC.view.bounds.size.width, height: self.livePhotoDetailVC.view.bounds.size.height)
                 
