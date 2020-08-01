@@ -50,6 +50,12 @@ class LPMenuViewController: UIViewController {
         self.present(purchaseVC, animated: true, completion: nil)
     }
     
+    private func gotoAdvanceVC() {
+        let advanceVC = LPAdvanceViewController()
+        advanceVC.modalPresentationStyle = .fullScreen
+        self.present(advanceVC, animated: true, completion: nil)
+    }
+    
     private func setupContentView() {
         segmentControl = LPSegmentView(titles: dataSource, normalImageNames: normalImageName, selectedImageNames: selectedImageName)
         segmentControl.delegate = self
@@ -79,9 +85,13 @@ extension LPMenuViewController: LPSegmentViewDelegate {
         if index == 0 { //显示分类
             
         } else if index == 1 { //显示VIP页面
-            self.gotoPurchaseVC()
+            if !LPAccount.shared.isVip {
+                gotoPurchaseVC()
+            } else {
+                gotoAdvanceVC()
+            }
         } else if index == 2 {  //显示设置页面
-            self.gotoSettingVC()
+            gotoSettingVC()
         }
     }
 }

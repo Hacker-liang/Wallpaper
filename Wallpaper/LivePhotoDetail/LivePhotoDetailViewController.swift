@@ -60,9 +60,14 @@ class LivePhotoDetailViewController: UIViewController {
         self.moreButton.snp.updateConstraints { (make) in
             make.centerY.equalTo(saveButton.snp.centerY)
         }
-        self.currentBannerAdView?.isHidden = false
-        self.albumCollectionView.isHidden = false
-        self.vipBannerView.isHidden = false
+        if !LPAccount.shared.isVip {
+            self.currentBannerAdView?.isHidden = false
+            self.albumCollectionView.isHidden = false
+            self.vipBannerView.isHidden = false
+        } else {
+            self.albumCollectionView.isHidden = false
+        }
+        
     }
        
     public func hideDetail() {
@@ -132,19 +137,33 @@ class LivePhotoDetailViewController: UIViewController {
         let contentOffset = detailCollectionView.contentOffset
         let index = Int((contentOffset.x+100)/detailCollectionView.bounds.size.width)
         print("当前是第:\(index)页")
+        
         if currentCellIndex.row != index {
-            if currentCellIndex.row >= 0 {
+            if currentCellIndex.row >= 0 && currentCellIndex.row < dataSource.count {
                 self.cancelDownloadIfNeeded(model: dataSource[currentCellIndex.row])
             }
             currentCellIndex = IndexPath(row: index, section: 0)
-            if dataSource.count > 0 {
+            if currentCellIndex.row >= 0 && currentCellIndex.row < dataSource.count {
                 self.startDownloadIfNeeded(model: dataSource[currentCellIndex.row])
             }
         }
-        let model = self.dataSource[currentCellIndex.row]
-        if let name = model.imageName {
-            self.favoriteButton.isSelected = LivePhotoHelper.isUserLike(name)
+        
+        if currentCellIndex.row < dataSource.count {
+            let model = self.dataSource[currentCellIndex.row]
+            if let name = model.imageName {
+                self.favoriteButton.isSelected = LivePhotoHelper.isUserLike(name)
+            }
         }
+        reloadAlbumCollection()
+    }
+    
+    private func reloadAlbumCollection() {
+        for cell in albumCollectionView.visibleCells  {
+            if let index = albumCollectionView.indexPath(for: cell) {
+                (cell as! LivePhotoAlubmCollectionViewCell).selectedImageView.isHidden = currentCellIndex.row != index.row
+            }
+        }
+
     }
     
     private func cancelDownloadIfNeeded(model: LivePhotoModel) {
@@ -270,6 +289,7 @@ class LivePhotoDetailViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .black
+        collectionView.showsHorizontalScrollIndicator = false
         
         self.view.addSubview(collectionView)
         collectionView.snp.makeConstraints { (make) in
@@ -289,7 +309,8 @@ class LivePhotoDetailViewController: UIViewController {
         listCollectionView.delegate = self
         listCollectionView.dataSource = self
         listCollectionView.backgroundColor = .clear
-        
+        listCollectionView.showsHorizontalScrollIndicator = false
+
         self.view.addSubview(listCollectionView)
         listCollectionView.snp.makeConstraints { (make) in
             make.leading.equalTo(0.5)
@@ -382,12 +403,21 @@ extension LivePhotoDetailViewController: UICollectionViewDataSource, UICollectio
         } 
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "livephotoAlbumCell", for: indexPath) as! LivePhotoAlubmCollectionViewCell
-        
+        cell.selectedImageView.isHidden = indexPath.row != currentCellIndex.row
         let model = dataSource[indexPath.row]
         if let imageUrl = model.coverImageUrl {
             cell.imageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: nil, completed: nil)
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == albumCollectionView {
+            self.detailCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.2) {
+                self.pageDidChanged()
+            }
+        }
     }
 }
 

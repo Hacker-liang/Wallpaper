@@ -10,10 +10,11 @@ import UIKit
 
 class LivePhotoAlubmCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var selectedImageView: UIImageView!
     @IBOutlet weak var imageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        selectedImageView.isHidden = true
     }
 
 }
