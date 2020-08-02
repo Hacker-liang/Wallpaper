@@ -246,6 +246,9 @@ class LivePhotoDetailViewController: UIViewController {
     }
     
     @objc private func favoriteButtonAction(sender: UIButton) {
+        guard currentCellIndex.row >= 0 && currentCellIndex.row < self.dataSource.count else {
+            return
+        }
         let model = self.dataSource[currentCellIndex.row]
         if sender.isSelected {
             LivePhotoHelper.cancelLikeLivePhoto(model)
@@ -503,21 +506,3 @@ extension LivePhotoDetailViewController: BUNativeExpressFullscreenVideoAdDelegat
     }
 }
 
-extension LivePhotoDetailViewController: LivePhotoCategoryViewControllerDelegate {
-    
-    func didSelectedFindLikeCagetory() {
-        self.updateDataSourceWithFavoriteLivePhotos()
-    }
-    
-    func didSelectedFindNewCagetory() {
-        self.updateDataSourceWithNewLivePhotos()
-    }
-    
-    func didSelectedFindHotCagetory() {
-        self.updateDataSourceWithHotLivePhotos()
-    }
-    
-    func didSelectedCagetory(category: LivePhotoCategory, subCagetoryId: Int, subCagetoryName: String) {
-        self.updateDataSourcSelectedSubCategoryId(id: subCagetoryId)
-    }
-}

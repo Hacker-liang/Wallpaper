@@ -43,7 +43,7 @@ class LPRootViewController: UIViewController {
         livePhotoDetailVC.moreButton.addTarget(self, action: #selector(moreButtonAction), for: .touchUpInside)
         
         menuVC = LPMenuViewController()
-        menuVC.categoryListVC.delegate = livePhotoDetailVC
+        menuVC.categoryListVC.delegate = self
         menuVC.willMove(toParent: self)
         self.addChild(menuVC)
         self.view.addSubview(menuVC.view)
@@ -119,5 +119,31 @@ extension LPRootViewController: BUNativeExpressRewardedVideoAdDelegate {
     
     func nativeExpressRewardedVideoAdServerRewardDidSucceed(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd, verify: Bool) {
         print("nativeExpressRewardedVideoAdServerRewardDidSucceed")
+    }
+}
+
+extension LPRootViewController: LivePhotoCategoryViewControllerDelegate {
+    
+    func didSelectedFindLikeCagetory() {
+        self.livePhotoDetailVC.updateDataSourceWithFavoriteLivePhotos()
+        self.livePhotoDetailVC.moreButton.sendActions(for: .touchUpInside)
+    }
+    
+    func didSelectedFindNewCagetory() {
+        self.livePhotoDetailVC.updateDataSourceWithNewLivePhotos()
+        self.livePhotoDetailVC.moreButton.sendActions(for: .touchUpInside)
+
+    }
+    
+    func didSelectedFindHotCagetory() {
+        self.livePhotoDetailVC.updateDataSourceWithHotLivePhotos()
+        self.livePhotoDetailVC.moreButton.sendActions(for: .touchUpInside)
+
+    }
+    
+    func didSelectedCagetory(category: LivePhotoCategory, subCagetoryId: Int, subCagetoryName: String) {
+        self.livePhotoDetailVC.updateDataSourcSelectedSubCategoryId(id: subCagetoryId)
+        self.livePhotoDetailVC.moreButton.sendActions(for: .touchUpInside)
+
     }
 }

@@ -19,9 +19,7 @@ class LivePhotoNetworkHelper: NSObject {
     class func requseLivePhotoCagetory(_ callback: @escaping ((_ list: [LivePhotoCategory]?)->Void)) {
         
         let query = LCQuery(className: LeanCloud_LivePhotosCategoryClass)
-        
-        query.limit = 100
-        
+        query.limit = 1000
         query.find { (result) in
             switch result {
             case .success(objects: let categories):
@@ -85,6 +83,8 @@ class LivePhotoNetworkHelper: NSObject {
         let query = LCQuery(className: LeanCloud_LivePhotosList)
         query.limit = limit
         query.whereKey("updatedAt", .descending)
+        query.whereKey("isHot", .equalTo(true))
+
         query.find { (result) in
             switch result {
             case .success(objects: let livePhotos):
