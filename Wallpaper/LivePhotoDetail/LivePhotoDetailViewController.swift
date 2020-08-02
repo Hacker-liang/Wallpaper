@@ -13,8 +13,6 @@ import JGProgressHUD
 
 class LivePhotoDetailViewController: UIViewController {
     
-    var selectedSubCategoryId: Int?
-    
     var livePhotoManager: LivePhotoHelper!
     
     var saveButton: UIButton!
@@ -29,8 +27,6 @@ class LivePhotoDetailViewController: UIViewController {
     var currentFullScreenAd: BUNativeExpressFullscreenVideoAd?
 
     var currentCellIndex: IndexPath = IndexPath(row: -1, section: 0)
-
-    var pageIndex = 0
     
     var dataSource = [LivePhotoModel]()
     
@@ -38,7 +34,7 @@ class LivePhotoDetailViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         self.setupContentView()
-        self.updateSelectedSubCategoryId(id: 1001)
+        self.updateDataSourceWithNewLivePhotos()
         loadBannerAdIfNeeded()
     }
     
@@ -47,10 +43,74 @@ class LivePhotoDetailViewController: UIViewController {
         self.updateContentViewVisiable()
     }
     
-    public func updateSelectedSubCategoryId(id: Int) {
-        selectedSubCategoryId = id
-        self.refreshDataSource()
+    public func updateDataSourcSelectedSubCategoryId(id: Int) {
+        LivePhotoNetworkHelper.requestLivePhotoList(in: id) { [weak self] (livePhotos) in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.dataSource.removeAll()
+            if let p = livePhotos {
+                weakSelf.dataSource.append(contentsOf: p)
+            }
+            
+            weakSelf.detailCollectionView.reloadData()
+            weakSelf.albumCollectionView.reloadData()
+            weakSelf.pageDidChanged()
+        }
     }
+    
+    public func updateDataSourceWithHotLivePhotos() {
+        var limit = 10
+        if LPAccount.shared.isVip {
+            limit = 1000
+        }
+        LivePhotoNetworkHelper.requestHotLivePhotoList(limit: limit) { (livePhotos) in
+
+            self.dataSource.removeAll()
+            if let p = livePhotos {
+                self.dataSource.append(contentsOf: p)
+            }
+            
+            self.detailCollectionView.reloadData()
+            self.albumCollectionView.reloadData()
+            self.pageDidChanged()
+        }
+        
+    }
+    
+    public func updateDataSourceWithNewLivePhotos() {
+        var limit = 10
+        if LPAccount.shared.isVip {
+            limit = 100
+        }
+        LivePhotoNetworkHelper.requestLatestLivePhotoList(limit: limit) { (livePhotos) in
+
+            self.dataSource.removeAll()
+            if let p = livePhotos {
+                self.dataSource.append(contentsOf: p)
+            }
+            
+            self.detailCollectionView.reloadData()
+            self.albumCollectionView.reloadData()
+            self.pageDidChanged()
+        }
+        
+    }
+    
+    public func updateDataSourceWithFavoriteLivePhotos() {
+        var limit = 10
+        if LPAccount.shared.isVip {
+            limit = 100
+        }
+        
+        self.dataSource.removeAll()
+        let p = LivePhotoHelper.requestUserLiveLivePhotos()
+        self.dataSource.append(contentsOf: p)
+        self.detailCollectionView.reloadData()
+        self.albumCollectionView.reloadData()
+        self.pageDidChanged()
+    }
+    
     
     public func showDetail() {
         self.saveButton.alpha = 1.0
@@ -102,35 +162,6 @@ class LivePhotoDetailViewController: UIViewController {
         }
     }
     
-    private func refreshDataSource() {
-        pageIndex = 0
-        dataSource.removeAll()
-        self.loadMoreLivePhotos()
-    }
-    
-    private func loadMoreLivePhotos() {
-        guard let categoryId = selectedSubCategoryId else {
-            return
-        }
-        
-        LivePhotoNetworkHelper.requestLivePhotoList(in: categoryId, at: pageIndex) { [weak self] (livePhotos) in
-            if let list = livePhotos {
-                
-                guard let weakSelf = self else {
-                    return
-                }
-                self?.dataSource.append(contentsOf: list)
-                
-                self?.pageIndex += 1
-                self?.detailCollectionView.reloadData()
-                self?.albumCollectionView.reloadData()
-                if weakSelf.pageIndex == 1 {
-                    self?.pageDidChanged()
-                }
-            }
-        }
-    }
-    
     private func pageDidChanged() {
         let contentOffset = detailCollectionView.contentOffset
         let index = Int((contentOffset.x+100)/detailCollectionView.bounds.size.width)
@@ -149,7 +180,7 @@ class LivePhotoDetailViewController: UIViewController {
         if currentCellIndex.row < dataSource.count {
             let model = self.dataSource[currentCellIndex.row]
             if let name = model.imageName {
-                self.favoriteButton.isSelected = LivePhotoHelper.isUserLike(name)
+                self.favoriteButton.isSelected = LivePhotoHelper.isUserLike(model)
             }
             if model.isLivePhoto {
                 (detailCollectionView.cellForItem(at: currentCellIndex) as? LivePhotoDetailCollectionViewCell)?.livePhotoView.startPlayback(with: .full)
@@ -216,12 +247,10 @@ class LivePhotoDetailViewController: UIViewController {
     
     @objc private func favoriteButtonAction(sender: UIButton) {
         let model = self.dataSource[currentCellIndex.row]
-        if let name = model.imageName {
-            if sender.isSelected {
-                LivePhotoHelper.cancelLikeLivePhoto(name)
-            } else {
-                LivePhotoHelper.likeLivePhoto(name)
-            }
+        if sender.isSelected {
+            LivePhotoHelper.cancelLikeLivePhoto(model)
+        } else {
+            LivePhotoHelper.likeLivePhoto(model)
         }
         sender.isSelected = !sender.isSelected
     }
@@ -477,18 +506,18 @@ extension LivePhotoDetailViewController: BUNativeExpressFullscreenVideoAdDelegat
 extension LivePhotoDetailViewController: LivePhotoCategoryViewControllerDelegate {
     
     func didSelectedFindLikeCagetory() {
-        
+        self.updateDataSourceWithFavoriteLivePhotos()
     }
     
     func didSelectedFindNewCagetory() {
-        
+        self.updateDataSourceWithNewLivePhotos()
     }
     
     func didSelectedFindHotCagetory() {
-        
+        self.updateDataSourceWithHotLivePhotos()
     }
     
     func didSelectedCagetory(category: LivePhotoCategory, subCagetoryId: Int, subCagetoryName: String) {
-        self.updateSelectedSubCategoryId(id: subCagetoryId)
+        self.updateDataSourcSelectedSubCategoryId(id: subCagetoryId)
     }
 }

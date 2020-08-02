@@ -38,10 +38,9 @@ class LivePhotoNetworkHelper: NSObject {
         }
     }
     
-    class func requestLivePhotoList(in category: Int, at page: Int, _ callback: @escaping ((_ list: [LivePhotoModel]?)->Void)) {
+    class func requestLivePhotoList(in category: Int, limit: Int = 1000, _ callback: @escaping ((_ list: [LivePhotoModel]?)->Void)) {
         let query = LCQuery(className: LeanCloud_LivePhotosList)
-        query.limit = 10
-        query.skip = pageSize*page
+        query.limit = limit
         query.whereKey("updatedAt", .descending)
         query.whereKey("subCategoryId", .equalTo(category))
         query.find { (result) in
@@ -61,10 +60,9 @@ class LivePhotoNetworkHelper: NSObject {
         }
     }
     
-    class func requestLatestLivePhotoList(at page: Int, _ callback: @escaping ((_ list: [LivePhotoModel]?)->Void)) {
+    class func requestLatestLivePhotoList(limit: Int = 1000, _ callback: @escaping ((_ list: [LivePhotoModel]?)->Void)) {
         let query = LCQuery(className: LeanCloud_LivePhotosList)
-        query.limit = 10
-        query.skip = pageSize*page
+        query.limit = limit
         query.whereKey("updatedAt", .descending)
         query.find { (result) in
             switch result {
@@ -83,10 +81,9 @@ class LivePhotoNetworkHelper: NSObject {
         }
     }
     
-    class func requestHotLivePhotoList(at page: Int, _ callback: @escaping ((_ list: [LivePhotoModel]?)->Void)) {
+    class func requestHotLivePhotoList(limit: Int = 1000, _ callback: @escaping ((_ list: [LivePhotoModel]?)->Void)) {
         let query = LCQuery(className: LeanCloud_LivePhotosList)
-        query.limit = 10
-        query.skip = pageSize*page
+        query.limit = limit
         query.whereKey("updatedAt", .descending)
         query.find { (result) in
             switch result {

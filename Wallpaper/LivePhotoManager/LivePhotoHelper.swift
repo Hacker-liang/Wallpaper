@@ -23,32 +23,57 @@ class LivePhotoHelper: NSObject {
         }
     }
     
-    class func likeLivePhoto(_ livePhotoName: String) {
-        var names = [String]()
-        if let photos = UserDefaults.standard.array(forKey: LikeUserDefaultKey) as? [String] {
+    class func likeLivePhoto(_ livePhoto: LivePhotoModel) {
+        var names = [[String: String]]()
+        if let photos = UserDefaults.standard.array(forKey: LikeUserDefaultKey) as? [[String: String]] {
             names = photos
         }
-        if let _ = names.firstIndex(of: livePhotoName) {
+        if let _ = names.first(where: { (item) -> Bool in
+            item["name"] == livePhoto.imageName
+        }) {
             return
         }
-        names.append(livePhotoName)
+        
+        names.append(["imageName":livePhoto.imageName ?? "", "movName":livePhoto.movName ?? ""])
         UserDefaults.standard.set(names, forKey: LikeUserDefaultKey)
     }
     
-    class func cancelLikeLivePhoto(_ livePhotoName: String) {
-        var names = [String]()
-        if let photos = UserDefaults.standard.array(forKey: LikeUserDefaultKey) as? [String] {
+    class func requestUserLiveLivePhotos() -> [LivePhotoModel] {
+        
+        guard let photos = UserDefaults.standard.array(forKey: LikeUserDefaultKey) as? [[String: String]] else {
+            return []
+        }
+        var ret = [LivePhotoModel]()
+        for item in photos {
+            let model = LivePhotoModel()
+            model.imageName = item["imageName"]
+            if (item["movName"]?.count ?? 0) > 0 {
+                model.movName = item["movName"]
+            }
+            ret.append(model)
+        }
+        return ret
+    }
+    
+    class func cancelLikeLivePhoto(_ livePhoto: LivePhotoModel) {
+        var names = [[String: String]]()
+        if let photos = UserDefaults.standard.array(forKey: LikeUserDefaultKey) as? [[String: String]] {
             names = photos
         }
-        if let index = names.firstIndex(of: livePhotoName) {
+        
+        if let index = names.firstIndex(where: { (item) -> Bool in
+            item["imageName"] == livePhoto.imageName
+        }) {
             names.remove(at: index)
         }
         UserDefaults.standard.set(names, forKey: LikeUserDefaultKey)
     }
     
-    class func isUserLike(_ livePhotoName: String) -> Bool {
-        if let photos = UserDefaults.standard.array(forKey: LikeUserDefaultKey) as? [String] {
-            return photos.contains(livePhotoName)
+    class func isUserLike(_ livePhoto: LivePhotoModel) -> Bool {
+        if let photos = UserDefaults.standard.array(forKey: LikeUserDefaultKey) as? [[String: String]] {
+            return photos.contains { (item) -> Bool in
+                return item["imageName"] == livePhoto.imageName
+            }
         }
         return false
     }
