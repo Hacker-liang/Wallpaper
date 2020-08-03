@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setupBUAd()
         LPAccount.shared.userDidLogin()
         LPPurchaseManager.shared.loadPurchaseItems()
+//        LivePhotoNetworkHelper.uploadLivePhoto()
         return true
     }
 }

@@ -36,6 +36,52 @@ class LivePhotoNetworkHelper: NSObject {
         }
     }
     
+    class func uploadLivePhoto() {
+//        // 构建对象
+//        AVObject *todo = [AVObject objectWithClassName:@"Todo"];
+//
+//        // 为属性赋值
+//        [todo setObject:@"马拉松报名" forKey:@"title"];
+//        [todo setObject:@2 forKey:@"priority"];
+//
+//        // 将对象保存到云端
+//        [todo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//            if (succeeded) {
+//                // 成功保存之后，执行其他逻辑
+//                NSLog(@"保存成功。objectId：%@", todo.objectId);
+//            } else {
+//                // 异常处理
+//            }
+//        }];
+        
+        var ret = [LCObject]()
+        for i in 1...30 {
+            let todo = LCObject(className: "LivePhotosList")
+            
+            try? todo.set("imageName", value: "livephoto\(i)")
+            try? todo.set("movName", value: "livephoto\(i)")
+            try? todo.set("isHot", value: true)
+            if i%5 == 0 {
+                try? todo.set("isFree", value: true)
+            } else {
+                try? todo.set("isFree", value: false)
+            }
+            if i<10 {
+                try? todo.set("subCategoryId", value: 1001)
+            } else if i < 20 {
+                try? todo.set("subCategoryId", value: 2001)
+            } else {
+                try? todo.set("subCategoryId", value: 1002)
+            }
+
+            ret.append(todo)
+        }
+        LCObject.save(ret) { (result) in
+            
+        }
+        
+    }
+    
     class func requestLivePhotoList(in category: Int, limit: Int = 1000, _ callback: @escaping ((_ list: [LivePhotoModel]?)->Void)) {
         let query = LCQuery(className: LeanCloud_LivePhotosList)
         query.limit = limit

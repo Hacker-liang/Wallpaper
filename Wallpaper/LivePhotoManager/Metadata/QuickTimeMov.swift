@@ -100,20 +100,21 @@ class QuickTimeMov {
                     writer.add(audioWriterInput!)
                 }
                 //setup audio reader
-                let audioTrack:AVAssetTrack = aAudioAsset.tracks(withMediaType: .audio).first!
-                audioReaderOutput = AVAssetReaderTrackOutput(track: audioTrack, outputSettings: nil)
+                if let audioTrack:AVAssetTrack = aAudioAsset.tracks(withMediaType: .audio).first {
+                    audioReaderOutput = AVAssetReaderTrackOutput(track: audioTrack, outputSettings: nil)
+                    do{
+                        audioReader = try AVAssetReader(asset: aAudioAsset)
+                    }catch{
+                        fatalError("Unable to read Asset: \(error) : ")
+                    }
+                    //let audioReader:AVAssetReader = AVAssetReader(asset: aAudioAsset, error: &error)
+                    if (audioReader?.canAdd(audioReaderOutput!))! {
+                        audioReader?.add(audioReaderOutput!)
+                    } else {
+                        print("cant add audio reader")
+                    }
+                }
                 
-                do{
-                    audioReader = try AVAssetReader(asset: aAudioAsset)
-                }catch{
-                    fatalError("Unable to read Asset: \(error) : ")
-                }
-                //let audioReader:AVAssetReader = AVAssetReader(asset: aAudioAsset, error: &error)
-                if (audioReader?.canAdd(audioReaderOutput!))! {
-                    audioReader?.add(audioReaderOutput!)
-                } else {
-                    print("cant add audio reader")
-                }
             }
             
             // metadata track

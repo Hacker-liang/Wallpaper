@@ -12,7 +12,7 @@ class LPAccount: NSObject {
     
     static let shared = LPAccount()
     
-    private (set) var isVip: Bool = true
+    private (set) var isVip: Bool = false
     
     
     public func userDidLogin() {
