@@ -15,6 +15,7 @@ class LPUpgradeBannerView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupContentView()
+        self.clipsToBounds = true
     }
     
     required init?(coder: NSCoder) {

@@ -37,7 +37,8 @@ class LPRootViewController: UIViewController {
         self.addChild(livePhotoDetailVC)
         self.view.addSubview(livePhotoDetailVC.view)
         livePhotoDetailVC.view.snp.makeConstraints { (make) in
-            make.top.leading.trailing.equalTo(0)
+            make.top.leading.equalTo(0)
+            make.width.equalTo(self.view.snp.width)
             make.height.equalTo(self.view.snp.height)
         }
         livePhotoDetailVC.moreButton.addTarget(self, action: #selector(moreButtonAction), for: .touchUpInside)
@@ -48,8 +49,10 @@ class LPRootViewController: UIViewController {
         self.addChild(menuVC)
         self.view.addSubview(menuVC.view)
         menuVC.view.snp.makeConstraints { (make) in
-            make.leading.trailing.bottom.equalTo(0)
-            make.top.equalTo(livePhotoDetailVC.view.snp.bottom)
+            make.top.equalTo(48)
+            make.bottom.equalTo(0)
+            make.trailing.equalTo(self.livePhotoDetailVC.view.snp.leading)
+            make.width.equalTo(290)
         }
     }
     
@@ -60,33 +63,28 @@ class LPRootViewController: UIViewController {
     @objc func moreButtonAction(sender: UIButton) {
         if !sender.isSelected {
             UIView.animate(withDuration: 0.3, animations: {
+        
+                self.livePhotoDetailVC.view.frame = CGRect(x: self.menuVC.view.bounds.size.width, y: 0, width: self.livePhotoDetailVC.view.bounds.size.width, height: self.livePhotoDetailVC.view.bounds.size.height)
                 
-                var top: CGFloat = 66.0
-                
-                if IS_IPHONE_X {
-                    top = 106
-                }
-                
-                self.livePhotoDetailVC.view.frame = CGRect(x: 0, y: top-self.livePhotoDetailVC.view.bounds.size.height, width: self.livePhotoDetailVC.view.bounds.size.width, height: self.livePhotoDetailVC.view.bounds.size.height)
-                
-                self.menuVC.view.frame = CGRect(x: 0, y: top, width: self.menuVC.view.bounds.size.width, height: self.view.bounds.height-top)
+                self.menuVC.view.frame = CGRect(x: 0, y: self.menuVC.view.frame.origin.y, width:  self.menuVC.view.bounds.size.width, height: self.view.bounds.height)
                 
                 self.livePhotoDetailVC.view.snp.updateConstraints { (make) in
-                    make.top.equalToSuperview().offset(top-self.livePhotoDetailVC.view.bounds.size.height)
+                    make.leading.equalTo(self.menuVC.view.bounds.size.width)
                 }
-                self.livePhotoDetailVC.hideDetail()
+                
+//                self.livePhotoDetailVC.hideDetail()
 
             }, completion: nil)
         } else {
             UIView.animate(withDuration: 0.3, animations: {
                 self.livePhotoDetailVC.view.frame = CGRect(x: 0, y: 0, width: self.livePhotoDetailVC.view.bounds.size.width, height: self.livePhotoDetailVC.view.bounds.size.height)
                 
-                self.menuVC.view.frame = CGRect(x: 0, y: self.view.bounds.size.height, width: self.menuVC.view.bounds.size.width, height: 0)
+                self.menuVC.view.frame = CGRect(x: -self.menuVC.view.bounds.size.width, y:self.menuVC.view.frame.origin.y , width: self.menuVC.view.bounds.size.width, height: 0)
 
                 self.livePhotoDetailVC.view.snp.updateConstraints { (make) in
-                    make.top.equalToSuperview().offset(0)
+                    make.leading.equalTo(0)
                 }
-                self.livePhotoDetailVC.showDetail()
+//                self.livePhotoDetailVC.showDetail()
 
             }, completion: nil)
         }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6603E525250E507700864C37 /* LivePhotoCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6603E523250E507700864C37 /* LivePhotoCategoryCollectionViewCell.swift */; };
+		6603E526250E507700864C37 /* LivePhotoCategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6603E524250E507700864C37 /* LivePhotoCategoryCollectionViewCell.xib */; };
 		660AF22324B73E760042C2FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF22224B73E760042C2FB /* AppDelegate.swift */; };
 		660AF22724B73E760042C2FB /* LPRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF22624B73E760042C2FB /* LPRootViewController.swift */; };
 		660AF22A24B73E760042C2FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 660AF22824B73E760042C2FB /* Main.storyboard */; };
@@ -103,6 +105,8 @@
 
 /* Begin PBXFileReference section */
 		20D86C73562B8CE670E00EAC /* Pods-Wallpaper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper.release.xcconfig"; path = "Target Support Files/Pods-Wallpaper/Pods-Wallpaper.release.xcconfig"; sourceTree = "<group>"; };
+		6603E523250E507700864C37 /* LivePhotoCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		6603E524250E507700864C37 /* LivePhotoCategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePhotoCategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		660AF21F24B73E760042C2FB /* 3D动态壁纸.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "3D动态壁纸.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		660AF22224B73E760042C2FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		660AF22624B73E760042C2FB /* LPRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPRootViewController.swift; sourceTree = "<group>"; };
@@ -304,6 +308,8 @@
 			isa = PBXGroup;
 			children = (
 				660DD79124C59A5900A26AD1 /* LivePhotoCategoryViewController.swift */,
+				6603E523250E507700864C37 /* LivePhotoCategoryCollectionViewCell.swift */,
+				6603E524250E507700864C37 /* LivePhotoCategoryCollectionViewCell.xib */,
 				667716AA24D455FE005CD7EF /* LivePhotoCategoryTableViewCell.swift */,
 				667716AB24D455FE005CD7EF /* LivePhotoCategoryTableViewCell.xib */,
 				661A6A6024C59C570005E91F /* LivePhotoCategory.swift */,
@@ -647,6 +653,7 @@
 				6646520B24C97701001B9B2C /* 200w_00004.png in Resources */,
 				6646520224C97701001B9B2C /* 200w_00002.png in Resources */,
 				6646521B24C97701001B9B2C /* 200w_00024.png in Resources */,
+				6603E526250E507700864C37 /* LivePhotoCategoryCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,6 +727,7 @@
 				6646523724CAB43D001B9B2C /* TwicketSegmentedControl.swift in Sources */,
 				664651DF24C81DF6001B9B2C /* LivePhotoDetailCollectionViewCell.swift in Sources */,
 				6646524624CAD733001B9B2C /* AdManager.swift in Sources */,
+				6603E525250E507700864C37 /* LivePhotoCategoryCollectionViewCell.swift in Sources */,
 				6646523824CAB43D001B9B2C /* Palette.swift in Sources */,
 				667716AF24D4F7E0005CD7EF /* LPConstants.swift in Sources */,
 				6646522F24CA956E001B9B2C /* QuickTimeMov.swift in Sources */,
@@ -925,8 +933,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = 8Z57A6F36Q;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5VYP985JJ2;
 				INFOPLIST_FILE = Wallpaper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -934,7 +942,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.5vdesign.livephotos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.5vdesign.livephoto;
 				PRODUCT_NAME = "3D动态壁纸";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wallpaper/Wallpaper-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -950,8 +958,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = 8Z57A6F36Q;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5VYP985JJ2;
 				INFOPLIST_FILE = Wallpaper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -959,7 +967,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.5vdesign.livephotos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.5vdesign.livephoto;
 				PRODUCT_NAME = "3D动态壁纸";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wallpaper/Wallpaper-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

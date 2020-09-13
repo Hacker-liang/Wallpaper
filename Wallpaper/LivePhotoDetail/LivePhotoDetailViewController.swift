@@ -15,9 +15,12 @@ class LivePhotoDetailViewController: UIViewController {
     
     var livePhotoManager: LivePhotoHelper!
     
+    var buttonsBackgroundView: UIImageView!
     var saveButton: UIButton!
     var favoriteButton: UIButton!
     var moreButton: UIButton!
+    var settingButton: UIButton!
+
     var detailCollectionView: UICollectionView!
     var albumCollectionView: UICollectionView!
     
@@ -125,7 +128,6 @@ class LivePhotoDetailViewController: UIViewController {
         } else {
             self.albumCollectionView.isHidden = false
         }
-        
     }
        
     public func hideDetail() {
@@ -169,22 +171,20 @@ class LivePhotoDetailViewController: UIViewController {
         
         if currentCellIndex.row != index {
             if currentCellIndex.row >= 0 && currentCellIndex.row < dataSource.count {
+                (detailCollectionView.cellForItem(at: currentCellIndex) as? LivePhotoDetailCollectionViewCell)?.livePhotoView.stopPlayback()
                 self.cancelDownloadIfNeeded(model: dataSource[currentCellIndex.row])
             }
             currentCellIndex = IndexPath(row: index, section: 0)
             if currentCellIndex.row >= 0 && currentCellIndex.row < dataSource.count {
+                (detailCollectionView.cellForItem(at: currentCellIndex) as? LivePhotoDetailCollectionViewCell)?.livePhotoView.startPlayback(with: .full)
+
                 self.startDownloadIfNeeded(model: dataSource[currentCellIndex.row])
             }
         }
         
         if currentCellIndex.row < dataSource.count {
             let model = self.dataSource[currentCellIndex.row]
-            if let name = model.imageName {
-                self.favoriteButton.isSelected = LivePhotoHelper.isUserLike(model)
-            }
-            if model.isLivePhoto {
-                (detailCollectionView.cellForItem(at: currentCellIndex) as? LivePhotoDetailCollectionViewCell)?.livePhotoView.startPlayback(with: .full)
-            }
+            self.favoriteButton.isSelected = LivePhotoHelper.isUserLike(model)
         }
         reloadAlbumCollection()
     }
@@ -195,7 +195,6 @@ class LivePhotoDetailViewController: UIViewController {
                 (cell as! LivePhotoAlubmCollectionViewCell).selectedImageView.isHidden = currentCellIndex.row != index.row
             }
         }
-
     }
     
     private func cancelDownloadIfNeeded(model: LivePhotoModel) {
@@ -224,6 +223,7 @@ class LivePhotoDetailViewController: UIViewController {
                         return
                     }
                     weakSelf.detailCollectionView.reloadItems(at: [weakSelf.currentCellIndex])
+                    (weakSelf.detailCollectionView.cellForItem(at: weakSelf.currentCellIndex) as? LivePhotoDetailCollectionViewCell)?.livePhotoView.startPlayback(with: .full)
                 }
             }
         } else if let name = model.imageName {
@@ -344,61 +344,84 @@ class LivePhotoDetailViewController: UIViewController {
         listCollectionView.backgroundColor = .clear
         listCollectionView.showsHorizontalScrollIndicator = false
 
-        self.view.addSubview(listCollectionView)
-        listCollectionView.snp.makeConstraints { (make) in
-            make.leading.equalTo(0.5)
-            make.trailing.equalTo(-0.5)
-            if IS_IPHONE_X {
-                make.bottom.equalTo(-20)
-            } else {
-                make.bottom.equalTo(-0.5)
-            }
-            make.height.equalTo(82)
-        }
+//        self.view.addSubview(listCollectionView)
+//        listCollectionView.snp.makeConstraints { (make) in
+//            make.leading.equalTo(0.5)
+//            make.trailing.equalTo(-0.5)
+//            if IS_IPHONE_X {
+//                make.bottom.equalTo(-20)
+//            } else {
+//                make.bottom.equalTo(-0.5)
+//            }
+//            make.height.equalTo(82)
+//        }
         albumCollectionView = listCollectionView
-        
-        saveButton = UIButton(frame: .zero)
-        saveButton.setImage(UIImage(named: "icon_detail_save"), for: .normal)
-        self.view.addSubview(saveButton)
-        saveButton.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview()
-            make.width.height.equalTo(60)
-            make.bottom.equalTo(listCollectionView.snp.top).offset(-28.0)
-        }
-        saveButton.addTarget(self, action: #selector(saveLivePhoto), for: .touchUpInside)
-        
-        moreButton = UIButton(frame: .zero)
-        moreButton.setImage(UIImage(named: "icon_detail_menu"), for: .normal)
-
-        self.view.addSubview(moreButton)
-        moreButton.snp.makeConstraints { (make) in
-            make.right.equalTo(saveButton.snp.left).offset(-20)
-            make.width.height.equalTo(saveButton.snp.width)
-            make.centerY.equalTo(saveButton.snp.centerY)
-        }
-        
-        favoriteButton = UIButton(frame: .zero)
-        favoriteButton.setImage(UIImage(named: "icon_detail_like_normal"), for: .normal)
-        favoriteButton.setImage(UIImage(named: "icon_detail_like_selected"), for: .selected)
-        favoriteButton.addTarget(self, action: #selector(favoriteButtonAction), for: .touchUpInside)
-        self.view.addSubview(favoriteButton)
-        favoriteButton.snp.makeConstraints { (make) in
-            make.centerY.equalTo(saveButton.snp.centerY)
-            make.left.equalTo(saveButton.snp.right).offset(20)
-            make.width.height.equalTo(saveButton.snp.width)
-        }
         
         vipBannerView = LPUpgradeBannerView()
         vipBannerView.upgradeButton.addTarget(self, action: #selector(purchaseVip), for: .touchUpInside)
         self.view.addSubview(vipBannerView)
         vipBannerView?.snp.makeConstraints({ (make) in
             make.leading.trailing.bottom.equalTo(0)
-            if IS_IPHONE_X {
-                make.height.equalTo(110)
+            if LPAccount.shared.isVip {
+                make.height.equalTo(0)
             } else {
-                make.height.equalTo(99)
+                make.height.equalTo(56.5)
             }
         })
+        
+        buttonsBackgroundView = UIImageView()
+        buttonsBackgroundView.isUserInteractionEnabled = true
+        buttonsBackgroundView.image = UIImage(named: "icon_detail_buttons_bg")
+        self.view.addSubview(buttonsBackgroundView)
+        buttonsBackgroundView.snp.makeConstraints { (make) in
+            make.width.equalTo(343)
+            make.height.equalTo(67.5)
+            make.bottom.equalTo(vipBannerView.snp.top).offset(-22.5)
+            make.centerX.equalToSuperview()
+        }
+        
+        moreButton = UIButton(frame: .zero)
+        moreButton.setImage(UIImage(named: "icon_detail_menu"), for: .normal)
+        buttonsBackgroundView.addSubview(moreButton)
+        moreButton.snp.makeConstraints { (make) in
+            make.leading.equalTo(32.0)
+            make.top.equalTo(9.0)
+            make.width.height.equalTo(62)
+        }
+        
+        saveButton = UIButton(frame: .zero)
+        saveButton.setImage(UIImage(named: "icon_detail_save"), for: .normal)
+        buttonsBackgroundView.addSubview(saveButton)
+        saveButton.snp.makeConstraints { (make) in
+            make.leading.equalTo(moreButton.snp.trailing).offset(13)
+            make.top.equalTo(9.0)
+            make.width.height.equalTo(62)
+        }
+        saveButton.addTarget(self, action: #selector(saveLivePhoto), for: .touchUpInside)
+        
+        
+        favoriteButton = UIButton(frame: .zero)
+        favoriteButton.setImage(UIImage(named: "icon_detail_like_normal"), for: .normal)
+        favoriteButton.setImage(UIImage(named: "icon_detail_like_selected"), for: .selected)
+        favoriteButton.addTarget(self, action: #selector(favoriteButtonAction), for: .touchUpInside)
+        buttonsBackgroundView.addSubview(favoriteButton)
+        favoriteButton.snp.makeConstraints { (make) in
+            make.leading.equalTo(saveButton.snp.trailing).offset(13)
+            make.top.equalTo(9.0)
+            make.width.height.equalTo(62)
+        }
+        
+        settingButton = UIButton(frame: .zero)
+        settingButton.setImage(UIImage(named: "icon_detail_setting"), for: .normal)
+        settingButton.addTarget(self, action: #selector(favoriteButtonAction), for: .touchUpInside)
+        buttonsBackgroundView.addSubview(settingButton)
+        settingButton.snp.makeConstraints { (make) in
+            make.leading.equalTo(favoriteButton.snp.trailing).offset(13)
+            make.top.equalTo(9.0)
+            make.width.height.equalTo(62)
+        }
+        
+        
     }
 }
 
@@ -414,6 +437,8 @@ extension LivePhotoDetailViewController: UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.detailCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "livephotodetailCell", for: indexPath) as! LivePhotoDetailCollectionViewCell
+            cell.staticImageView.image = nil
+            cell.livePhotoView.livePhoto = nil
             let model = dataSource[indexPath.row]
             if model.isLivePhoto, let name = model.movName {
                 if LPLivePhotoSourceManager.livePhotoIsExitInSandbox(with: name) {

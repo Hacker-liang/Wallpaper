@@ -18,14 +18,16 @@ protocol LivePhotoCategoryViewControllerDelegate: class {
     func didSelectedFindHotCagetory()
     
     func didSelectedFindLikeCagetory()
-
+    
 }
 
 class LivePhotoCategoryViewController: UIViewController {
     
     public weak var delegate: LivePhotoCategoryViewControllerDelegate?
     
-    private var tableView: UITableView!
+    private var collectionView: UICollectionView!
+    
+    private var bgLayer: CAGradientLayer!
     
     private var dataSource = [LivePhotoCategory]()
     
@@ -42,31 +44,41 @@ class LivePhotoCategoryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.updateContent()
     }
     
     private func setupContentView() {
-        tableView = UITableView()
-        tableView.showsVerticalScrollIndicator = false
-        self.view.addSubview(tableView)
-        tableView.snp.makeConstraints { (make) in
+        
+        let layer = CAGradientLayer()
+        layer.frame = self.view.bounds
+        layer.colors = [UIColor.rgba(0xdfcece, alpha: 0.5).cgColor,UIColor.rgba(0xedc884, alpha: 0.5).cgColor,UIColor.rgba(0xe4b092, alpha: 0.5).cgColor,UIColor.rgba(0x006d8d, alpha: 0.5).cgColor]
+        bgLayer = layer
+        layer.startPoint = .zero
+        layer.endPoint = CGPoint(x: 1.0, y: 1.0)
+        layer.locations = [0, 0.4, 0.6, 1.0]
+        
+        self.view.layer.addSublayer(layer)
+        
+        let layout = UICollectionViewFlowLayout()
+        
+        
+        layout.itemSize = CGSize(width: 90, height: 90)
+        layout.headerReferenceSize = CGSize(width: self.view.bounds.size.width, height: 45.0)
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(UINib(nibName: "LivePhotoCategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
+        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.backgroundColor = UIColor.clear
+        self.view.addSubview(collectionView)
+        collectionView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
-        tableView.register(UINib(nibName: "LivePhotoCategoryTableViewCell", bundle: nil), forCellReuseIdentifier: "LivePhotoCategoryTableViewCell")
-        tableView.separatorColor = .rgba(0xB0B0B0, alpha: 0.15)
-        tableView.backgroundColor = .black
-        tableView.delegate = self
-        tableView.dataSource = self
     }
     
-    private func updateContent() {
-        if !LPAccount.shared.isVip {
-            let header = LPUpgradeBannerView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 99))
-            header.upgradeButton.addTarget(self, action: #selector(upgradeButtonAction), for: .touchUpInside)
-            tableView.tableHeaderView = header
-        } else {
-            tableView.tableHeaderView = nil
-        }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        bgLayer.frame = self.view.bounds
     }
     
     private func loadData() {
@@ -78,7 +90,7 @@ class LivePhotoCategoryViewController: UIViewController {
                 weakSelf.dataSource.removeAll()
                 
                 weakSelf.dataSource.append(contentsOf: l)
-                weakSelf.tableView.reloadData()
+                weakSelf.collectionView.reloadData()
             }
         }
     }
@@ -91,36 +103,28 @@ class LivePhotoCategoryViewController: UIViewController {
 
 extension LivePhotoCategoryViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func createSectionHeaderView(category: LivePhotoCategory) -> UIView {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
-        view.backgroundColor = .rgb(0x2F2F2F)
-        let imageView = UIImageView(frame: CGRect(x: 12, y: 5, width: 29, height: 29))
+    func updateSectionHeaderView(_ view: inout UICollectionReusableView, category: LivePhotoCategory) {
+        view.subviews.forEach { (view) in
+            view.removeFromSuperview()
+        }
+        view.backgroundColor = .rgb(0xA7A1A1)
+        let imageView = UIImageView(frame: CGRect(x: 12, y: 8, width: 29, height: 29))
         imageView.sd_setImage(with: URL(string: category.icon ?? ""), completed: nil)
         view.addSubview(imageView)
-        let label = UILabel(frame: CGRect(x: 58, y: 10, width: 250, height: 20))
-        label.textColor = .white
+        let label = UILabel(frame: CGRect(x: 58, y: 0, width: 250, height: view.bounds.size.height))
+        label.textColor = .rgb(0xF2F2F2)
         label.font = UIFont.systemFont(ofSize: 18.0)
         label.text = category.categoryName ?? ""
         view.addSubview(label)
         if category.isFree ?? false {
-            let freeImageView = UIImageView(frame: CGRect(x: tableView.bounds.width-63, y: 9, width: 52, height: 21))
+            let freeImageView = UIImageView(frame: CGRect(x: collectionView.bounds.width-63, y: 12, width: 52, height: 21))
             freeImageView.image = UIImage(named: "icon_category_free")
             view.addSubview(freeImageView)
         }
-        return view
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return dataSource.count+1
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
-            let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 5))
-            view.backgroundColor = .black
-            return view
-        }
-        return self.createSectionHeaderView(category: dataSource[section-1])
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -171,14 +175,73 @@ extension LivePhotoCategoryViewController: UITableViewDataSource, UITableViewDel
         retCell.selectedImageView.isHidden = !(currentSelectedIndex.section == indexPath.section && currentSelectedIndex.row == indexPath.row)
         return retCell
     }
+   
+}
+
+extension LivePhotoCategoryViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 38.0
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return dataSource.count+1
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if section == 0 {
+            return .zero
+        }
+        return CGSize(width: collectionView.bounds.size.width, height: 45.5)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        var view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header", for: indexPath)
+        if dataSource.count>=1 && indexPath.section>0 {
+            self.updateSectionHeaderView(&view, category: dataSource[indexPath.section-1])
+        }
+        return view
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if section == 0 {
+            return 3
+        }
+        return dataSource[section-1].subCategories.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        var retCell: LivePhotoCategoryCollectionViewCell!
+        if indexPath.section == 0 {
+            var icon = ""
+            var title = ""
+            if indexPath.row == 0 {
+                title = "发现最新"
+                icon = "icon_category_new"
+            } else if indexPath.row == 1 {
+                title = "热门影集"
+                icon = "icon_category_hot"
+            } else  if indexPath.row == 2 {
+                title = "收藏影集"
+                icon = "icon_category_like"
+            }
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LivePhotoCategoryCollectionViewCell
+            cell.imageView.image = UIImage(named: icon)
+            cell.titleLabel.text = title
+            
+            retCell = cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LivePhotoCategoryCollectionViewCell
+            let category = dataSource[indexPath.section-1]
+            cell.imageView.sd_setImage(with: URL(string: category.subCategories[indexPath.row].icon ?? ""), completed: nil)
+            cell.titleLabel.text = category.subCategories[indexPath.row].subCategoryName
+            retCell = cell
+        }
+        
+        retCell.titleLabel.textColor = currentSelectedIndex.section == indexPath.section && currentSelectedIndex.row == indexPath.row ? .white : .rgb(0x595959)
+//        retCell.selectedImageView.isHidden = !(currentSelectedIndex.section == indexPath.section && currentSelectedIndex.row == indexPath.row)
+        return retCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         currentSelectedIndex = indexPath
-        self.tableView.reloadData()
         if indexPath.section == 0 {
             if indexPath.row == 0 {
                 self.delegate?.didSelectedFindNewCagetory()
@@ -191,5 +254,6 @@ extension LivePhotoCategoryViewController: UITableViewDataSource, UITableViewDel
             let category = dataSource[indexPath.section-1]
             self.delegate?.didSelectedCagetory(category: category, subCagetoryId: category.subCategories[indexPath.row].subCategoryId, subCagetoryName: category.subCategories[indexPath.row].subCategoryName)
         }
+        self.collectionView.reloadData()
     }
 }

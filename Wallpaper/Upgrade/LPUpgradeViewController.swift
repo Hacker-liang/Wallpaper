@@ -27,6 +27,8 @@ class LPUpgradeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        return;
+        
         LPPurchaseManager.shared.addTarget(target: self)
         LPPurchaseManager.shared.loadPurchaseItems()
         restoreButton.layer.cornerRadius = 18.5

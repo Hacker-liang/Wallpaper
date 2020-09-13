@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "660AF21E24B73E760042C2FB"
-               BuildableName = "Wallpaper.app"
+               BuildableName = "3D&#x52a8;&#x6001;&#x58c1;&#x7eb8;.app"
                BlueprintName = "Wallpaper"
                ReferencedContainer = "container:Wallpaper.xcodeproj">
             </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "660AF21E24B73E760042C2FB"
-            BuildableName = "Wallpaper.app"
+            BuildableName = "3D&#x52a8;&#x6001;&#x58c1;&#x7eb8;.app"
             BlueprintName = "Wallpaper"
             ReferencedContainer = "container:Wallpaper.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "660AF21E24B73E760042C2FB"
-            BuildableName = "Wallpaper.app"
+            BuildableName = "3D&#x52a8;&#x6001;&#x58c1;&#x7eb8;.app"
             BlueprintName = "Wallpaper"
             ReferencedContainer = "container:Wallpaper.xcodeproj">
          </BuildableReference>
