@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		6603E525250E507700864C37 /* LivePhotoCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6603E523250E507700864C37 /* LivePhotoCategoryCollectionViewCell.swift */; };
 		6603E526250E507700864C37 /* LivePhotoCategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6603E524250E507700864C37 /* LivePhotoCategoryCollectionViewCell.xib */; };
+		6603E52A250E561A00864C37 /* LivePhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6603E528250E561A00864C37 /* LivePhotoGalleryViewController.swift */; };
+		6603E52B250E561A00864C37 /* LivePhotoGalleryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6603E529250E561A00864C37 /* LivePhotoGalleryViewController.xib */; };
+		6603E52E250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6603E52C250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.swift */; };
+		6603E52F250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6603E52D250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.xib */; };
 		660AF22324B73E760042C2FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF22224B73E760042C2FB /* AppDelegate.swift */; };
 		660AF22724B73E760042C2FB /* LPRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF22624B73E760042C2FB /* LPRootViewController.swift */; };
 		660AF22A24B73E760042C2FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 660AF22824B73E760042C2FB /* Main.storyboard */; };
@@ -107,6 +111,10 @@
 		20D86C73562B8CE670E00EAC /* Pods-Wallpaper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper.release.xcconfig"; path = "Target Support Files/Pods-Wallpaper/Pods-Wallpaper.release.xcconfig"; sourceTree = "<group>"; };
 		6603E523250E507700864C37 /* LivePhotoCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		6603E524250E507700864C37 /* LivePhotoCategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePhotoCategoryCollectionViewCell.xib; sourceTree = "<group>"; };
+		6603E528250E561A00864C37 /* LivePhotoGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoGalleryViewController.swift; sourceTree = "<group>"; };
+		6603E529250E561A00864C37 /* LivePhotoGalleryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePhotoGalleryViewController.xib; sourceTree = "<group>"; };
+		6603E52C250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoGalleryCollectionViewCell.swift; sourceTree = "<group>"; };
+		6603E52D250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePhotoGalleryCollectionViewCell.xib; sourceTree = "<group>"; };
 		660AF21F24B73E760042C2FB /* 3D动态壁纸.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "3D动态壁纸.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		660AF22224B73E760042C2FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		660AF22624B73E760042C2FB /* LPRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPRootViewController.swift; sourceTree = "<group>"; };
@@ -221,6 +229,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6603E527250E55DE00864C37 /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				6603E528250E561A00864C37 /* LivePhotoGalleryViewController.swift */,
+				6603E529250E561A00864C37 /* LivePhotoGalleryViewController.xib */,
+				6603E52C250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.swift */,
+				6603E52D250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.xib */,
+			);
+			path = Gallery;
+			sourceTree = "<group>";
+		};
 		660AF21624B73E760042C2FB = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +265,7 @@
 		660AF22124B73E760042C2FB /* Wallpaper */ = {
 			isa = PBXGroup;
 			children = (
+				6603E527250E55DE00864C37 /* Gallery */,
 				66F3C84624CEDEC2009DE086 /* User */,
 				6646524424CAD71F001B9B2C /* AD */,
 				6646523F24CAD080001B9B2C /* Setting */,
@@ -615,6 +635,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6646520C24C97701001B9B2C /* 200w_00010.png in Resources */,
+				6603E52B250E561A00864C37 /* LivePhotoGalleryViewController.xib in Resources */,
+				6603E52F250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.xib in Resources */,
 				6646520424C97701001B9B2C /* 200w_00017.png in Resources */,
 				6646521E24C97701001B9B2C /* 200w_00027.png in Resources */,
 				6646521024C97701001B9B2C /* 200w_00007.png in Resources */,
@@ -731,6 +753,7 @@
 				6646523824CAB43D001B9B2C /* Palette.swift in Sources */,
 				667716AF24D4F7E0005CD7EF /* LPConstants.swift in Sources */,
 				6646522F24CA956E001B9B2C /* QuickTimeMov.swift in Sources */,
+				6603E52A250E561A00864C37 /* LivePhotoGalleryViewController.swift in Sources */,
 				664651DC24C6CD1D001B9B2C /* LivePhotoDetailViewController.swift in Sources */,
 				6675D4BF24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.swift in Sources */,
 				6646523B24CABF82001B9B2C /* LPSegmentView.swift in Sources */,
@@ -747,6 +770,7 @@
 				66F3C84824CEDED2009DE086 /* LPAccount.swift in Sources */,
 				667716A624D12765005CD7EF /* LPProductTableViewCell.swift in Sources */,
 				660AF25324B73F5B0042C2FB /* LivePhotoHelper.swift in Sources */,
+				6603E52E250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.swift in Sources */,
 				66A749BF24D0137A0034C916 /* LPUpgradeViewController.swift in Sources */,
 				667716AC24D455FE005CD7EF /* LivePhotoCategoryTableViewCell.swift in Sources */,
 				6646523E24CAC279001B9B2C /* LPColor.swift in Sources */,

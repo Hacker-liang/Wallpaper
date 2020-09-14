@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LivePhotoGalleryViewController" customModule="_D动态壁纸" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="S0X-U2-flm" id="T3l-5s-L78"/>
+                <outlet property="titleLabel" destination="YtP-au-Kpz" id="Aih-Zk-nVg"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="S0X-U2-flm">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Q2y-Qz-qpb">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PO4-wC-BlY">
+                    <rect key="frame" x="0.0" y="813" width="414" height="83"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YtP-au-Kpz">
+                            <rect key="frame" x="102.5" y="15" width="209" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="209" id="0XT-kQ-VrM"/>
+                                <constraint firstAttribute="height" constant="20" id="Pff-kc-68o"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.34901960784313724" green="0.34901960784313724" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IeI-QQ-cPu">
+                            <rect key="frame" x="22" y="14" width="31" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="31" id="EQh-Le-xat"/>
+                                <constraint firstAttribute="height" constant="20" id="ewx-VS-Zix"/>
+                            </constraints>
+                            <state key="normal" image="icon_gallery_back"/>
+                            <connections>
+                                <action selector="backButtonAction:" destination="-1" eventType="touchUpInside" id="QPm-4p-LzE"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.81568627450980391" green="0.81176470588235294" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="IeI-QQ-cPu" firstAttribute="leading" secondItem="PO4-wC-BlY" secondAttribute="leading" constant="22" id="4g1-Pf-EwR"/>
+                        <constraint firstItem="IeI-QQ-cPu" firstAttribute="top" secondItem="PO4-wC-BlY" secondAttribute="top" constant="14" id="THc-PD-cfR"/>
+                        <constraint firstItem="YtP-au-Kpz" firstAttribute="top" secondItem="PO4-wC-BlY" secondAttribute="top" constant="15" id="VY4-Tk-oIm"/>
+                        <constraint firstItem="YtP-au-Kpz" firstAttribute="centerX" secondItem="PO4-wC-BlY" secondAttribute="centerX" id="wdH-yd-Npu"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="PO4-wC-BlY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="4td-g0-6S2"/>
+                <constraint firstItem="S0X-U2-flm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="CtW-sK-5ia"/>
+                <constraint firstItem="PO4-wC-BlY" firstAttribute="top" secondItem="S0X-U2-flm" secondAttribute="bottom" id="DGk-kq-aQL"/>
+                <constraint firstItem="S0X-U2-flm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="EC8-47-8iP"/>
+                <constraint firstItem="PO4-wC-BlY" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Msa-gO-3wF"/>
+                <constraint firstAttribute="bottom" secondItem="PO4-wC-BlY" secondAttribute="bottom" id="YDi-lp-an2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="S0X-U2-flm" secondAttribute="bottom" constant="49" id="qXn-Bj-985"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="S0X-U2-flm" secondAttribute="trailing" id="vWp-cD-9zA"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
+        </view>
+        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7bU-jH-x2Q">
+            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+            <nil key="textColor"/>
+            <nil key="highlightedColor"/>
+            <point key="canvasLocation" x="139" y="-199"/>
+        </label>
+    </objects>
+    <resources>
+        <image name="icon_gallery_back" width="31.5" height="20.5"/>
+    </resources>
+</document>

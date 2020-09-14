@@ -101,7 +101,7 @@ class LivePhotoCategoryViewController: UIViewController {
     
 }
 
-extension LivePhotoCategoryViewController: UITableViewDataSource, UITableViewDelegate {
+extension LivePhotoCategoryViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func updateSectionHeaderView(_ view: inout UICollectionReusableView, category: LivePhotoCategory) {
         view.subviews.forEach { (view) in
@@ -122,63 +122,6 @@ extension LivePhotoCategoryViewController: UITableViewDataSource, UITableViewDel
             view.addSubview(freeImageView)
         }
     }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return dataSource.count+1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 3
-        }
-        return dataSource[section-1].subCategories.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 5
-        } else {
-            return 39.0
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        var retCell: LivePhotoCategoryTableViewCell!
-        if indexPath.section == 0 {
-            var icon = ""
-            var title = ""
-            if indexPath.row == 0 {
-                title = "发现最新"
-                icon = "icon_category_new"
-            } else if indexPath.row == 1 {
-                title = "热门影集"
-                icon = "icon_category_hot"
-            } else  if indexPath.row == 2 {
-                title = "收藏影集"
-                icon = "icon_category_like"
-            }
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LivePhotoCategoryTableViewCell", for: indexPath) as! LivePhotoCategoryTableViewCell
-            cell.categoryImageView.image = UIImage(named: icon)
-            cell.categoryLabel.text = title
-            
-            retCell = cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LivePhotoCategoryTableViewCell", for: indexPath) as! LivePhotoCategoryTableViewCell
-            let category = dataSource[indexPath.section-1]
-            cell.categoryImageView.sd_setImage(with: URL(string: category.subCategories[indexPath.row].icon ?? ""), completed: nil)
-            cell.categoryLabel.text = category.subCategories[indexPath.row].subCategoryName
-            retCell = cell
-        }
-        
-        retCell.categoryLabel.textColor = currentSelectedIndex.section == indexPath.section && currentSelectedIndex.row == indexPath.row ? .white : .rgb(0x595959)
-        retCell.selectedImageView.isHidden = !(currentSelectedIndex.section == indexPath.section && currentSelectedIndex.row == indexPath.row)
-        return retCell
-    }
-   
-}
-
-extension LivePhotoCategoryViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return dataSource.count+1
