@@ -8,7 +8,15 @@
 
 import UIKit
 
+@objc protocol LivePhotoGalleryViewControllerDelegate {
+    func didSelectedLivephoto(index: Int, galleryVC: UIViewController);
+}
+
 class LivePhotoGalleryViewController: UIViewController {
+    
+    
+    weak var delegate: LivePhotoGalleryViewControllerDelegate?
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     var dataSource = [LivePhotoModel]()
@@ -67,6 +75,6 @@ extension LivePhotoGalleryViewController: UICollectionViewDataSource, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        delegate?.didSelectedLivephoto(index: indexPath.row, galleryVC: self)
     }
 }

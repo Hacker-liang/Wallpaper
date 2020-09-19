@@ -10,6 +10,7 @@ import UIKit
 import Photos
 import PhotosUI
 import JGProgressHUD
+import SDWebImage
 
 class LivePhotoDetailViewController: UIViewController {
     
@@ -163,6 +164,16 @@ class LivePhotoDetailViewController: UIViewController {
             
         }
     }
+    
+    public func changePageIndex(index: Int) {
+        guard index>=0 && index<self.dataSource.count else {
+            return
+        }
+        self.detailCollectionView.scrollToItem(at:IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: false)
+        self.albumCollectionView.scrollToItem(at:IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: false)
+        self.pageDidChanged()
+    }
+    
     
     private func pageDidChanged() {
         let contentOffset = detailCollectionView.contentOffset
@@ -448,6 +459,14 @@ extension LivePhotoDetailViewController: UICollectionViewDataSource, UICollectio
                             cell.updateLivePhoto(livePhoto: p)
                         }
                     })
+                } else {
+                    if let imageUrl = model.coverImageUrl {
+                        SDWebImageDownloader.shared.downloadImage(with:  URL(string: imageUrl)) { (image, data, error, success) in
+                            if let i = image {
+                                cell.updateStaticPhoto(staticImage: i)
+                            }
+                        }
+                    }
                 }
             } else if let name = model.imageName, LPLivePhotoSourceManager.staticImageIsExitInSandbox(with: name) {
                 if let data = try? Data(contentsOf: URL(fileURLWithPath: LPLivePhotoSourceManager.staticSavedPath(with: name))), let image = UIImage(data: data) {
@@ -458,15 +477,15 @@ extension LivePhotoDetailViewController: UICollectionViewDataSource, UICollectio
                 cell.updateStaticPhoto(staticImage: nil)
             }
             return cell
-        } 
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "livephotoAlbumCell", for: indexPath) as! LivePhotoAlubmCollectionViewCell
-        cell.selectedImageView.isHidden = indexPath.row != currentCellIndex.row
-        let model = dataSource[indexPath.row]
-        if let imageUrl = model.coverImageUrl {
-            cell.imageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: nil, completed: nil)
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "livephotoAlbumCell", for: indexPath) as! LivePhotoAlubmCollectionViewCell
+            cell.selectedImageView.isHidden = indexPath.row != currentCellIndex.row
+            let model = dataSource[indexPath.row]
+            if let imageUrl = model.coverImageUrl {
+                cell.imageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: nil, completed: nil)
+            }
+            return cell
         }
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

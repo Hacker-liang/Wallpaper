@@ -37,12 +37,18 @@ class QiniuHelper: NSObject {
     
     class func requestQiniuCoverImageDownloadUrl(imageName: String) -> String {
         let CutImage = "coverImage"
-        let expires = 60 //分钟失效
+        let expires = 60*60*24 //当天有效
         let authPolicy = QiniuAuthPolicy("5v-livephotos", expires: expires)
-        let expiresDate = Int(Date().timeIntervalSince1970)+expires
+        let expiresDate = Int(self.getMorningDate(date: Date()).timeIntervalSince1970)+expires
         let url = "\(qiniuDownloadUrl)\(imageName)-\(CutImage)?e=\(expiresDate)"
+        print("url \(url)")
         let toke = authPolicy.makedownloadToken(url: url, accessKey: qiniuKey, secretKey: qiniuSecret)
         return "\(url)&token=\(toke)"
+    }
+    class func getMorningDate(date:Date) -> Date{
+        let calendar = NSCalendar.init(identifier: .chinese)
+        let components = calendar?.components([.year,.month,.day], from: date)
+        return (calendar?.date(from: components!))!
     }
 }
 

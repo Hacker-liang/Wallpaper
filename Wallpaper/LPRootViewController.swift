@@ -144,9 +144,16 @@ extension LPRootViewController: LivePhotoCategoryViewControllerDelegate {
         self.livePhotoDetailVC.moreButton.sendActions(for: .touchUpInside)
         
         let galleryVC = LivePhotoGalleryViewController()
-        galleryVC.modalPresentationStyle = .fullScreen
+        galleryVC.delegate = self
         self.present(galleryVC, animated: true, completion: nil)
         galleryVC.updateDataSourcSelectedSubCategoryId(id: subCagetoryId, catetoryName: subCagetoryName)
 
+    }
+}
+
+extension LPRootViewController: LivePhotoGalleryViewControllerDelegate {
+    func didSelectedLivephoto(index: Int, galleryVC: UIViewController) {
+        self.livePhotoDetailVC.changePageIndex(index: index)
+        galleryVC.dismiss(animated: true, completion: nil)
     }
 }
