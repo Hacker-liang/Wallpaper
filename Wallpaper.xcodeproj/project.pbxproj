@@ -13,6 +13,7 @@
 		6603E52B250E561A00864C37 /* LivePhotoGalleryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6603E529250E561A00864C37 /* LivePhotoGalleryViewController.xib */; };
 		6603E52E250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6603E52C250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.swift */; };
 		6603E52F250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6603E52D250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.xib */; };
+		6603E53225165FAC00864C37 /* LivePhotoPrivacyContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6603E53125165FAC00864C37 /* LivePhotoPrivacyContentViewController.swift */; };
 		660AF22324B73E760042C2FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF22224B73E760042C2FB /* AppDelegate.swift */; };
 		660AF22724B73E760042C2FB /* LPRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF22624B73E760042C2FB /* LPRootViewController.swift */; };
 		660AF22A24B73E760042C2FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 660AF22824B73E760042C2FB /* Main.storyboard */; };
@@ -115,6 +116,7 @@
 		6603E529250E561A00864C37 /* LivePhotoGalleryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePhotoGalleryViewController.xib; sourceTree = "<group>"; };
 		6603E52C250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoGalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		6603E52D250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePhotoGalleryCollectionViewCell.xib; sourceTree = "<group>"; };
+		6603E53125165FAC00864C37 /* LivePhotoPrivacyContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoPrivacyContentViewController.swift; sourceTree = "<group>"; };
 		660AF21F24B73E760042C2FB /* 3D动态壁纸.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "3D动态壁纸.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		660AF22224B73E760042C2FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		660AF22624B73E760042C2FB /* LPRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPRootViewController.swift; sourceTree = "<group>"; };
@@ -240,6 +242,14 @@
 			path = Gallery;
 			sourceTree = "<group>";
 		};
+		6603E53025165F6800864C37 /* Privacy */ = {
+			isa = PBXGroup;
+			children = (
+				6603E53125165FAC00864C37 /* LivePhotoPrivacyContentViewController.swift */,
+			);
+			path = Privacy;
+			sourceTree = "<group>";
+		};
 		660AF21624B73E760042C2FB = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +275,7 @@
 		660AF22124B73E760042C2FB /* Wallpaper */ = {
 			isa = PBXGroup;
 			children = (
+				6603E53025165F6800864C37 /* Privacy */,
 				6603E527250E55DE00864C37 /* Gallery */,
 				66F3C84624CEDEC2009DE086 /* User */,
 				6646524424CAD71F001B9B2C /* AD */,
@@ -767,6 +778,7 @@
 				660DD79224C59A5900A26AD1 /* LivePhotoCategoryViewController.swift in Sources */,
 				660AF26F24B8A94B0042C2FB /* QiniuHelper.swift in Sources */,
 				6675D4C324CED8E4007DC3A7 /* LPUpgradeBannerView.swift in Sources */,
+				6603E53225165FAC00864C37 /* LivePhotoPrivacyContentViewController.swift in Sources */,
 				66F3C84824CEDED2009DE086 /* LPAccount.swift in Sources */,
 				667716A624D12765005CD7EF /* LPProductTableViewCell.swift in Sources */,
 				660AF25324B73F5B0042C2FB /* LivePhotoHelper.swift in Sources */,

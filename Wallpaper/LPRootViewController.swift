@@ -42,7 +42,8 @@ class LPRootViewController: UIViewController {
             make.height.equalTo(self.view.snp.height)
         }
         livePhotoDetailVC.moreButton.addTarget(self, action: #selector(moreButtonAction), for: .touchUpInside)
-        
+        livePhotoDetailVC.settingButton.addTarget(self, action: #selector(settingButtonAction), for: .touchUpInside)
+
         menuVC = LPMenuViewController()
         menuVC.categoryListVC.delegate = self
         menuVC.willMove(toParent: self)
@@ -58,6 +59,12 @@ class LPRootViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    
+    @objc func settingButtonAction(sender: UIButton) {
+        let settingVC = LPSettingViewController()
+        settingVC.modalPresentationStyle = .fullScreen
+        self.present(settingVC, animated: true, completion: nil)
     }
     
     @objc func moreButtonAction(sender: UIButton) {

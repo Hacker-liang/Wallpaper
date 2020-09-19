@@ -27,23 +27,22 @@ class LPUpgradeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        return;
         
         LPPurchaseManager.shared.addTarget(target: self)
         LPPurchaseManager.shared.loadPurchaseItems()
-        restoreButton.layer.cornerRadius = 18.5
-        restoreButton.layer.borderColor = UIColor.rgb(0x9A90A1).cgColor
-        restoreButton.layer.borderWidth = 1.0
+        //        restoreButton.layer.cornerRadius = 18.5
+        //        restoreButton.layer.borderColor = UIColor.rgb(0x9A90A1).cgColor
+        //        restoreButton.layer.borderWidth = 1.0
         
-        purchaseButton.layer.cornerRadius = 29.5
-        purchaseButton.layer.masksToBounds = true
-        let layer = CAGradientLayer()
-        layer.frame = purchaseButton.bounds
-        layer.startPoint = CGPoint(x: 0, y: 0)
-        layer.endPoint = CGPoint(x: 1, y: 0)
-        layer.colors = [UIColor.rgb(0xDE5E97).cgColor, UIColor.rgb(0xD2310C).cgColor]
-        purchaseButton.layer.insertSublayer(layer, at: 0)
         
+        //
+        //        let layer = CAGradientLayer()
+        //        layer.frame = purchaseButton.bounds
+        //        layer.startPoint = CGPoint(x: 0, y: 0)
+        //        layer.endPoint = CGPoint(x: 1, y: 0)
+        //        layer.colors = [UIColor.rgb(0xDE5E97).cgColor, UIColor.rgb(0xD2310C).cgColor]
+        //        purchaseButton.layer.insertSublayer(layer, at: 0)
+        //
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "LPProductTableViewCell", bundle: nil), forCellReuseIdentifier: "LPProductTableViewCell")
@@ -73,6 +72,24 @@ class LPUpgradeViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func privacyAction(_ sender: Any) {
+        let ctl = LivePhotoPrivacyContentViewController()
+        ctl.modalPresentationStyle = .fullScreen
+        self.present(ctl, animated: true) {
+        }
+        ctl.contentTextView.text = ctl.privacyContent()
+
+    }
+    
+    @IBAction func useGuidlineAction(_ sender: Any) {
+        let ctl = LivePhotoPrivacyContentViewController()
+        ctl.modalPresentationStyle = .fullScreen
+        self.present(ctl, animated: true) {
+        }
+        ctl.contentTextView.text = ctl.guidlineContent()
+    }
+    
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
@@ -84,7 +101,7 @@ extension LPUpgradeViewController: LPPurchaseManagerDelegate {
         if self.dataSource.count > 0 {
             currentSelectedIndex = 0
         }
-       
+        
         self.tableView.reloadData()
     }
     
@@ -127,7 +144,7 @@ extension LPUpgradeViewController: UITableViewDataSource, UITableViewDelegate {
         cell.isSelected = indexPath.row == currentSelectedIndex
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         currentSelectedIndex = indexPath.row
     }
