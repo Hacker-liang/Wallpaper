@@ -31,66 +31,37 @@ class LPUpgradeBannerView: UIView {
             make.edges.equalToSuperview()
         }
         
-        let tipsLabel = UILabel()
-        tipsLabel.text = "解锁高级功能 定时更新 下载所有壁纸 无广告干扰"
-        tipsLabel.textAlignment = .center
-        tipsLabel.textColor = .white
-        tipsLabel.font = UIFont.systemFont(ofSize: 13.0)
-        tipsLabel.layer.cornerRadius = 4.0
-        tipsLabel.layer.borderColor = UIColor.white.withAlphaComponent(0.35).cgColor
-        tipsLabel.layer.borderWidth = 1.0
-        addSubview(tipsLabel)
-        tipsLabel.snp.makeConstraints { (make) in
-            make.width.equalTo(302)
-            make.height.equalTo(25)
-            make.centerX.equalTo(self.snp.centerX)
-            make.top.equalTo(13)
+        let diamond = UIImageView()
+        diamond.contentMode = .scaleAspectFill
+        diamond.image = UIImage(named: "icon_vip_banner_diamond")
+        addSubview(diamond)
+        diamond.snp.makeConstraints { (make) in
+            make.leading.equalTo(11.5)
+            make.top.equalTo(2)
+            make.width.equalTo(61)
+            make.height.equalTo(55.5)
         }
         
-        let cornerView = UIImageView()
-        cornerView.contentMode = .scaleAspectFill
-        cornerView.image = UIImage(named: "icon_vip_banner_corner")
-        addSubview(cornerView)
-        cornerView.snp.makeConstraints { (make) in
-            make.trailing.equalTo(-20)
-            make.width.equalTo(22.5)
-            make.height.equalTo(17)
-            make.top.equalTo(tipsLabel.snp.bottom).offset(25.5)
-
-        }
-        
-        let cornerTextView = UIImageView()
-        cornerTextView.contentMode = .scaleAspectFill
-        cornerTextView.image = UIImage(named: "icon_vip_banner_corner_text")
-        addSubview(cornerTextView)
-        cornerTextView.snp.makeConstraints { (make) in
-            make.top.equalTo(cornerView.snp.bottom).offset(5)
-            make.trailing.equalTo(-7)
-            make.width.equalTo(55)
-            make.height.equalTo(8)
+        let slogan = UIImageView()
+        slogan.contentMode = .scaleAspectFill
+        slogan.image = UIImage(named: "icon_vip_banner_slogan")
+        addSubview(slogan)
+        slogan.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self).offset(-20)
+            make.top.equalTo(15)
+            make.width.equalTo(173)
+            make.height.equalTo(27)
         }
         
         upgradeButton = UIButton()
-        upgradeButton.layer.cornerRadius = 14.5
-        upgradeButton.layer.masksToBounds = true
-        upgradeButton.setTitle("现在升级", for: .normal)
-        upgradeButton.setTitleColor(.white, for: .normal)
-        upgradeButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18.0)
+        upgradeButton.setImage(UIImage(named: "icon_vip_banner_upgrade"), for: .normal)
         
         addSubview(upgradeButton)
         upgradeButton.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self.snp.centerX)
-            make.width.equalTo(167.5)
-            make.height.equalTo(29)
-            make.top.equalTo(tipsLabel.snp.bottom).offset(17)
+            make.trailing.equalTo(0)
+            make.width.equalTo(108)
+            make.height.equalTo(39)
+            make.top.equalTo(10)
         }
-        self.layoutIfNeeded()
-        
-        let layer = CAGradientLayer()
-        layer.frame = upgradeButton.bounds
-        layer.startPoint = CGPoint(x: 0, y: 0)
-        layer.endPoint = CGPoint(x: 1, y: 0)
-        layer.colors = [UIColor.rgb(0xDE5E97).cgColor, UIColor.rgb(0xD2310C).cgColor]
-        upgradeButton.layer.insertSublayer(layer, at: 0)
     }
 }

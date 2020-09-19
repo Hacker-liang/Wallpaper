@@ -376,7 +376,7 @@ class LivePhotoDetailViewController: UIViewController {
             if LPAccount.shared.isVip {
                 make.height.equalTo(0)
             } else {
-                make.height.equalTo(56.5)
+                make.height.equalTo(IS_IPHONE_X ? 75 : 54.5)
             }
         })
         
