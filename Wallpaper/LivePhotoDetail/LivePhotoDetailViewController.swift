@@ -38,7 +38,8 @@ class LivePhotoDetailViewController: UIViewController {
     var currentFullScreenAd: BUNativeExpressFullscreenVideoAd?
     var currentRewardAd: BUNativeExpressRewardedVideoAd?
 
-
+    var categoryIsFree: Bool = false
+    
     var currentCellIndex: IndexPath = IndexPath(row: -1, section: 0)
     
     var dataSource = [LivePhotoModel]()
@@ -56,7 +57,11 @@ class LivePhotoDetailViewController: UIViewController {
         self.updateContentViewVisiable()
     }
     
-    public func updateDataSourcSelectedSubCategoryId(id: Int) {
+    public func updateDataSourcSelectedSubCategory(category: LivePhotoCategory) {
+        guard let id = category.categoryId else {
+            return
+        }
+        self.categoryIsFree = category.isFree ?? false
         LivePhotoNetworkHelper.requestLivePhotoList(in: id) { [weak self] (livePhotos) in
             guard let weakSelf = self else {
                 return
@@ -69,6 +74,7 @@ class LivePhotoDetailViewController: UIViewController {
             weakSelf.detailCollectionView.reloadData()
             weakSelf.albumCollectionView.reloadData()
             weakSelf.pageDidChanged()
+
         }
     }
     
@@ -77,6 +83,7 @@ class LivePhotoDetailViewController: UIViewController {
         if LPAccount.shared.isVip {
             limit = 1000
         }
+        categoryIsFree = false
         LivePhotoNetworkHelper.requestHotLivePhotoList(limit: limit) { (livePhotos) in
 
             self.dataSource.removeAll()
@@ -96,6 +103,7 @@ class LivePhotoDetailViewController: UIViewController {
         if LPAccount.shared.isVip {
             limit = 100
         }
+        categoryIsFree = false
         LivePhotoNetworkHelper.requestLatestLivePhotoList(limit: limit) { (livePhotos) in
 
             self.dataSource.removeAll()
@@ -107,7 +115,6 @@ class LivePhotoDetailViewController: UIViewController {
             self.albumCollectionView.reloadData()
             self.pageDidChanged()
         }
-        
     }
     
     public func updateDataSourceWithFavoriteLivePhotos() {
@@ -121,30 +128,15 @@ class LivePhotoDetailViewController: UIViewController {
     
     
     public func showDetail() {
-        self.saveButton.alpha = 1.0
-        self.favoriteButton.alpha = 1.0
-        self.moreButton.snp.updateConstraints { (make) in
-            make.centerY.equalTo(saveButton.snp.centerY)
-        }
-        if !LPAccount.shared.isVip {
-            self.currentBannerAdView?.isHidden = false
-            self.albumCollectionView.isHidden = false
-            self.vipBannerView.isHidden = false
-        } else {
-            self.albumCollectionView.isHidden = false
-        }
+        self.buttonsBackgroundView.isHidden = false
+        self.currentBannerAdView?.isHidden = false
+        self.albumCollectionView.isHidden = false
+        self.vipBannerView.isHidden = false
     }
        
     public func hideDetail() {
-        self.saveButton.alpha = 0.0
-        self.favoriteButton.alpha = 0.0
-        self.moreButton.snp.updateConstraints { (make) in
-            if IS_IPHONE_X {
-                make.centerY.equalTo(saveButton.snp.centerY).offset(140)
-            } else {
-                make.centerY.equalTo(saveButton.snp.centerY).offset(120)
-            }
-        }
+        
+        self.buttonsBackgroundView.isHidden = true
         self.currentBannerAdView?.isHidden = true
         self.albumCollectionView.isHidden = true
         self.vipBannerView.isHidden = true
@@ -216,7 +208,7 @@ class LivePhotoDetailViewController: UIViewController {
         }
         reloadAlbumCollection()
         
-        if alreadyViewCount >=  (arc4random() % (10 - 5) + 5) {
+        if alreadyViewCount >=  (arc4random() % (15 - 10) + 5) {
             alreadyViewCount = 0
             self.loadRewardVideoAdIfNeeded(finishCallback: nil)
         }
@@ -540,6 +532,8 @@ extension LivePhotoDetailViewController: UICollectionViewDataSource, UICollectio
                 cell.updateLivePhoto(livePhoto: nil)
                 cell.updateStaticPhoto(staticImage: nil)
             }
+            cell.payImageView.isHidden = self.categoryIsFree
+
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "livephotoAlbumCell", for: indexPath) as! LivePhotoAlubmCollectionViewCell
@@ -633,4 +627,6 @@ extension LivePhotoDetailViewController: BUNativeExpressRewardedVideoAdDelegate 
     }
     
 }
+
+
 

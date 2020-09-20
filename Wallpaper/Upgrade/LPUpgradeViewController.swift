@@ -19,30 +19,14 @@ class LPUpgradeViewController: UIViewController {
     
     var currentSelectedIndex: Int = -1
     
-    var dataSource: [SKProduct] {
-        get {
-            return LPPurchaseManager.shared.products
-        }
-    }
+    var dataSource: [SKProduct] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         LPPurchaseManager.shared.addTarget(target: self)
         LPPurchaseManager.shared.loadPurchaseItems()
-        //        restoreButton.layer.cornerRadius = 18.5
-        //        restoreButton.layer.borderColor = UIColor.rgb(0x9A90A1).cgColor
-        //        restoreButton.layer.borderWidth = 1.0
-        
-        
-        //
-        //        let layer = CAGradientLayer()
-        //        layer.frame = purchaseButton.bounds
-        //        layer.startPoint = CGPoint(x: 0, y: 0)
-        //        layer.endPoint = CGPoint(x: 1, y: 0)
-        //        layer.colors = [UIColor.rgb(0xDE5E97).cgColor, UIColor.rgb(0xD2310C).cgColor]
-        //        purchaseButton.layer.insertSublayer(layer, at: 0)
-        //
+       
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "LPProductTableViewCell", bundle: nil), forCellReuseIdentifier: "LPProductTableViewCell")
@@ -51,6 +35,12 @@ class LPUpgradeViewController: UIViewController {
         tableView.backgroundColor = .clear
         tableView.separatorColor = .clear
         LPPurchaseManager.shared.loadPurchaseItems()
+        dataSource =  LPPurchaseManager.shared.products
+        if dataSource.count > 0 {
+            currentSelectedIndex = 0
+        }
+        tableView.reloadData()
+
     }
     
     @IBAction func puchaseButtonAction(_ sender: Any) {
@@ -141,7 +131,7 @@ extension LPUpgradeViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
             cell.descLabel.text = nil
         }
-        cell.isSelected = indexPath.row == currentSelectedIndex
+        cell.setSelected(indexPath.row == currentSelectedIndex, animated: true)
         return cell
     }
     

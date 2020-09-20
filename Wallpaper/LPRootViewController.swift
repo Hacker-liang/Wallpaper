@@ -20,11 +20,13 @@ class LPRootViewController: UIViewController {
     
     var currentRewardAd: BUNativeExpressRewardedVideoAd?
     
+    var tapGesture: UITapGestureRecognizer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         setupChildVC()
-//        self.loadRewardAdIfNeeded()
+        //        self.loadRewardAdIfNeeded()
     }
     
     private func loadRewardAdIfNeeded() {
@@ -43,7 +45,7 @@ class LPRootViewController: UIViewController {
         }
         livePhotoDetailVC.moreButton.addTarget(self, action: #selector(moreButtonAction), for: .touchUpInside)
         livePhotoDetailVC.settingButton.addTarget(self, action: #selector(settingButtonAction), for: .touchUpInside)
-
+        
         menuVC = LPMenuViewController()
         menuVC.categoryListVC.delegate = self
         menuVC.willMove(toParent: self)
@@ -52,7 +54,7 @@ class LPRootViewController: UIViewController {
         menuVC.view.snp.makeConstraints { (make) in
             make.top.equalTo(48)
             make.bottom.equalTo(0)
-            make.trailing.equalTo(self.livePhotoDetailVC.view.snp.leading)
+            make.leading.equalTo(0).offset(-290)
             make.width.equalTo(290)
         }
     }
@@ -69,34 +71,58 @@ class LPRootViewController: UIViewController {
     
     @objc func moreButtonAction(sender: UIButton) {
         if !sender.isSelected {
-            UIView.animate(withDuration: 0.3, animations: {
-        
-                self.livePhotoDetailVC.view.frame = CGRect(x: self.menuVC.view.bounds.size.width, y: 0, width: self.livePhotoDetailVC.view.bounds.size.width, height: self.livePhotoDetailVC.view.bounds.size.height)
-                
-                self.menuVC.view.frame = CGRect(x: 0, y: self.menuVC.view.frame.origin.y, width:  self.menuVC.view.bounds.size.width, height: self.view.bounds.height)
-                
-                self.livePhotoDetailVC.view.snp.updateConstraints { (make) in
-                    make.leading.equalTo(self.menuVC.view.bounds.size.width)
-                }
-                
-//                self.livePhotoDetailVC.hideDetail()
-
-            }, completion: nil)
+            self.showMenuVC()
         } else {
-            UIView.animate(withDuration: 0.3, animations: {
-                self.livePhotoDetailVC.view.frame = CGRect(x: 0, y: 0, width: self.livePhotoDetailVC.view.bounds.size.width, height: self.livePhotoDetailVC.view.bounds.size.height)
-                
-                self.menuVC.view.frame = CGRect(x: -self.menuVC.view.bounds.size.width, y:self.menuVC.view.frame.origin.y , width: self.menuVC.view.bounds.size.width, height: 0)
-
-                self.livePhotoDetailVC.view.snp.updateConstraints { (make) in
-                    make.leading.equalTo(0)
-                }
-//                self.livePhotoDetailVC.showDetail()
-
-            }, completion: nil)
+            self.hideMenuVC()
         }
-        sender.isSelected = !sender.isSelected
+    }
+    
+    private func showMenuVC() {
+        UIView.animate(withDuration: 0.2, animations: {
+            
+            self.menuVC.view.frame = CGRect(x: 0, y: self.menuVC.view.frame.origin.y, width:  self.menuVC.view.bounds.size.width, height: self.view.bounds.height)
+            
+            self.menuVC.view.snp.updateConstraints { (make) in
+                make.leading.equalTo(0)
+            }
+            
+        }, completion:{ (finish) in
+        })
+        self.livePhotoDetailVC.hideDetail()
+        tapGesture = UITapGestureRecognizer()
+        tapGesture?.numberOfTouchesRequired = 1
+        tapGesture?.numberOfTapsRequired = 1
+        tapGesture?.addTarget(self, action: #selector(detailVCTapAction))
+        self.livePhotoDetailVC.view.addGestureRecognizer(tapGesture!)
+        self.livePhotoDetailVC.moreButton.isSelected = true
+    }
+    
+    private func hideMenuVC() {
+        UIView.animate(withDuration: 0.2, animations: {
+            
+            self.menuVC.view.frame = CGRect(x: -self.menuVC.view.bounds.size.width, y:self.menuVC.view.frame.origin.y , width: self.menuVC.view.bounds.size.width, height: 0)
+            
+            self.menuVC.view.snp.updateConstraints { (make) in
+                make.leading.equalTo(0).offset(-290)
+            }
+            
+        }, completion: { (finish) in
+        })
+        self.livePhotoDetailVC.showDetail()
+        if let gesture = tapGesture {
+            self.livePhotoDetailVC.view.removeGestureRecognizer(gesture)
+            tapGesture = nil
+        }
+        self.livePhotoDetailVC.moreButton.isSelected = false
         
+    }
+    
+    @objc func detailVCTapAction() {
+        self.hideMenuVC()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
 
@@ -137,24 +163,24 @@ extension LPRootViewController: LivePhotoCategoryViewControllerDelegate {
     func didSelectedFindNewCagetory() {
         self.livePhotoDetailVC.updateDataSourceWithNewLivePhotos()
         self.livePhotoDetailVC.moreButton.sendActions(for: .touchUpInside)
-
+        
     }
     
     func didSelectedFindHotCagetory() {
         self.livePhotoDetailVC.updateDataSourceWithHotLivePhotos()
         self.livePhotoDetailVC.moreButton.sendActions(for: .touchUpInside)
-
+        
     }
     
     func didSelectedCagetory(category: LivePhotoCategory, subCagetoryId: Int, subCagetoryName: String) {
-        self.livePhotoDetailVC.updateDataSourcSelectedSubCategoryId(id: subCagetoryId)
+        self.livePhotoDetailVC.updateDataSourcSelectedSubCategory(category: category)
         self.livePhotoDetailVC.moreButton.sendActions(for: .touchUpInside)
         
         let galleryVC = LivePhotoGalleryViewController()
         galleryVC.delegate = self
         self.present(galleryVC, animated: true, completion: nil)
         galleryVC.updateDataSourcSelectedSubCategoryId(id: subCagetoryId, catetoryName: subCagetoryName)
-
+        
     }
 }
 

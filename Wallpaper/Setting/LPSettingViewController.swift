@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import JGProgressHUD
+import SDWebImage
 
 class LPSettingViewController: UIViewController {
     
@@ -87,8 +89,8 @@ class LPSettingViewController: UIViewController {
     }
     
     private func shareApp() {
-        let text = "分享标题"
-        let imageToShare = UIImage(named: "Image")
+        let text = "3D动态壁纸"
+        let imageToShare = UIImage(named: "icon_share_logo")
         let url = URL(string: "https://itunes.apple.com/app/id1483414458")
         
         let activityItems = [text, imageToShare, url] as [Any?]
@@ -106,15 +108,30 @@ class LPSettingViewController: UIViewController {
         }
     }
     
+    private func cleanApp() {
+        let hud = JGProgressHUD(style: .dark)
+        hud.show(in: self.view)
+        LPLivePhotoSourceManager.clearCache()
+        SDImageCache.shared.clearDisk {
+            hud.dismiss()
+            self.view.makeToast("清理成功", duration: 1.0, position: CSToastPositionCenter)
+        }
+      
+    }
+    
     @objc func diamondButtonAction() {
         let ct: UIViewController!
         if LPAccount.shared.isVip {
-            ct = LPUpgradeViewController()
-        } else {
             ct = LPAdvanceViewController()
+        } else {
+            ct = LPUpgradeViewController()
         }
         ct.modalPresentationStyle = .fullScreen
         self.present(ct, animated: true, completion: nil)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
 
@@ -126,6 +143,7 @@ extension LPSettingViewController: LPSegmentViewDelegate {
             self.segmentControl.markSelected(at: segmentSelectedIndex)
         } else if index == 1 {
             self.segmentControl.markSelected(at: segmentSelectedIndex)
+            cleanApp()
         } else {
             self.segmentSelectedIndex = index
             self.updateContent()

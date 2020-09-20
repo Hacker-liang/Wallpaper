@@ -47,5 +47,14 @@ class LPLivePhotoSourceManager: NSObject {
         FileManager.default.createFile(atPath: savePath, contents: data, attributes: nil)
         return true
     }
+    
+    class func clearCache() {
+        do {
+            try FileManager.default.removeItem(atPath: livePhotosDir)
+            try FileManager.default.removeItem(atPath: staticPhotosDir)
+        } catch {
+            print("clearCache FAIL")
+        }
+    }
 
 }

@@ -15,6 +15,9 @@ class LivePhotoDetailCollectionViewCell: UICollectionViewCell {
 
     var livePhotoView: PHLivePhotoView!
     var staticImageView: UIImageView!
+
+    var payImageView: UIImageView!
+
     var currentLivePhotoModel: LivePhotoModel?
     
     override func awakeFromNib() {
@@ -34,6 +37,16 @@ class LivePhotoDetailCollectionViewCell: UICollectionViewCell {
         }
         livePhotoView.isHidden = true
         staticImageView.isHidden = true
+        
+        payImageView = UIImageView()
+        self.addSubview(payImageView)
+        payImageView.image = UIImage(named: "icon_detail_pay")
+        payImageView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.snp_topMargin).offset(100)
+            make.right.equalTo(-16)
+            make.width.height.equalTo(43)
+        }
+        payImageView.isHidden = true
     }
     
     func updateLivePhoto(livePhoto: PHLivePhoto?) {

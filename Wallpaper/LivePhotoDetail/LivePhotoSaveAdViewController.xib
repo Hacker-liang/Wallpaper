@@ -21,9 +21,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vJW-B3-IF0">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zMk-P0-ejJ">
                     <rect key="frame" x="47" y="278" width="320" height="340"/>
                     <subviews>
@@ -71,14 +68,10 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="vJW-B3-IF0" secondAttribute="bottom" id="2zn-ZO-7Ve"/>
-                <constraint firstItem="vJW-B3-IF0" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="7v6-68-zyQ"/>
                 <constraint firstItem="eli-zA-PiF" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="19" id="Cdz-SI-RXb"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="eli-zA-PiF" secondAttribute="trailing" constant="11" id="SCr-qF-pL1"/>
                 <constraint firstItem="zMk-P0-ejJ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="ip9-PP-BxU"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vJW-B3-IF0" secondAttribute="trailing" id="vtk-No-U6N"/>
                 <constraint firstItem="zMk-P0-ejJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="xXG-in-UIf"/>
-                <constraint firstItem="vJW-B3-IF0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ywx-lv-fSY"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
