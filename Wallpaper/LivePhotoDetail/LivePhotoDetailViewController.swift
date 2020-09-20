@@ -173,8 +173,17 @@ class LivePhotoDetailViewController: UIViewController {
             self.currentBannerAdView?.isHidden = true
             
         } else {
-            
+            self.vipBannerView.isHidden = false
+            self.currentBannerAdView?.isHidden = false
         }
+        
+        vipBannerView?.snp.updateConstraints({ (make) in
+            if LPAccount.shared.isVip {
+                make.height.equalTo(0)
+            } else {
+                make.height.equalTo(IS_IPHONE_X ? 75 : 54.5)
+            }
+        })
     }
     
     public func changePageIndex(index: Int) {

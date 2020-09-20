@@ -61,12 +61,14 @@ class LivePhotoCategoryViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         
         
-        layout.itemSize = CGSize(width: 90, height: 100)
+        layout.itemSize = CGSize(width: 90, height: 125)
         layout.headerReferenceSize = CGSize(width: self.view.bounds.size.width, height: 45.0)
 
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(UINib(nibName: "LivePhotoCategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
+        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "footer")
+
         collectionView.showsVerticalScrollIndicator = false
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -111,7 +113,7 @@ extension LivePhotoCategoryViewController: UICollectionViewDataSource, UICollect
         if section == 0 {
             view.backgroundColor = .rgba(0xd9d9d9, alpha: 1)
             let imageView = UIImageView(frame: CGRect(x: 18, y: 20, width: 25, height: 16))
-            imageView.image = UIImage(named: "icon_category_menu")
+            imageView.image = UIImage(named: "icon_cagetory_menu")
             view.addSubview(imageView)
             let label = UILabel(frame: CGRect(x: 54, y: 0, width: 250, height: view.bounds.size.height))
             label.textColor = .rgb(0x5A5A5A)
@@ -148,19 +150,30 @@ extension LivePhotoCategoryViewController: UICollectionViewDataSource, UICollect
         return CGSize(width: collectionView.bounds.size.width, height: 45.5)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        
+        return CGSize(width: collectionView.bounds.size.width, height: 20.0)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-        var view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header", for: indexPath)
-        
-        if indexPath.section == 0 {
-            self.updateSectionHeaderView(&view, category: nil, section: indexPath.section)
+        if kind == UICollectionView.elementKindSectionHeader {
+            var view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header", for: indexPath)
+            
+            if indexPath.section == 0 {
+                self.updateSectionHeaderView(&view, category: nil, section: indexPath.section)
 
-        } else {
-            self.updateSectionHeaderView(&view, category: dataSource[indexPath.section-1], section: indexPath.section)
+            } else {
+                self.updateSectionHeaderView(&view, category: dataSource[indexPath.section-1], section: indexPath.section)
 
+            }
+
+            return view
         }
-
-        return view
+        
+        let fotterView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "footer", for: indexPath)
+        return fotterView
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

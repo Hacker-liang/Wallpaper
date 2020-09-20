@@ -27,8 +27,7 @@ class LPProductTableViewCell: UITableViewCell {
         descLabel.adjustsFontSizeToFitWidth = true
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    func userSelected(_ selected: Bool) {
         if selected {
             bgView.layer.borderColor = UIColor.rgb(0xD79933).cgColor
             selectedImageView.isHidden = false

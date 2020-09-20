@@ -25,8 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setupLeanCloud()
         self.setupBUAd()
         LPAccount.shared.userDidLogin()
-        LPPurchaseManager.shared.loadPurchaseItems()
-//        LivePhotoNetworkHelper.uploadLivePhoto()
+        LPPurchaseManager.shared.loadPurchaseItems { (products) in
+            
+        }
         return true
     }
 }
