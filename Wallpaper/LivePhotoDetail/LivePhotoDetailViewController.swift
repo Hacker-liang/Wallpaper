@@ -25,10 +25,19 @@ class LivePhotoDetailViewController: UIViewController {
     var detailCollectionView: UICollectionView!
     var albumCollectionView: UICollectionView!
     
+    var rewardAdFinishCallback: ((_ isFinish: Bool)->Void)?
+    var fullScreenAdFinishCallback: ((_ isFinish: Bool)->Void)?
+
+    var photoSaveAdViewController: LivePhotoSaveAdViewController?
+    
     var vipBannerView: LPUpgradeBannerView!
+    
+    var alreadyViewCount = 0
     
     var currentBannerAdView: BUNativeExpressBannerView?
     var currentFullScreenAd: BUNativeExpressFullscreenVideoAd?
+    var currentRewardAd: BUNativeExpressRewardedVideoAd?
+
 
     var currentCellIndex: IndexPath = IndexPath(row: -1, section: 0)
     
@@ -102,11 +111,6 @@ class LivePhotoDetailViewController: UIViewController {
     }
     
     public func updateDataSourceWithFavoriteLivePhotos() {
-        var limit = 10
-        if LPAccount.shared.isVip {
-            limit = 100
-        }
-        
         self.dataSource.removeAll()
         let p = LivePhotoHelper.requestUserLiveLivePhotos()
         self.dataSource.append(contentsOf: p)
@@ -151,8 +155,20 @@ class LivePhotoDetailViewController: UIViewController {
         self.view.addSubview(currentBannerAdView!)
     }
     
-    private func loadFullVideoAdIfNeeded() {
+    private func loadFullVideoAdIfNeeded(finishCallback: ((_ isFinish: Bool)->Void)?) {
+        if LPAccount.shared.isVip {
+            return
+        }
+        self.fullScreenAdFinishCallback = finishCallback
         currentFullScreenAd = AdManager.loadFullVideoAd(in: self)
+    }
+    
+    private func loadRewardVideoAdIfNeeded(finishCallback: ((_ isFinish: Bool)->Void)?) {
+        if LPAccount.shared.isVip {
+            return
+        }
+        self.rewardAdFinishCallback = finishCallback
+        currentRewardAd = AdManager.loadRewardAd(in: self)
     }
     
     private func updateContentViewVisiable() {
@@ -179,6 +195,7 @@ class LivePhotoDetailViewController: UIViewController {
         let contentOffset = detailCollectionView.contentOffset
         let index = Int((contentOffset.x+100)/detailCollectionView.bounds.size.width)
         print("当前是第:\(index)页")
+        alreadyViewCount += 1
         
         if currentCellIndex.row != index {
             if currentCellIndex.row >= 0 && currentCellIndex.row < dataSource.count {
@@ -198,6 +215,11 @@ class LivePhotoDetailViewController: UIViewController {
             self.favoriteButton.isSelected = LivePhotoHelper.isUserLike(model)
         }
         reloadAlbumCollection()
+        
+        if alreadyViewCount >=  (arc4random() % (10 - 5) + 5) {
+            alreadyViewCount = 0
+            self.loadRewardVideoAdIfNeeded(finishCallback: nil)
+        }
     }
     
     private func reloadAlbumCollection() {
@@ -269,45 +291,87 @@ class LivePhotoDetailViewController: UIViewController {
         sender.isSelected = !sender.isSelected
     }
     
-    @objc private func saveLivePhoto(sender: UIButton) {
-        
-        if let index = detailCollectionView.indexPathsForVisibleItems.first {
-            let model = dataSource[index.row]
-            if model.isLivePhoto {
-                if let name = model.movName {
-                    PHPhotoLibrary.shared().performChanges({
-                        let request = PHAssetCreationRequest.forAsset()
-                        let savedPath = LPLivePhotoSourceManager.livePhotoSavedPath(with: name)
-                        request.addResource(with: .photo, fileURL: URL(fileURLWithPath: savedPath.jpgSavedPath), options: nil)
-                        request.addResource(with: .pairedVideo, fileURL: URL(fileURLWithPath: savedPath.movSavedPath), options: nil)
-                        
-                    }) { (success, error) in
-                        DispatchQueue.main.async {
-                            if error == nil {
-                                self.view.makeToast("保存成功")
-                                print("保存成功")
-                            } else {
-                                self.view.makeToast("保存失败")
-                                print("保存失败：\(String(describing: error))")
-                            }
+    func saveLivePhoto(livePhoto: LivePhotoModel) {
+        if livePhoto.isLivePhoto {
+            if let name = livePhoto.movName {
+                PHPhotoLibrary.shared().performChanges({
+                    let request = PHAssetCreationRequest.forAsset()
+                    let savedPath = LPLivePhotoSourceManager.livePhotoSavedPath(with: name)
+                    request.addResource(with: .photo, fileURL: URL(fileURLWithPath: savedPath.jpgSavedPath), options: nil)
+                    request.addResource(with: .pairedVideo, fileURL: URL(fileURLWithPath: savedPath.movSavedPath), options: nil)
+                    
+                }) { (success, error) in
+                    DispatchQueue.main.async {
+                        if error == nil {
+                            self.view.makeToast("保存成功")
+                            print("保存成功")
+                        } else {
+                            self.view.makeToast("保存失败")
+                            print("保存失败：\(String(describing: error))")
                         }
                     }
                 }
-                
-            } else {
-                if let imageName = model.imageName, let data = try? Data(contentsOf: URL(fileURLWithPath: LPLivePhotoSourceManager.staticSavedPath(with: imageName))), let image = UIImage(data: data) {
-                    PHPhotoLibrary.shared().performChanges({
-                        PHAssetChangeRequest.creationRequestForAsset(from: image)
-                    }) { (success, error) in
-                        DispatchQueue.main.async {
-                            if error == nil {
-                                self.view.makeToast("保存成功")
-                                print("保存成功")
-                            } else {
-                                self.view.makeToast("保存失败")
-                                print("保存失败：\(String(describing: error))")
-                            }
+            }
+            
+        } else {
+            if let imageName = livePhoto.imageName, let data = try? Data(contentsOf: URL(fileURLWithPath: LPLivePhotoSourceManager.staticSavedPath(with: imageName))), let image = UIImage(data: data) {
+                PHPhotoLibrary.shared().performChanges({
+                    PHAssetChangeRequest.creationRequestForAsset(from: image)
+                }) { (success, error) in
+                    DispatchQueue.main.async {
+                        if error == nil {
+                            self.view.makeToast("保存成功")
+                            print("保存成功")
+                        } else {
+                            self.view.makeToast("保存失败")
+                            print("保存失败：\(String(describing: error))")
                         }
+                    }
+                }
+            }
+        }
+    }
+    
+    @objc private func saveLivePhotoAction(sender: UIButton) {
+        if LPAccount.shared.isVip {
+            if let index = detailCollectionView.indexPathsForVisibleItems.first {
+                let model = dataSource[index.row]
+                self.saveLivePhoto(livePhoto: model)
+            }
+        } else {
+            let ctl = LivePhotoSaveAdViewController()
+            ctl.willMove(toParent: self)
+            self.addChild(ctl)
+            self.view.addSubview(ctl.view)
+            photoSaveAdViewController = ctl
+            ctl.dismissButton.addTarget(self, action: #selector(saveAdCtlDismissAction), for: .touchUpInside)
+            ctl.upgradeButton.addTarget(self, action: #selector(saveAdCtlUpgradeAction), for: .touchUpInside)
+            ctl.watchAdButton.addTarget(self, action: #selector(saveAdCtlWatchAdAction), for: .touchUpInside)
+
+        }
+    }
+    
+    @objc func saveAdCtlDismissAction() {
+        photoSaveAdViewController?.willMove(toParent: nil)
+        photoSaveAdViewController?.removeFromParent()
+        photoSaveAdViewController?.view.removeFromSuperview()
+    }
+    
+    @objc func saveAdCtlUpgradeAction() {
+        self.saveAdCtlDismissAction()
+        self.purchaseVip()
+    }
+    
+    @objc func saveAdCtlWatchAdAction() {
+        self.saveAdCtlDismissAction()
+        let hud = JGProgressHUD(style: .dark)
+        hud.show(in: self.view, animated: true)
+        self.loadRewardVideoAdIfNeeded { [weak self] (finish)  in
+            hud.dismiss()
+            if finish {
+                if let index = self?.detailCollectionView.indexPathsForVisibleItems.first {
+                    if let model = self?.dataSource[index.row] {
+                        self?.saveLivePhoto(livePhoto: model)
                     }
                 }
             }
@@ -408,7 +472,7 @@ class LivePhotoDetailViewController: UIViewController {
             make.top.equalTo(9.0)
             make.width.height.equalTo(62)
         }
-        saveButton.addTarget(self, action: #selector(saveLivePhoto), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(saveLivePhotoAction), for: .touchUpInside)
         
         
         favoriteButton = UIButton(frame: .zero)
@@ -546,7 +610,27 @@ extension LivePhotoDetailViewController: BUNativeExpressFullscreenVideoAdDelegat
     }
     
     func nativeExpressFullscreenVideoAd(_ fullscreenVideoAd: BUNativeExpressFullscreenVideoAd, didFailWithError error: Error?) {
-        print("nativeExpressFullscreenVideoAd didFailWithError\(error)")
+        print("nativeExpressFullscreenVideoAd didFailWithError\(String(describing: error))")
     }
+    
+    func nativeExpressFullscreenVideoAdDidPlayFinish(_ fullscreenVideoAd: BUNativeExpressFullscreenVideoAd, didFailWithError error: Error?) {
+        
+    }
+    
+    func nativeExpressFullscreenVideoAdDidClose(_ fullscreenVideoAd: BUNativeExpressFullscreenVideoAd) {
+        
+    }
+}
+
+extension LivePhotoDetailViewController: BUNativeExpressRewardedVideoAdDelegate {
+    func nativeExpressRewardedVideoAdDidLoad(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd) {
+        rewardedVideoAd.show(fromRootViewController: self)
+    }
+    
+    func nativeExpressRewardedVideoAdDidClose(_ rewardedVideoAd: BUNativeExpressRewardedVideoAd) {
+        rewardAdFinishCallback?(true)
+        rewardAdFinishCallback = nil
+    }
+    
 }
 

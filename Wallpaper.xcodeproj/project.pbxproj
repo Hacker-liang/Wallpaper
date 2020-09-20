@@ -14,6 +14,8 @@
 		6603E52E250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6603E52C250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.swift */; };
 		6603E52F250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6603E52D250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.xib */; };
 		6603E53225165FAC00864C37 /* LivePhotoPrivacyContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6603E53125165FAC00864C37 /* LivePhotoPrivacyContentViewController.swift */; };
+		6603E535251706E000864C37 /* LivePhotoSaveAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6603E533251706E000864C37 /* LivePhotoSaveAdViewController.swift */; };
+		6603E536251706E000864C37 /* LivePhotoSaveAdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6603E534251706E000864C37 /* LivePhotoSaveAdViewController.xib */; };
 		660AF22324B73E760042C2FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF22224B73E760042C2FB /* AppDelegate.swift */; };
 		660AF22724B73E760042C2FB /* LPRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF22624B73E760042C2FB /* LPRootViewController.swift */; };
 		660AF22A24B73E760042C2FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 660AF22824B73E760042C2FB /* Main.storyboard */; };
@@ -117,6 +119,8 @@
 		6603E52C250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoGalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		6603E52D250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePhotoGalleryCollectionViewCell.xib; sourceTree = "<group>"; };
 		6603E53125165FAC00864C37 /* LivePhotoPrivacyContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoPrivacyContentViewController.swift; sourceTree = "<group>"; };
+		6603E533251706E000864C37 /* LivePhotoSaveAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoSaveAdViewController.swift; sourceTree = "<group>"; };
+		6603E534251706E000864C37 /* LivePhotoSaveAdViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePhotoSaveAdViewController.xib; sourceTree = "<group>"; };
 		660AF21F24B73E760042C2FB /* 3D动态壁纸.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "3D动态壁纸.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		660AF22224B73E760042C2FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		660AF22624B73E760042C2FB /* LPRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPRootViewController.swift; sourceTree = "<group>"; };
@@ -387,6 +391,8 @@
 				6675D4BE24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.xib */,
 				664651DD24C81DF6001B9B2C /* LivePhotoDetailCollectionViewCell.swift */,
 				664651DE24C81DF6001B9B2C /* LivePhotoDetailCollectionViewCell.xib */,
+				6603E533251706E000864C37 /* LivePhotoSaveAdViewController.swift */,
+				6603E534251706E000864C37 /* LivePhotoSaveAdViewController.xib */,
 			);
 			path = LivePhotoDetail;
 			sourceTree = "<group>";
@@ -655,6 +661,7 @@
 				6646520D24C97701001B9B2C /* 200w_00011.png in Resources */,
 				6646521C24C97701001B9B2C /* 200w_00018.png in Resources */,
 				6675D4C024CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.xib in Resources */,
+				6603E536251706E000864C37 /* LivePhotoSaveAdViewController.xib in Resources */,
 				6646521A24C97701001B9B2C /* 200w_00025.png in Resources */,
 				6646521924C97701001B9B2C /* 200w_00019.png in Resources */,
 				660AF22C24B73E770042C2FB /* Assets.xcassets in Resources */,
@@ -770,6 +777,7 @@
 				6646523B24CABF82001B9B2C /* LPSegmentView.swift in Sources */,
 				6646523224CAB054001B9B2C /* LPMenuViewController.swift in Sources */,
 				664651D624C5A5A9001B9B2C /* LivePhotoNetworkHelper.swift in Sources */,
+				6603E535251706E000864C37 /* LivePhotoSaveAdViewController.swift in Sources */,
 				660AF22724B73E760042C2FB /* LPRootViewController.swift in Sources */,
 				6646522324C99809001B9B2C /* UIView+Toast.m in Sources */,
 				6646522E24CA956E001B9B2C /* JPEG.swift in Sources */,
@@ -970,7 +978,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5VYP985JJ2;
+				DEVELOPMENT_TEAM = 8Z57A6F36Q;
 				INFOPLIST_FILE = Wallpaper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -978,7 +986,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.5vdesign.livephoto;
+				PRODUCT_BUNDLE_IDENTIFIER = com.5vdesign.livephotos;
 				PRODUCT_NAME = "3D动态壁纸";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wallpaper/Wallpaper-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -995,7 +1003,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5VYP985JJ2;
+				DEVELOPMENT_TEAM = 8Z57A6F36Q;
 				INFOPLIST_FILE = Wallpaper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1003,7 +1011,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.5vdesign.livephoto;
+				PRODUCT_BUNDLE_IDENTIFIER = com.5vdesign.livephotos;
 				PRODUCT_NAME = "3D动态壁纸";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wallpaper/Wallpaper-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
