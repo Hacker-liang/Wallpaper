@@ -9,18 +9,21 @@
 import UIKit
 
 @objc protocol LivePhotoGalleryViewControllerDelegate {
-    func didSelectedLivephoto(index: Int, galleryVC: UIViewController);
+    func galleryDidSelectedLivephoto(index: Int, galleryVC: LivePhotoGalleryViewController);
+    
+   
 }
 
 class LivePhotoGalleryViewController: UIViewController {
     
+    var selectedCategory: LivePhotoCategory?
     
     weak var delegate: LivePhotoGalleryViewControllerDelegate?
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     var dataSource = [LivePhotoModel]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.contentInsetAdjustmentBehavior = .never
@@ -30,11 +33,16 @@ class LivePhotoGalleryViewController: UIViewController {
         (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize = CGSize(width: floor(self.view.bounds.size.width/3), height: floor(self.view.bounds.size.width/3/9*16))
         (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.minimumLineSpacing = 0.0
         (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.minimumInteritemSpacing = 0.0
-
+        
         collectionView.register(UINib(nibName: "LivePhotoGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
     }
     
-    public func updateDataSourcSelectedSubCategoryId(id: Int, catetoryName: String) {
+    public func updateDataSourcSelectedSubCategory(category: LivePhotoCategory) {
+        
+        guard let id = category.categoryId, let categoryName = category.categoryName else {
+            return
+        }
+        selectedCategory = category
         LivePhotoNetworkHelper.requestLivePhotoList(in: id) { [weak self] (livePhotos) in
             guard let weakSelf = self else {
                 return
@@ -46,8 +54,53 @@ class LivePhotoGalleryViewController: UIViewController {
             
             weakSelf.collectionView.reloadData()
         }
-        self.titleLabel.text = catetoryName
+        self.titleLabel.text = categoryName
     }
+    
+    public func updateDataSourceWithHotLivePhotos() {
+        var limit = 10
+        if LPAccount.shared.isVip {
+            limit = 1000
+        }
+        LivePhotoNetworkHelper.requestHotLivePhotoList(limit: limit) { (livePhotos) in
+            
+            self.dataSource.removeAll()
+            if let p = livePhotos {
+                self.dataSource.append(contentsOf: p)
+            }
+            
+            self.collectionView.reloadData()
+            
+        }
+        self.titleLabel.text = "热门推荐"
+    }
+    
+    public func updateDataSourceWithNewLivePhotos() {
+        var limit = 10
+        if LPAccount.shared.isVip {
+            limit = 100
+        }
+        LivePhotoNetworkHelper.requestLatestLivePhotoList(limit: limit) { (livePhotos) in
+            self.dataSource.removeAll()
+            if let p = livePhotos {
+                self.dataSource.append(contentsOf: p)
+            }
+            
+            self.collectionView.reloadData()
+        }
+        self.titleLabel.text = "发现最新"
+        
+    }
+    
+    public func updateDataSourceWithFavoriteLivePhotos() {
+        self.dataSource.removeAll()
+        let p = LivePhotoHelper.requestUserLiveLivePhotos()
+        self.dataSource.append(contentsOf: p)
+        self.collectionView.reloadData()
+        self.titleLabel.text = "收藏影集"
+
+    }
+    
     
     @IBAction func backButtonAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -75,6 +128,6 @@ extension LivePhotoGalleryViewController: UICollectionViewDataSource, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didSelectedLivephoto(index: indexPath.row, galleryVC: self)
+        delegate?.galleryDidSelectedLivephoto(index: indexPath.row, galleryVC: self)
     }
 }

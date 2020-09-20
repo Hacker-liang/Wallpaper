@@ -57,7 +57,7 @@ class LivePhotoDetailViewController: UIViewController {
         self.updateContentViewVisiable()
     }
     
-    public func updateDataSourcSelectedSubCategory(category: LivePhotoCategory) {
+    public func updateDataSourcSelectedSubCategory(category: LivePhotoCategory, selectedIndex: Int? = nil) {
         guard let id = category.categoryId else {
             return
         }
@@ -73,7 +73,11 @@ class LivePhotoDetailViewController: UIViewController {
             
             weakSelf.detailCollectionView.reloadData()
             weakSelf.albumCollectionView.reloadData()
-            weakSelf.pageDidChanged()
+            if let index = selectedIndex, index >= 0, index < weakSelf.dataSource.count {
+                self?.changePageIndex(index: index)
+            } else {
+                self?.changePageIndex(index: 0)
+            }
 
         }
     }

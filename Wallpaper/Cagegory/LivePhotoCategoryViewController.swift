@@ -50,7 +50,7 @@ class LivePhotoCategoryViewController: UIViewController {
         
         let layer = CAGradientLayer()
         layer.frame = self.view.bounds
-        layer.colors = [UIColor.rgba(0xdfcece, alpha: 0.5).cgColor,UIColor.rgba(0xedc884, alpha: 0.5).cgColor,UIColor.rgba(0xe4b092, alpha: 0.5).cgColor,UIColor.rgba(0x006d8d, alpha: 0.5).cgColor]
+        layer.colors = [UIColor.rgba(0xdfcece, alpha: 0.9).cgColor,UIColor.rgba(0xedc884, alpha: 0.9).cgColor,UIColor.rgba(0xe4b092, alpha: 0.9).cgColor,UIColor.rgba(0x006d8d, alpha: 0.9).cgColor]
         bgLayer = layer
         layer.startPoint = .zero
         layer.endPoint = CGPoint(x: 1.0, y: 1.0)
@@ -61,8 +61,9 @@ class LivePhotoCategoryViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         
         
-        layout.itemSize = CGSize(width: 90, height: 90)
+        layout.itemSize = CGSize(width: 90, height: 100)
         layout.headerReferenceSize = CGSize(width: self.view.bounds.size.width, height: 45.0)
+
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(UINib(nibName: "LivePhotoCategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
@@ -103,23 +104,36 @@ class LivePhotoCategoryViewController: UIViewController {
 
 extension LivePhotoCategoryViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    func updateSectionHeaderView(_ view: inout UICollectionReusableView, category: LivePhotoCategory) {
+    func updateSectionHeaderView(_ view: inout UICollectionReusableView, category: LivePhotoCategory?, section: Int) {
         view.subviews.forEach { (view) in
             view.removeFromSuperview()
         }
-        view.backgroundColor = .rgb(0xA7A1A1)
-        let imageView = UIImageView(frame: CGRect(x: 12, y: 8, width: 29, height: 29))
-        imageView.sd_setImage(with: URL(string: category.icon ?? ""), completed: nil)
-        view.addSubview(imageView)
-        let label = UILabel(frame: CGRect(x: 58, y: 0, width: 250, height: view.bounds.size.height))
-        label.textColor = .rgb(0xF2F2F2)
-        label.font = UIFont.systemFont(ofSize: 18.0)
-        label.text = category.categoryName ?? ""
-        view.addSubview(label)
-        if category.isFree ?? false {
-            let freeImageView = UIImageView(frame: CGRect(x: collectionView.bounds.width-63, y: 12, width: 52, height: 21))
-            freeImageView.image = UIImage(named: "icon_category_free")
-            view.addSubview(freeImageView)
+        if section == 0 {
+            view.backgroundColor = .rgba(0xd9d9d9, alpha: 1)
+            let imageView = UIImageView(frame: CGRect(x: 18, y: 20, width: 25, height: 16))
+            imageView.image = UIImage(named: "icon_category_menu")
+            view.addSubview(imageView)
+            let label = UILabel(frame: CGRect(x: 54, y: 0, width: 250, height: view.bounds.size.height))
+            label.textColor = .rgb(0x5A5A5A)
+            label.font = UIFont.systemFont(ofSize: 18.0)
+            label.text = "壁纸分类"
+            view.addSubview(label)
+
+        } else if let category = category {
+            view.backgroundColor = .rgba(0xAC9E86, alpha: 0.8)
+            let imageView = UIImageView(frame: CGRect(x: 12, y: 8, width: 29, height: 29))
+            imageView.sd_setImage(with: URL(string: category.icon ?? ""), completed: nil)
+            view.addSubview(imageView)
+            let label = UILabel(frame: CGRect(x: 58, y: 0, width: 250, height: view.bounds.size.height))
+            label.textColor = .rgb(0xF2F2F2)
+            label.font = UIFont.systemFont(ofSize: 18.0)
+            label.text = category.categoryName ?? ""
+            view.addSubview(label)
+            if category.isFree ?? false {
+                let freeImageView = UIImageView(frame: CGRect(x: collectionView.bounds.width-63, y: 12, width: 52, height: 21))
+                freeImageView.image = UIImage(named: "icon_category_free")
+                view.addSubview(freeImageView)
+            }
         }
     }
     
@@ -129,7 +143,7 @@ extension LivePhotoCategoryViewController: UICollectionViewDataSource, UICollect
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 0 {
-            return .zero
+            return CGSize(width: collectionView.bounds.size.width, height: 57.5)
         }
         return CGSize(width: collectionView.bounds.size.width, height: 45.5)
     }
@@ -137,9 +151,15 @@ extension LivePhotoCategoryViewController: UICollectionViewDataSource, UICollect
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         var view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header", for: indexPath)
-        if dataSource.count>=1 && indexPath.section>0 {
-            self.updateSectionHeaderView(&view, category: dataSource[indexPath.section-1])
+        
+        if indexPath.section == 0 {
+            self.updateSectionHeaderView(&view, category: nil, section: indexPath.section)
+
+        } else {
+            self.updateSectionHeaderView(&view, category: dataSource[indexPath.section-1], section: indexPath.section)
+
         }
+
         return view
     }
     

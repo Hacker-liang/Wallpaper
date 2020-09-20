@@ -156,37 +156,47 @@ extension LPRootViewController: BUNativeExpressRewardedVideoAdDelegate {
 extension LPRootViewController: LivePhotoCategoryViewControllerDelegate {
     
     func didSelectedFindLikeCagetory() {
+        let galleryVC = LivePhotoGalleryViewController()
+        galleryVC.modalPresentationStyle = .fullScreen
+        galleryVC.delegate = self
+        self.present(galleryVC, animated: true, completion: nil)
+        galleryVC.updateDataSourceWithFavoriteLivePhotos()
         self.livePhotoDetailVC.updateDataSourceWithFavoriteLivePhotos()
-        self.livePhotoDetailVC.moreButton.sendActions(for: .touchUpInside)
     }
     
     func didSelectedFindNewCagetory() {
+        let galleryVC = LivePhotoGalleryViewController()
+        galleryVC.modalPresentationStyle = .fullScreen
+        galleryVC.delegate = self
+        self.present(galleryVC, animated: true, completion: nil)
+        galleryVC.updateDataSourceWithNewLivePhotos()
         self.livePhotoDetailVC.updateDataSourceWithNewLivePhotos()
-        self.livePhotoDetailVC.moreButton.sendActions(for: .touchUpInside)
-        
+
     }
     
     func didSelectedFindHotCagetory() {
+        let galleryVC = LivePhotoGalleryViewController()
+        galleryVC.modalPresentationStyle = .fullScreen
+        galleryVC.delegate = self
+        self.present(galleryVC, animated: true, completion: nil)
+        galleryVC.updateDataSourceWithHotLivePhotos()
         self.livePhotoDetailVC.updateDataSourceWithHotLivePhotos()
-        self.livePhotoDetailVC.moreButton.sendActions(for: .touchUpInside)
-        
     }
     
     func didSelectedCagetory(category: LivePhotoCategory, subCagetoryId: Int, subCagetoryName: String) {
-        self.livePhotoDetailVC.updateDataSourcSelectedSubCategory(category: category)
-        self.livePhotoDetailVC.moreButton.sendActions(for: .touchUpInside)
-        
         let galleryVC = LivePhotoGalleryViewController()
+        galleryVC.modalPresentationStyle = .fullScreen
         galleryVC.delegate = self
         self.present(galleryVC, animated: true, completion: nil)
-        galleryVC.updateDataSourcSelectedSubCategoryId(id: subCagetoryId, catetoryName: subCagetoryName)
-        
+        galleryVC.updateDataSourcSelectedSubCategory(category: category)
+        self.livePhotoDetailVC.updateDataSourcSelectedSubCategory(category: category)
     }
 }
 
 extension LPRootViewController: LivePhotoGalleryViewControllerDelegate {
-    func didSelectedLivephoto(index: Int, galleryVC: UIViewController) {
+    func galleryDidSelectedLivephoto(index: Int, galleryVC: LivePhotoGalleryViewController) {
         self.livePhotoDetailVC.changePageIndex(index: index)
         galleryVC.dismiss(animated: true, completion: nil)
+        self.hideMenuVC()
     }
 }
