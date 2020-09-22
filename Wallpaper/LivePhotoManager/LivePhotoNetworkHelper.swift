@@ -148,6 +148,7 @@ class LivePhotoNetworkHelper: NSObject {
         let query = LCQuery(className: LeanCloud_LivePhotosList)
         query.limit = limit
         query.whereKey("updatedAt", .descending)
+        query.whereKey("movName", .existed)
         query.find { (result) in
             switch result {
             case .success(objects: let livePhotos):
@@ -170,6 +171,7 @@ class LivePhotoNetworkHelper: NSObject {
         query.limit = limit
         query.whereKey("updatedAt", .descending)
         query.whereKey("isHot", .equalTo(true))
+        query.whereKey("movName", .existed)
 
         query.find { (result) in
             switch result {

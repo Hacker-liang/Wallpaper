@@ -82,9 +82,9 @@ class LivePhotoDetailViewController: UIViewController {
     }
     
     public func updateDataSourceWithHotLivePhotos() {
-        var limit = 10
+        var limit = 100
         if LPAccount.shared.isVip {
-            limit = 1000
+            limit = 10000
         }
         categoryIsFree = false
         LivePhotoNetworkHelper.requestHotLivePhotoList(limit: limit) { (livePhotos) in
@@ -102,9 +102,9 @@ class LivePhotoDetailViewController: UIViewController {
     }
     
     public func updateDataSourceWithNewLivePhotos() {
-        var limit = 10
+        var limit = 100
         if LPAccount.shared.isVip {
-            limit = 100
+            limit = 10000
         }
         categoryIsFree = false
         LivePhotoNetworkHelper.requestLatestLivePhotoList(limit: limit) { (livePhotos) in

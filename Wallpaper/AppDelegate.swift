@@ -8,6 +8,7 @@
 
 import UIKit
 import LeanCloud
+import StoreKit
 
 @UIApplicationMain
 
@@ -30,11 +31,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
+        
 //        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+3) {
 //            LivePhotoNetworkHelper.uploadLivePhoto()
 //
 //        }
         return true
+    }
+    
+    private func showRatingIfNeeded() {
+        let launchCountKey = "lauchCount"
+        if let count = UserDefaults.standard.object(forKey: launchCountKey) as? Int {
+            if count <= 0 {
+                SKStoreReviewController.requestReview()
+                UserDefaults.standard.set(10, forKey: launchCountKey)
+
+            } else {
+                UserDefaults.standard.set(count-1, forKey: launchCountKey)
+            }
+        } else {
+            UserDefaults.standard.set(10, forKey: launchCountKey)
+        }
+        
     }
 }
 
