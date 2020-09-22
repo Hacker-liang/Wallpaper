@@ -23,6 +23,8 @@ class LPPurchaseManager: NSObject {
     
     override init() {
         super.init()
+        SKPaymentQueue.default().remove(self)
+
         //设置支付监听
         SKPaymentQueue.default().add(self)
     }
@@ -121,6 +123,7 @@ extension LPPurchaseManager: SKPaymentTransactionObserver {
             } else if transaction.transactionState == .restored {
                 print("ipa_恢复购买成功")
                 SKPaymentQueue.default().finishTransaction(transaction)
+                LPAccount.shared.updateVipStatus(isVip: true, expiredData: nil)
             }
         }
     }

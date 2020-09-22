@@ -51,7 +51,14 @@ class LPMenuViewController: UIViewController {
     }
     
     @objc func vipBannerTapAction() {
-        self.gotoPurchaseVC()
+        let ct: UIViewController!
+        if LPAccount.shared.isVip {
+            ct = LPAdvanceViewController()
+        } else {
+            ct = LPUpgradeViewController()
+        }
+        ct.modalPresentationStyle = .fullScreen
+        self.present(ct, animated: true, completion: nil)
     }
     
     private func gotoSettingVC() {
@@ -116,18 +123,4 @@ class LPMenuViewController: UIViewController {
     
 }
 
-extension LPMenuViewController: LPSegmentViewDelegate {
-    func didSelected(at index: Int) {
-        if index == 0 { //显示分类
-            
-        } else if index == 1 { //显示VIP页面
-            if !LPAccount.shared.isVip {
-                gotoPurchaseVC()
-            } else {
-                gotoAdvanceVC()
-            }
-        } else if index == 2 {  //显示设置页面
-            gotoSettingVC()
-        }
-    }
-}
+

@@ -28,6 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         LPPurchaseManager.shared.loadPurchaseItems { (products) in
             
         }
+        
+//        
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+3) {
+//            LivePhotoNetworkHelper.uploadLivePhoto()
+//
+//        }
         return true
     }
 }
@@ -35,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
     fileprivate func setupLeanCloud() {
         #if DEBUG
-        LCApplication.logLevel = .error
+        LCApplication.logLevel = .all
         #endif
         do {
             try LCApplication.default.set(

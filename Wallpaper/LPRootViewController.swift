@@ -188,8 +188,8 @@ extension LPRootViewController: LivePhotoCategoryViewControllerDelegate {
         galleryVC.modalPresentationStyle = .fullScreen
         galleryVC.delegate = self
         self.present(galleryVC, animated: true, completion: nil)
-        galleryVC.updateDataSourcSelectedSubCategory(category: category)
-        self.livePhotoDetailVC.updateDataSourcSelectedSubCategory(category: category)
+        galleryVC.updateDataSourcSelectedSubCategory(category: category, subCagetoryId: subCagetoryId, subCagetoryName: subCagetoryName)
+        self.livePhotoDetailVC.updateDataSourcSelectedCategory(category: category, subCagetoryId: subCagetoryId, subCagetoryName: subCagetoryName)
     }
 }
 

@@ -26,15 +26,21 @@ class LPAccount: NSObject {
         }
         LPPurchaseManager.shared.restorePurchase { (success) in
             if success {
-                self.isVip = true
+                self.updateVipStatus(isVip: true, expiredData: nil)
             } else {
-                self.isVip = false
+                self.updateVipStatus(isVip: false, expiredData: nil)
             }
         }
     }
     
-    public func updateVipStatus(isVip: Bool, expiredData: Int) {
+    public func updateVipStatus(isVip: Bool, expiredData: Int?) {
         self.isVip = isVip
-        UserDefaults.standard.set(isVip ? expiredData:0, forKey: vipExpiredDateCacheKey)
+        
+        if isVip && expiredData != nil {
+            UserDefaults.standard.set(expiredData, forKey: vipExpiredDateCacheKey)
+        } else {
+            UserDefaults.standard.set(isVip ? expiredData:0, forKey: vipExpiredDateCacheKey)
+        }
+        
     }
 }

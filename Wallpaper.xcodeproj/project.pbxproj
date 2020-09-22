@@ -985,7 +985,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.5vdesign.livephotos;
 				PRODUCT_NAME = "3D动态壁纸";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wallpaper/Wallpaper-Bridging-Header.h";
@@ -1010,7 +1010,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.5vdesign.livephotos;
 				PRODUCT_NAME = "3D动态壁纸";
 				SWIFT_OBJC_BRIDGING_HEADER = "Wallpaper/Wallpaper-Bridging-Header.h";

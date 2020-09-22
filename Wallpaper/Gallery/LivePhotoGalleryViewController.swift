@@ -30,18 +30,24 @@ class LivePhotoGalleryViewController: UIViewController {
         collectionView.delegate = self
         collectionView.alwaysBounceVertical = true
         collectionView.dataSource = self
-        (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize = CGSize(width: floor(self.view.bounds.size.width/3), height: floor(self.view.bounds.size.width/3/9*16))
+        
         (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.minimumLineSpacing = 0.0
         (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.minimumInteritemSpacing = 0.0
         
         collectionView.register(UINib(nibName: "LivePhotoGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
     }
     
-    public func updateDataSourcSelectedSubCategory(category: LivePhotoCategory) {
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let size = CGSize(width: floor(self.view.bounds.size.width/3), height: floor(self.view.bounds.size.width/3/9*16))
+        (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize = size
+    }
+    
+    public func updateDataSourcSelectedSubCategory(category: LivePhotoCategory, subCagetoryId: Int, subCagetoryName: String) {
         
-        guard let id = category.categoryId, let categoryName = category.categoryName else {
-            return
-        }
+        let id = subCagetoryId
+        let categoryName = subCagetoryName
+        
         selectedCategory = category
         LivePhotoNetworkHelper.requestLivePhotoList(in: id) { [weak self] (livePhotos) in
             guard let weakSelf = self else {

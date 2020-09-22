@@ -57,12 +57,11 @@ class LivePhotoDetailViewController: UIViewController {
         self.updateContentViewVisiable()
     }
     
-    public func updateDataSourcSelectedSubCategory(category: LivePhotoCategory, selectedIndex: Int? = nil) {
-        guard let id = category.categoryId else {
-            return
-        }
+    public func updateDataSourcSelectedCategory(category: LivePhotoCategory, subCagetoryId: Int, subCagetoryName: String, selectedIndex: Int? = nil) {
+        
+//        let name = category.subCategories[subCategoryIndex].subCategoryName
         self.categoryIsFree = category.isFree ?? false
-        LivePhotoNetworkHelper.requestLivePhotoList(in: id) { [weak self] (livePhotos) in
+        LivePhotoNetworkHelper.requestLivePhotoList(in: subCagetoryId) { [weak self] (livePhotos) in
             guard let weakSelf = self else {
                 return
             }
@@ -133,9 +132,16 @@ class LivePhotoDetailViewController: UIViewController {
     
     public func showDetail() {
         self.buttonsBackgroundView.isHidden = false
-        self.currentBannerAdView?.isHidden = false
         self.albumCollectionView.isHidden = false
-        self.vipBannerView.isHidden = false
+
+        if LPAccount.shared.isVip {
+            self.currentBannerAdView?.isHidden = true
+            self.vipBannerView.isHidden = true
+        } else {
+            self.currentBannerAdView?.isHidden = false
+            self.vipBannerView.isHidden = false
+        }
+        
     }
        
     public func hideDetail() {
@@ -202,6 +208,8 @@ class LivePhotoDetailViewController: UIViewController {
         print("当前是第:\(index)页")
         alreadyViewCount += 1
         
+        print("alreadyViewCount: \(alreadyViewCount)")
+        
         if currentCellIndex.row != index {
             if currentCellIndex.row >= 0 && currentCellIndex.row < dataSource.count {
                 (detailCollectionView.cellForItem(at: currentCellIndex) as? LivePhotoDetailCollectionViewCell)?.livePhotoView.stopPlayback()
@@ -221,9 +229,9 @@ class LivePhotoDetailViewController: UIViewController {
         }
         reloadAlbumCollection()
         
-        if alreadyViewCount >=  (arc4random() % (15 - 10) + 5) {
+        if alreadyViewCount >=  (arc4random() % 5 + 10) {
             alreadyViewCount = 0
-            self.loadRewardVideoAdIfNeeded(finishCallback: nil)
+            self.loadFullVideoAdIfNeeded(finishCallback: nil)
         }
     }
     

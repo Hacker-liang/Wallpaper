@@ -55,27 +55,65 @@ class LivePhotoNetworkHelper: NSObject {
 //        }];
         
         var ret = [LCObject]()
-        for i in 1...30 {
-            let todo = LCObject(className: "LivePhotosList")
+        for i in 1...10 {
             
-            try? todo.set("imageName", value: "livephoto\(i)")
-            try? todo.set("movName", value: "livephoto\(i)")
-            try? todo.set("isHot", value: true)
-            if i%5 == 0 {
-                try? todo.set("isFree", value: true)
-            } else {
-                try? todo.set("isFree", value: false)
-            }
-            if i<10 {
-                try? todo.set("subCategoryId", value: 1001)
-            } else if i < 20 {
-                try? todo.set("subCategoryId", value: 2001)
-            } else {
-                try? todo.set("subCategoryId", value: 1002)
-            }
+            for j in 1...6 {
+                let categoryId = 1
 
-            ret.append(todo)
+                let subCategoryId = "\(categoryId)00\(j)"
+                
+                let todo = LCObject(className: "LivePhotosList")
+                
+                try? todo.set("imageName", value: "\(categoryId)_\(subCategoryId)_\(i)")
+                try? todo.set("movName", value: "\(categoryId)_\(subCategoryId)_\(i)")
+                try? todo.set("isHot", value: true)
+                try? todo.set("isFree", value: false)
+
+                try? todo.set("subCategoryId", value: Int(subCategoryId))
+
+                ret.append(todo)
+            }
         }
+        for i in 1...10 {
+            
+            for j in 1...9 {
+                let categoryId = 2
+
+                let subCategoryId = "\(categoryId)00\(j)"
+                
+                let todo = LCObject(className: "LivePhotosList")
+                
+                try? todo.set("imageName", value: "\(categoryId)_\(subCategoryId)_\(i)")
+                try? todo.set("movName", value: "\(categoryId)_\(subCategoryId)_\(i)")
+                try? todo.set("isHot", value: true)
+                try? todo.set("isFree", value: false)
+
+                try? todo.set("subCategoryId", value: Int(subCategoryId))
+
+                ret.append(todo)
+            }
+        }
+        for i in 1...10 {
+            
+            for j in 1...6 {
+                let categoryId = 3
+
+                let subCategoryId = "\(categoryId)00\(j)"
+                
+                let todo = LCObject(className: "LivePhotosList")
+                
+                try? todo.set("imageName", value: "\(categoryId)_\(subCategoryId)_\(i)")
+                try? todo.set("movName", value: "\(categoryId)_\(subCategoryId)_\(i)")
+                try? todo.set("isHot", value: true)
+                try? todo.set("isFree", value: false)
+
+                try? todo.set("subCategoryId", value: Int(subCategoryId))
+
+                ret.append(todo)
+            }
+            
+        }
+        
         LCObject.save(ret) { (result) in
             
         }
