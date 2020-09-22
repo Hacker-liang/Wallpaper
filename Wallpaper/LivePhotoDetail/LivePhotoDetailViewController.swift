@@ -366,6 +366,7 @@ class LivePhotoDetailViewController: UIViewController {
             ctl.willMove(toParent: self)
             self.addChild(ctl)
             self.view.addSubview(ctl.view)
+            ctl.view.frame = self.view.bounds
             photoSaveAdViewController = ctl
             ctl.dismissButton.addTarget(self, action: #selector(saveAdCtlDismissAction), for: .touchUpInside)
             ctl.upgradeButton.addTarget(self, action: #selector(saveAdCtlUpgradeAction), for: .touchUpInside)

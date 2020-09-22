@@ -58,20 +58,20 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eli-zA-PiF">
-                    <rect key="frame" x="372" y="63" width="31" height="20"/>
+                    <rect key="frame" x="370" y="66" width="31" height="20"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="31" id="PmZ-IN-Ts4"/>
-                        <constraint firstAttribute="height" constant="20" id="cV9-om-xnZ"/>
+                        <constraint firstAttribute="height" constant="20" id="Dnq-I9-yL7"/>
+                        <constraint firstAttribute="width" constant="31" id="MJF-NQ-x1c"/>
                     </constraints>
                     <state key="normal" image="icon_upgrade_back"/>
                 </button>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="eli-zA-PiF" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="19" id="Cdz-SI-RXb"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="eli-zA-PiF" secondAttribute="trailing" constant="11" id="SCr-qF-pL1"/>
+                <constraint firstItem="eli-zA-PiF" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="22" id="EsB-f4-OUv"/>
                 <constraint firstItem="zMk-P0-ejJ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="ip9-PP-BxU"/>
                 <constraint firstItem="zMk-P0-ejJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="xXG-in-UIf"/>
+                <constraint firstAttribute="trailing" secondItem="eli-zA-PiF" secondAttribute="trailing" constant="13" id="zor-ab-Nep"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
