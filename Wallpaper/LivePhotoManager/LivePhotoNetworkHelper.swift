@@ -68,6 +68,7 @@ class LivePhotoNetworkHelper: NSObject {
                 try? todo.set("movName", value: "\(categoryId)_\(subCategoryId)_\(i)")
                 try? todo.set("isHot", value: true)
                 try? todo.set("isFree", value: false)
+                try? todo.set("forceAdWhenDownload", value: true)
 
                 try? todo.set("subCategoryId", value: Int(subCategoryId))
 
@@ -87,6 +88,7 @@ class LivePhotoNetworkHelper: NSObject {
                 try? todo.set("movName", value: "\(categoryId)_\(subCategoryId)_\(i)")
                 try? todo.set("isHot", value: true)
                 try? todo.set("isFree", value: false)
+                try? todo.set("forceAdWhenDownload", value: true)
 
                 try? todo.set("subCategoryId", value: Int(subCategoryId))
 
@@ -103,9 +105,10 @@ class LivePhotoNetworkHelper: NSObject {
                 let todo = LCObject(className: "LivePhotosList")
                 
                 try? todo.set("imageName", value: "\(categoryId)_\(subCategoryId)_\(i)")
-                try? todo.set("movName", value: "\(categoryId)_\(subCategoryId)_\(i)")
+//                try? todo.set("movName", value: "\(categoryId)_\(subCategoryId)_\(i)")
                 try? todo.set("isHot", value: true)
                 try? todo.set("isFree", value: false)
+                try? todo.set("forceAdWhenDownload", value: false)
 
                 try? todo.set("subCategoryId", value: Int(subCategoryId))
 
@@ -117,7 +120,6 @@ class LivePhotoNetworkHelper: NSObject {
         LCObject.save(ret) { (result) in
             
         }
-        
     }
     
     class func requestLivePhotoList(in category: Int, limit: Int = 1000, _ callback: @escaping ((_ list: [LivePhotoModel]?)->Void)) {
@@ -210,6 +212,8 @@ class LivePhotoNetworkHelper: NSObject {
         let livePhoto = LivePhotoModel()
         livePhoto.imageName = object.get("imageName")?.stringValue
         livePhoto.movName = object.get("movName")?.stringValue
+        livePhoto.forceAdWhenDownload = object.get("forceAdWhenDownload")?.boolValue ?? true
+
         return livePhoto
     }
 }

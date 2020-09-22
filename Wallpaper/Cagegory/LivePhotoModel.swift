@@ -14,6 +14,8 @@ class LivePhotoModel: NSObject {
     
     var movName: String?
     
+    var forceAdWhenDownload: Bool = true
+    
     var isLivePhoto: Bool {
         get {
             return self.movName != nil

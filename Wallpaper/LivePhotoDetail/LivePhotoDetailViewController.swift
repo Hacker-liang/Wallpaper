@@ -173,6 +173,10 @@ class LivePhotoDetailViewController: UIViewController {
         currentRewardAd = AdManager.loadRewardAd(in: self)
     }
     
+    private func forceWatchAdBeforDownload(model: LivePhotoModel) -> Bool {
+        return model.forceAdWhenDownload && !LPAccount.shared.isVip
+    }
+    
     private func updateContentViewVisiable() {
         if LPAccount.shared.isVip {
             self.vipBannerView.isHidden = true
@@ -310,8 +314,13 @@ class LivePhotoDetailViewController: UIViewController {
                 PHPhotoLibrary.shared().performChanges({
                     let request = PHAssetCreationRequest.forAsset()
                     let savedPath = LPLivePhotoSourceManager.livePhotoSavedPath(with: name)
-                    request.addResource(with: .photo, fileURL: URL(fileURLWithPath: savedPath.jpgSavedPath), options: nil)
-                    request.addResource(with: .pairedVideo, fileURL: URL(fileURLWithPath: savedPath.movSavedPath), options: nil)
+                    
+                    if livePhoto.isLivePhoto {
+                        request.addResource(with: .photo, fileURL: URL(fileURLWithPath: savedPath.jpgSavedPath), options: nil)
+                        request.addResource(with: .pairedVideo, fileURL: URL(fileURLWithPath: savedPath.movSavedPath), options: nil)
+                    } else {
+                        request.addResource(with: .photo, fileURL: URL(fileURLWithPath: savedPath.jpgSavedPath), options: nil)
+                    }
                     
                 }) { (success, error) in
                     DispatchQueue.main.async {
@@ -346,11 +355,14 @@ class LivePhotoDetailViewController: UIViewController {
     }
     
     @objc private func saveLivePhotoAction(sender: UIButton) {
-        if LPAccount.shared.isVip {
-            if let index = detailCollectionView.indexPathsForVisibleItems.first {
-                let model = dataSource[index.row]
-                self.saveLivePhoto(livePhoto: model)
-            }
+        guard let index = detailCollectionView.indexPathsForVisibleItems.first else {
+            return
+        }
+        let model = dataSource[index.row]
+
+        if LPAccount.shared.isVip || !self.forceWatchAdBeforDownload(model: model) {
+            self.saveLivePhoto(livePhoto: model)
+
         } else {
             let ctl = LivePhotoSaveAdViewController()
             ctl.willMove(toParent: self)
@@ -524,11 +536,13 @@ extension LivePhotoDetailViewController: UICollectionViewDataSource, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.detailCollectionView {
+        
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "livephotodetailCell", for: indexPath) as! LivePhotoDetailCollectionViewCell
-            cell.staticImageView.image = nil
-            cell.livePhotoView.livePhoto = nil
+            cell.updateLivePhoto(livePhoto: nil)
+            cell.updateStaticPhoto(staticImage: nil)
+            
             let model = dataSource[indexPath.row]
-            if model.isLivePhoto, let name = model.movName {
+            if model.isLivePhoto, let name = model.movName {  //动态壁纸
                 if LPLivePhotoSourceManager.livePhotoIsExitInSandbox(with: name) {
                     let paths = LPLivePhotoSourceManager.livePhotoSavedPath(with: name)
                     LivePhotoHelper.requestLivePhotoFromCache(jpgPath: paths.jpgSavedPath, movPath: paths.movSavedPath, targetSize: CGSize(width: cell.bounds.size.width*UIScreen.main.scale, height: cell.bounds.size.height*UIScreen.main.scale), callback: { (photo) in
@@ -545,15 +559,24 @@ extension LivePhotoDetailViewController: UICollectionViewDataSource, UICollectio
                         }
                     }
                 }
-            } else if let name = model.imageName, LPLivePhotoSourceManager.staticImageIsExitInSandbox(with: name) {
-                if let data = try? Data(contentsOf: URL(fileURLWithPath: LPLivePhotoSourceManager.staticSavedPath(with: name))), let image = UIImage(data: data) {
-                    cell.updateStaticPhoto(staticImage: image)
-                }
             } else {
                 cell.updateLivePhoto(livePhoto: nil)
-                cell.updateStaticPhoto(staticImage: nil)
+                if let name = model.imageName, LPLivePhotoSourceManager.staticImageIsExitInSandbox(with: name) {
+                    if let data = try? Data(contentsOf: URL(fileURLWithPath: LPLivePhotoSourceManager.staticSavedPath(with: name))), let image = UIImage(data: data) {
+                        cell.updateStaticPhoto(staticImage: image)
+                    }
+                } else {
+                    if let imageUrl = model.coverImageUrl {
+                        SDWebImageDownloader.shared.downloadImage(with:  URL(string: imageUrl)) { (image, data, error, success) in
+                            if let i = image {
+                                cell.updateStaticPhoto(staticImage: i)
+                            }
+                        }
+                    }
+                }
+                
             }
-            cell.payImageView.isHidden = self.categoryIsFree
+            cell.payImageView.isHidden = !self.forceWatchAdBeforDownload(model: model)
 
             return cell
         } else {

@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
-//        
+        
 //        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+3) {
 //            LivePhotoNetworkHelper.uploadLivePhoto()
 //
