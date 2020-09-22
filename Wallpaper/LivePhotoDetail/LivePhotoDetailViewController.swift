@@ -262,16 +262,15 @@ class LivePhotoDetailViewController: UIViewController {
     private func startDownloadIfNeeded(model: LivePhotoModel) {
         if model.isLivePhoto, let name = model.movName {
             if !LPLivePhotoSourceManager.livePhotoIsExitInSandbox(with: name) {
-                let hud = JGProgressHUD(style: .dark)
-                hud.show(in: self.view)
-                
+                self.view.showLoading()
                 LivePhotoDownloader.shared.downloadLivePhoto(livePhotoName: name, progressChange: { (progress) in
                     
                 }) { [weak self] (success) in
-                    hud.dismiss()
                     guard let weakSelf = self else {
                         return
                     }
+                    weakSelf.view.hideLoading()
+
                     weakSelf.detailCollectionView.reloadItems(at: [weakSelf.currentCellIndex])
                     (weakSelf.detailCollectionView.cellForItem(at: weakSelf.currentCellIndex) as? LivePhotoDetailCollectionViewCell)?.livePhotoView.startPlayback(with: .full)
                 }
@@ -279,16 +278,15 @@ class LivePhotoDetailViewController: UIViewController {
         } else if let name = model.imageName {
             LivePhotoDownloader.shared.cancelDownloadFile(fileName: name)
             if !LPLivePhotoSourceManager.staticImageIsExitInSandbox(with: name) {
-                let hud = JGProgressHUD(style: .dark)
-                hud.show(in: self.view)
+                self.view.showLoading()
                 
                 LivePhotoDownloader.shared.downloadStaticImage(imageName: name, progressChange: { (progress) in
                     
                 }) { [weak self] (success, savedPath)  in
-                    hud.dismiss()
                     guard let weakSelf = self else {
                         return
                     }
+                    weakSelf.view.hideLoading()
                     weakSelf.detailCollectionView.reloadItems(at: [weakSelf.currentCellIndex])
                 }
             }
