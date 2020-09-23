@@ -25,13 +25,15 @@ class LPUpgradeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.dataSource = LPPurchaseManager.shared.products
-        
-        LPPurchaseManager.shared.loadPurchaseItems { [weak self] (products) in
-            self?.dataSource = products
-            self?.tableView.reloadData()
+        IAP.requestProducts(["com.5vdesign.livephotos.weekly","com.5vdesign.livephotos.monthly","com.5vdesign.livephotos.yearly"]) {[weak self] (response, error) in
+            if let products = response?.products {
+                DispatchQueue.main.async {
+                    self?.dataSource = products
+                    self?.tableView.reloadData()
+                }
+            }
         }
-       
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "LPProductTableViewCell", bundle: nil), forCellReuseIdentifier: "LPProductTableViewCell")
@@ -39,7 +41,6 @@ class LPUpgradeViewController: UIViewController {
         tableView.isScrollEnabled = false
         tableView.backgroundColor = .clear
         tableView.separatorColor = .clear
-        dataSource =  LPPurchaseManager.shared.products
         if dataSource.count > 0 {
             currentSelectedIndex = 0
         }
@@ -52,6 +53,7 @@ class LPUpgradeViewController: UIViewController {
         let ctl = LPAdvanceViewController()
         ctl.willMove(toParent: self)
         self.addChild(ctl)
+        ctl.view.frame = self.view.bounds
         self.view.addSubview(ctl.view)
     }
     
@@ -61,60 +63,38 @@ class LPUpgradeViewController: UIViewController {
         }
         let hud = JGProgressHUD()
         hud.show(in: self.view)
-        LPPurchaseManager.shared.purchase(self.dataSource[currentSelectedIndex]) {[weak self] (success) in
-            hud.dismiss(animated: true)
-            guard let weakSelf = self else {
-                return
-            }
-            if success {
-                
-               UIApplication.shared.keyWindow!.makeToast("购买成功", duration: 1, position: CSToastPositionCenter)
-                
-                let product: SKProduct = weakSelf.dataSource[weakSelf.currentSelectedIndex]
-                
-                if #available(iOS 11.2, *) {
-                    if let period = product.subscriptionPeriod {
-                        
-                        var distance: Int = 0
-                        if period.unit == .day {
-                            distance = period.numberOfUnits * 3600*24
-                        } else if period.unit == .week {
-                            distance = period.numberOfUnits * 7*3600*24
-                        } else if period.unit == .month {
-                            distance = period.numberOfUnits * 30*3600*24
-                        } else if period.unit == .year {
-                            distance = period.numberOfUnits * 365*3600*24
-                        }
-                        LPAccount.shared.updateVipStatus(isVip: true, expiredData: Int(Date().timeIntervalSince1970)+distance)
-                    }
+        
+        IAP.purchaseProduct(self.dataSource[currentSelectedIndex].productIdentifier) {[weak self] (identifier, error) in
+            DispatchQueue.main.async {
+                hud.dismiss(animated: true)
+                if error == nil {
+                    LPAccount.shared.forceUpadateVipSatus(isVip: true)
+                    UIApplication.shared.keyWindow!.makeToast("购买成功", duration: 1, position: CSToastPositionCenter)
+                    self?.goAdvancedCtl()
                 } else {
-                    LPAccount.shared.updateVipStatus(isVip: true, expiredData: 0)
+                    UIApplication.shared.keyWindow!.makeToast("购买失败", duration: 1, position: CSToastPositionCenter)
 
                 }
-                weakSelf.goAdvancedCtl()
-
-
-            } else {
-                UIApplication.shared.keyWindow!.makeToast("购买失败", duration: 1, position: CSToastPositionCenter)
             }
+            
         }
+        
     }
     
     @IBAction func restoreButtonAction(_ sender: Any) {
         let hud = JGProgressHUD()
         hud.show(in: self.view)
-        LPPurchaseManager.shared.restorePurchase { [weak self] (success) in
+        LPAccount.shared.updateVipStatus {[weak self] (isVip) in
+    
             hud.dismiss(animated: true)
             guard let weakSelf = self else {
                 return
             }
-            if success {
+            if isVip {
                 UIApplication.shared.keyWindow!.makeToast("恢复成功", duration: 1, position: CSToastPositionCenter)
-                LPAccount.shared.updateVipStatus(isVip: true, expiredData: Int(Date().timeIntervalSince1970+3600*24))
                 weakSelf.goAdvancedCtl()
             } else {
                 UIApplication.shared.keyWindow!.makeToast("恢复失败", duration: 1, position: CSToastPositionCenter)
-                LPAccount.shared.updateVipStatus(isVip: false, expiredData: 0)
             }
         }
     }

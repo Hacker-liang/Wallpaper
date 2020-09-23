@@ -16,8 +16,6 @@ class LPRootViewController: UIViewController {
     var livePhotoDetailVC: LivePhotoDetailViewController!
     var menuVC: LPMenuViewController!
     
-    var purchaseManager: LPPurchaseManager!
-    
     var currentRewardAd: BUNativeExpressRewardedVideoAd?
     
     var tapGesture: UITapGestureRecognizer?

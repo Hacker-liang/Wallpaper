@@ -50,10 +50,16 @@ class LivePhotoDetailViewController: UIViewController {
         self.setupContentView()
         self.updateDataSourceWithNewLivePhotos()
         loadBannerAdIfNeeded()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(vipStatusDidChange), name: NSNotification.Name(kVipStatusChangedNoti), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.updateContentViewVisiable()
+    }
+    
+    @objc func vipStatusDidChange() {
         self.updateContentViewVisiable()
     }
     

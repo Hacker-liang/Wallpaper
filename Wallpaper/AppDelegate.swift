@@ -26,31 +26,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setupLeanCloud()
         self.setupBUAd()
         LPAccount.shared.userDidLogin()
-        LPPurchaseManager.shared.loadPurchaseItems { (products) in
+        IAP.requestProducts(["com.5vdesign.livephotos.weekly","com.5vdesign.livephotos.monthly","com.5vdesign.livephotos.yearly"]) { (response, error) in
             
         }
         
-        
+        self.showRatingIfNeeded()
         
 //        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+3) {
 //            LivePhotoNetworkHelper.uploadLivePhoto()
 //
 //        }
+        
         return true
     }
     
     private func showRatingIfNeeded() {
         let launchCountKey = "lauchCount"
+        let limitCount = 10
         if let count = UserDefaults.standard.object(forKey: launchCountKey) as? Int {
             if count <= 0 {
                 SKStoreReviewController.requestReview()
-                UserDefaults.standard.set(10, forKey: launchCountKey)
+                UserDefaults.standard.set(limitCount, forKey: launchCountKey)
 
             } else {
                 UserDefaults.standard.set(count-1, forKey: launchCountKey)
             }
         } else {
-            UserDefaults.standard.set(10, forKey: launchCountKey)
+            UserDefaults.standard.set(limitCount, forKey: launchCountKey)
         }
         
     }

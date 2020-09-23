@@ -28,6 +28,8 @@
 		660AF26524B897480042C2FB /* LivePhotoUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF26424B897480042C2FB /* LivePhotoUploader.swift */; };
 		660AF26F24B8A94B0042C2FB /* QiniuHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660AF26E24B8A94B0042C2FB /* QiniuHelper.swift */; };
 		660CB2C2251A49FC00802973 /* LPLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660CB2C1251A49FC00802973 /* LPLoading.swift */; };
+		660CB2C6251BA56800802973 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660CB2C4251BA56800802973 /* IAPHelper.swift */; };
+		660CB2C9251BA58600802973 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660CB2C8251BA58600802973 /* Constants.swift */; };
 		660DD79024C5471E00A26AD1 /* LPLivePhotoSourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660DD78F24C5471E00A26AD1 /* LPLivePhotoSourceManager.swift */; };
 		660DD79224C59A5900A26AD1 /* LivePhotoCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660DD79124C59A5900A26AD1 /* LivePhotoCategoryViewController.swift */; };
 		661A6A6124C59C570005E91F /* LivePhotoCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661A6A6024C59C570005E91F /* LivePhotoCategory.swift */; };
@@ -77,7 +79,6 @@
 		6646523E24CAC279001B9B2C /* LPColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646523D24CAC279001B9B2C /* LPColor.swift */; };
 		6646524124CAD098001B9B2C /* LPSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646524024CAD098001B9B2C /* LPSettingViewController.swift */; };
 		6646524624CAD733001B9B2C /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646524524CAD733001B9B2C /* AdManager.swift */; };
-		66515E4224C024DC0075095C /* LPPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66515E4124C024DC0075095C /* LPPurchaseManager.swift */; };
 		6675D4BF24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6675D4BD24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.swift */; };
 		6675D4C024CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6675D4BE24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.xib */; };
 		6675D4C324CED8E4007DC3A7 /* LPUpgradeBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6675D4C224CED8E4007DC3A7 /* LPUpgradeBannerView.swift */; };
@@ -141,6 +142,8 @@
 		660AF26624B898280042C2FB /* Wallpaper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wallpaper-Bridging-Header.h"; sourceTree = "<group>"; };
 		660AF26E24B8A94B0042C2FB /* QiniuHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiniuHelper.swift; sourceTree = "<group>"; };
 		660CB2C1251A49FC00802973 /* LPLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPLoading.swift; sourceTree = "<group>"; };
+		660CB2C4251BA56800802973 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		660CB2C8251BA58600802973 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		660DD78F24C5471E00A26AD1 /* LPLivePhotoSourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPLivePhotoSourceManager.swift; sourceTree = "<group>"; };
 		660DD79124C59A5900A26AD1 /* LivePhotoCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoCategoryViewController.swift; sourceTree = "<group>"; };
 		661A6A6024C59C570005E91F /* LivePhotoCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoCategory.swift; sourceTree = "<group>"; };
@@ -193,7 +196,6 @@
 		6646524224CAD5BB001B9B2C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		6646524324CAD5BB001B9B2C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		6646524524CAD733001B9B2C /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
-		66515E4124C024DC0075095C /* LPPurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPPurchaseManager.swift; sourceTree = "<group>"; };
 		6675D4BD24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoAlubmCollectionViewCell.swift; sourceTree = "<group>"; };
 		6675D4BE24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePhotoAlubmCollectionViewCell.xib; sourceTree = "<group>"; };
 		6675D4C224CED8E4007DC3A7 /* LPUpgradeBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPUpgradeBannerView.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 		660AF22124B73E760042C2FB /* Wallpaper */ = {
 			isa = PBXGroup;
 			children = (
+				660CB2C3251BA56800802973 /* IAP */,
 				6603E53025165F6800864C37 /* Privacy */,
 				6603E527250E55DE00864C37 /* Gallery */,
 				66F3C84624CEDEC2009DE086 /* User */,
@@ -339,6 +342,15 @@
 			children = (
 			);
 			path = LivePhotos;
+			sourceTree = "<group>";
+		};
+		660CB2C3251BA56800802973 /* IAP */ = {
+			isa = PBXGroup;
+			children = (
+				660CB2C4251BA56800802973 /* IAPHelper.swift */,
+				660CB2C8251BA58600802973 /* Constants.swift */,
+			);
+			path = IAP;
 			sourceTree = "<group>";
 		};
 		660DD79324C59A5D00A26AD1 /* Cagegory */ = {
@@ -502,7 +514,6 @@
 			isa = PBXGroup;
 			children = (
 				6675D4C124CED8BD007DC3A7 /* Views */,
-				66515E4124C024DC0075095C /* LPPurchaseManager.swift */,
 				66A749BD24D0137A0034C916 /* LPUpgradeViewController.swift */,
 				66A749BC24D0137A0034C916 /* LPUpgradeViewController.xib */,
 				667716A024D02472005CD7EF /* LPAdvanceViewController.swift */,
@@ -774,6 +785,7 @@
 				6646523824CAB43D001B9B2C /* Palette.swift in Sources */,
 				667716AF24D4F7E0005CD7EF /* LPConstants.swift in Sources */,
 				6646522F24CA956E001B9B2C /* QuickTimeMov.swift in Sources */,
+				660CB2C9251BA58600802973 /* Constants.swift in Sources */,
 				6603E52A250E561A00864C37 /* LivePhotoGalleryViewController.swift in Sources */,
 				664651DC24C6CD1D001B9B2C /* LivePhotoDetailViewController.swift in Sources */,
 				6675D4BF24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.swift in Sources */,
@@ -791,6 +803,7 @@
 				6675D4C324CED8E4007DC3A7 /* LPUpgradeBannerView.swift in Sources */,
 				6603E53225165FAC00864C37 /* LivePhotoPrivacyContentViewController.swift in Sources */,
 				660CB2C2251A49FC00802973 /* LPLoading.swift in Sources */,
+				660CB2C6251BA56800802973 /* IAPHelper.swift in Sources */,
 				66F3C84824CEDED2009DE086 /* LPAccount.swift in Sources */,
 				667716A624D12765005CD7EF /* LPProductTableViewCell.swift in Sources */,
 				660AF25324B73F5B0042C2FB /* LivePhotoHelper.swift in Sources */,
@@ -798,7 +811,6 @@
 				66A749BF24D0137A0034C916 /* LPUpgradeViewController.swift in Sources */,
 				667716AC24D455FE005CD7EF /* LivePhotoCategoryTableViewCell.swift in Sources */,
 				6646523E24CAC279001B9B2C /* LPColor.swift in Sources */,
-				66515E4224C024DC0075095C /* LPPurchaseManager.swift in Sources */,
 				6646524124CAD098001B9B2C /* LPSettingViewController.swift in Sources */,
 				660AF22324B73E760042C2FB /* AppDelegate.swift in Sources */,
 				660AF25524B743600042C2FB /* LivePhotoDownloader.swift in Sources */,
@@ -981,7 +993,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 8Z57A6F36Q;
 				INFOPLIST_FILE = Wallpaper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1006,7 +1018,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 8Z57A6F36Q;
 				INFOPLIST_FILE = Wallpaper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
