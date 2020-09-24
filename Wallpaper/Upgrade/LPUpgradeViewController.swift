@@ -28,7 +28,10 @@ class LPUpgradeViewController: UIViewController {
         IAP.requestProducts(["com.5vdesign.livephotos.weekly","com.5vdesign.livephotos.monthly","com.5vdesign.livephotos.yearly"]) {[weak self] (response, error) in
             if let products = response?.products {
                 DispatchQueue.main.async {
-                    self?.dataSource = products
+                    self?.dataSource = products.sorted { (i, j) -> Bool in
+                        i.price.doubleValue < j.price.doubleValue
+                    }
+                    
                     self?.tableView.reloadData()
                 }
             }
