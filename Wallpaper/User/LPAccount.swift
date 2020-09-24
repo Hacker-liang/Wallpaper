@@ -14,8 +14,6 @@ class LPAccount: NSObject {
     
     let vipExpiredDateCacheKey = "vipExpiredDateCacheKey"
     
-
-    
     static let shared = LPAccount()
     
     private (set) var isVip: Bool = false {

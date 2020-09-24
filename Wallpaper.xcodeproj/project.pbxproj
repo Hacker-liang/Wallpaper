@@ -30,6 +30,7 @@
 		660CB2C2251A49FC00802973 /* LPLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660CB2C1251A49FC00802973 /* LPLoading.swift */; };
 		660CB2C6251BA56800802973 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660CB2C4251BA56800802973 /* IAPHelper.swift */; };
 		660CB2C9251BA58600802973 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660CB2C8251BA58600802973 /* Constants.swift */; };
+		660CB2CD251CE8A100802973 /* LivePhotoConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660CB2CC251CE8A100802973 /* LivePhotoConfig.swift */; };
 		660DD79024C5471E00A26AD1 /* LPLivePhotoSourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660DD78F24C5471E00A26AD1 /* LPLivePhotoSourceManager.swift */; };
 		660DD79224C59A5900A26AD1 /* LivePhotoCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660DD79124C59A5900A26AD1 /* LivePhotoCategoryViewController.swift */; };
 		661A6A6124C59C570005E91F /* LivePhotoCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661A6A6024C59C570005E91F /* LivePhotoCategory.swift */; };
@@ -144,6 +145,7 @@
 		660CB2C1251A49FC00802973 /* LPLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPLoading.swift; sourceTree = "<group>"; };
 		660CB2C4251BA56800802973 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		660CB2C8251BA58600802973 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		660CB2CC251CE8A100802973 /* LivePhotoConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoConfig.swift; sourceTree = "<group>"; };
 		660DD78F24C5471E00A26AD1 /* LPLivePhotoSourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPLivePhotoSourceManager.swift; sourceTree = "<group>"; };
 		660DD79124C59A5900A26AD1 /* LivePhotoCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoCategoryViewController.swift; sourceTree = "<group>"; };
 		661A6A6024C59C570005E91F /* LivePhotoCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoCategory.swift; sourceTree = "<group>"; };
@@ -536,6 +538,7 @@
 			isa = PBXGroup;
 			children = (
 				66F3C84724CEDED2009DE086 /* LPAccount.swift */,
+				660CB2CC251CE8A100802973 /* LivePhotoConfig.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -795,6 +798,7 @@
 				6603E535251706E000864C37 /* LivePhotoSaveAdViewController.swift in Sources */,
 				660AF22724B73E760042C2FB /* LPRootViewController.swift in Sources */,
 				6646522324C99809001B9B2C /* UIView+Toast.m in Sources */,
+				660CB2CD251CE8A100802973 /* LivePhotoConfig.swift in Sources */,
 				6646522E24CA956E001B9B2C /* JPEG.swift in Sources */,
 				6646523924CAB43D001B9B2C /* UIViewShadowExtension.swift in Sources */,
 				667716A224D02472005CD7EF /* LPAdvanceViewController.swift in Sources */,

@@ -88,12 +88,9 @@ class LivePhotoDetailViewController: UIViewController {
     }
     
     public func updateDataSourceWithHotLivePhotos() {
-        var limit = 100
-        if LPAccount.shared.isVip {
-            limit = 10000
-        }
+        
         categoryIsFree = false
-        LivePhotoNetworkHelper.requestHotLivePhotoList(limit: limit) { (livePhotos) in
+        LivePhotoNetworkHelper.requestHotLivePhotoList() { (livePhotos) in
 
             self.dataSource.removeAll()
             if let p = livePhotos {
@@ -108,12 +105,9 @@ class LivePhotoDetailViewController: UIViewController {
     }
     
     public func updateDataSourceWithNewLivePhotos() {
-        var limit = 100
-        if LPAccount.shared.isVip {
-            limit = 10000
-        }
+        
         categoryIsFree = false
-        LivePhotoNetworkHelper.requestLatestLivePhotoList(limit: limit) { (livePhotos) in
+        LivePhotoNetworkHelper.requestLatestLivePhotoList() { (livePhotos) in
 
             self.dataSource.removeAll()
             if let p = livePhotos {
