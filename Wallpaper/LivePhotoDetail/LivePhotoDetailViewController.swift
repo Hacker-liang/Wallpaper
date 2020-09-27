@@ -483,8 +483,8 @@ class LivePhotoDetailViewController: UIViewController {
         moreButton.setImage(UIImage(named: "icon_detail_menu"), for: .normal)
         buttonsBackgroundView.addSubview(moreButton)
         moreButton.snp.makeConstraints { (make) in
-            make.leading.equalTo(32.0)
-            make.top.equalTo(9.0)
+            make.leading.equalTo(22.0)
+            make.top.equalTo(3.0)
             make.width.height.equalTo(62)
         }
         
@@ -492,8 +492,8 @@ class LivePhotoDetailViewController: UIViewController {
         saveButton.setImage(UIImage(named: "icon_detail_save"), for: .normal)
         buttonsBackgroundView.addSubview(saveButton)
         saveButton.snp.makeConstraints { (make) in
-            make.leading.equalTo(moreButton.snp.trailing).offset(13)
-            make.top.equalTo(9.0)
+            make.leading.equalTo(moreButton.snp.trailing).offset(18)
+            make.top.equalTo(3.0)
             make.width.height.equalTo(62)
         }
         saveButton.addTarget(self, action: #selector(saveLivePhotoAction), for: .touchUpInside)
@@ -505,8 +505,8 @@ class LivePhotoDetailViewController: UIViewController {
         favoriteButton.addTarget(self, action: #selector(favoriteButtonAction), for: .touchUpInside)
         buttonsBackgroundView.addSubview(favoriteButton)
         favoriteButton.snp.makeConstraints { (make) in
-            make.leading.equalTo(saveButton.snp.trailing).offset(13)
-            make.top.equalTo(9.0)
+            make.leading.equalTo(saveButton.snp.trailing).offset(15)
+            make.top.equalTo(3.0)
             make.width.height.equalTo(62)
         }
         
@@ -516,7 +516,7 @@ class LivePhotoDetailViewController: UIViewController {
         buttonsBackgroundView.addSubview(settingButton)
         settingButton.snp.makeConstraints { (make) in
             make.leading.equalTo(favoriteButton.snp.trailing).offset(13)
-            make.top.equalTo(9.0)
+            make.top.equalTo(3.0)
             make.width.height.equalTo(62)
         }
         
