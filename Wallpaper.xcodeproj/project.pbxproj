@@ -31,6 +31,11 @@
 		660CB2C6251BA56800802973 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660CB2C4251BA56800802973 /* IAPHelper.swift */; };
 		660CB2C9251BA58600802973 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660CB2C8251BA58600802973 /* Constants.swift */; };
 		660CB2CD251CE8A100802973 /* LivePhotoConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660CB2CC251CE8A100802973 /* LivePhotoConfig.swift */; };
+		660CB2D42520D20A00802973 /* upgrade_image_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 660CB2CF2520D20900802973 /* upgrade_image_3.png */; };
+		660CB2D52520D20A00802973 /* upgrade_image_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 660CB2D02520D20900802973 /* upgrade_image_1.png */; };
+		660CB2D62520D20A00802973 /* upgrade_image_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 660CB2D12520D20900802973 /* upgrade_image_4.png */; };
+		660CB2D72520D20A00802973 /* upgrade_image_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 660CB2D22520D20900802973 /* upgrade_image_2.png */; };
+		660CB2D82520D20A00802973 /* upgrade_image_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 660CB2D32520D20A00802973 /* upgrade_image_5.png */; };
 		660DD79024C5471E00A26AD1 /* LPLivePhotoSourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660DD78F24C5471E00A26AD1 /* LPLivePhotoSourceManager.swift */; };
 		660DD79224C59A5900A26AD1 /* LivePhotoCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660DD79124C59A5900A26AD1 /* LivePhotoCategoryViewController.swift */; };
 		661A6A6124C59C570005E91F /* LivePhotoCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661A6A6024C59C570005E91F /* LivePhotoCategory.swift */; };
@@ -146,6 +151,11 @@
 		660CB2C4251BA56800802973 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		660CB2C8251BA58600802973 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		660CB2CC251CE8A100802973 /* LivePhotoConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoConfig.swift; sourceTree = "<group>"; };
+		660CB2CF2520D20900802973 /* upgrade_image_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgrade_image_3.png; sourceTree = "<group>"; };
+		660CB2D02520D20900802973 /* upgrade_image_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgrade_image_1.png; sourceTree = "<group>"; };
+		660CB2D12520D20900802973 /* upgrade_image_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgrade_image_4.png; sourceTree = "<group>"; };
+		660CB2D22520D20900802973 /* upgrade_image_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgrade_image_2.png; sourceTree = "<group>"; };
+		660CB2D32520D20A00802973 /* upgrade_image_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgrade_image_5.png; sourceTree = "<group>"; };
 		660DD78F24C5471E00A26AD1 /* LPLivePhotoSourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPLivePhotoSourceManager.swift; sourceTree = "<group>"; };
 		660DD79124C59A5900A26AD1 /* LivePhotoCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoCategoryViewController.swift; sourceTree = "<group>"; };
 		661A6A6024C59C570005E91F /* LivePhotoCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoCategory.swift; sourceTree = "<group>"; };
@@ -333,6 +343,7 @@
 		660AF25824B748A50042C2FB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				660CB2CE2520D1F700802973 /* upgrade */,
 				664651E224C97701001B9B2C /* loading */,
 				660AF25924B748C50042C2FB /* LivePhotos */,
 			);
@@ -353,6 +364,18 @@
 				660CB2C8251BA58600802973 /* Constants.swift */,
 			);
 			path = IAP;
+			sourceTree = "<group>";
+		};
+		660CB2CE2520D1F700802973 /* upgrade */ = {
+			isa = PBXGroup;
+			children = (
+				660CB2D02520D20900802973 /* upgrade_image_1.png */,
+				660CB2D22520D20900802973 /* upgrade_image_2.png */,
+				660CB2CF2520D20900802973 /* upgrade_image_3.png */,
+				660CB2D12520D20900802973 /* upgrade_image_4.png */,
+				660CB2D32520D20A00802973 /* upgrade_image_5.png */,
+			);
+			path = upgrade;
 			sourceTree = "<group>";
 		};
 		660DD79324C59A5D00A26AD1 /* Cagegory */ = {
@@ -670,6 +693,7 @@
 			files = (
 				6646520C24C97701001B9B2C /* 200w_00010.png in Resources */,
 				6603E52B250E561A00864C37 /* LivePhotoGalleryViewController.xib in Resources */,
+				660CB2D42520D20A00802973 /* upgrade_image_3.png in Resources */,
 				6603E52F250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.xib in Resources */,
 				6646520424C97701001B9B2C /* 200w_00017.png in Resources */,
 				6646521E24C97701001B9B2C /* 200w_00027.png in Resources */,
@@ -685,7 +709,9 @@
 				6646520124C97701001B9B2C /* 200w_00016.png in Resources */,
 				6646520324C97701001B9B2C /* 200w_0003.png in Resources */,
 				667716AD24D455FE005CD7EF /* LivePhotoCategoryTableViewCell.xib in Resources */,
+				660CB2D72520D20A00802973 /* upgrade_image_2.png in Resources */,
 				6646520724C97701001B9B2C /* 200w_00029.png in Resources */,
+				660CB2D82520D20A00802973 /* upgrade_image_5.png in Resources */,
 				664651E024C81DF6001B9B2C /* LivePhotoDetailCollectionViewCell.xib in Resources */,
 				6646520924C97701001B9B2C /* 200w_00014.png in Resources */,
 				667716A324D02472005CD7EF /* LPAdvanceViewController.xib in Resources */,
@@ -693,6 +719,7 @@
 				660AF22A24B73E760042C2FB /* Main.storyboard in Resources */,
 				6646521124C97701001B9B2C /* 200w_0006.png in Resources */,
 				6646520524C97701001B9B2C /* 200w_0001.png in Resources */,
+				660CB2D52520D20A00802973 /* upgrade_image_1.png in Resources */,
 				66A749BE24D0137A0034C916 /* LPUpgradeViewController.xib in Resources */,
 				6646521724C97701001B9B2C /* 200w_0009.png in Resources */,
 				6646521424C97701001B9B2C /* 200w_00022.png in Resources */,
@@ -707,6 +734,7 @@
 				6646521524C97701001B9B2C /* 200w_00020.png in Resources */,
 				6646521824C97701001B9B2C /* 200w_00021.png in Resources */,
 				6646520A24C97701001B9B2C /* 200w_0000.png in Resources */,
+				660CB2D62520D20A00802973 /* upgrade_image_4.png in Resources */,
 				6646520B24C97701001B9B2C /* 200w_0004.png in Resources */,
 				6646520224C97701001B9B2C /* 200w_0002.png in Resources */,
 				6646521B24C97701001B9B2C /* 200w_00024.png in Resources */,
@@ -997,7 +1025,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 8Z57A6F36Q;
 				INFOPLIST_FILE = Wallpaper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1022,7 +1050,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 8Z57A6F36Q;
 				INFOPLIST_FILE = Wallpaper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

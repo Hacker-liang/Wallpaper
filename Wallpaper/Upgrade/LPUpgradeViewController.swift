@@ -18,6 +18,7 @@ class LPUpgradeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var flashImageView: UIImageView!
     var currentSelectedIndex: Int = -1
     
     var dataSource: [SKProduct] = []
@@ -48,7 +49,32 @@ class LPUpgradeViewController: UIViewController {
             currentSelectedIndex = 0
         }
         tableView.reloadData()
-
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.startAnimation()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NSObject.cancelPreviousPerformRequests(withTarget: self)
+    }
+    
+    
+    @objc private func startAnimation() {
+        var images = [UIImage]()
+        for i in 1...5 {
+            let image = UIImage(named: "upgrade_image_\(i)")
+            images.append(image!)
+        }
+        flashImageView.animationImages = images
+        flashImageView.animationRepeatCount = 1
+        flashImageView.animationDuration = 7.5
+        flashImageView.startAnimating()
+        flashImageView.image = images.last
+        
+        self.perform(#selector(startAnimation), with: nil, afterDelay: 5.0)
     }
     
     private func goAdvancedCtl() {
