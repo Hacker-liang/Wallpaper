@@ -86,6 +86,7 @@ class LPRootViewController: UIViewController {
             
         }, completion:{ (finish) in
         })
+        self.menuVC.updateVipStatus()
         self.livePhotoDetailVC.hideDetail()
         tapGesture = UITapGestureRecognizer()
         tapGesture?.numberOfTouchesRequired = 1

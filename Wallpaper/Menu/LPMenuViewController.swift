@@ -79,7 +79,7 @@ class LPMenuViewController: UIViewController {
         self.present(advanceVC, animated: true, completion: nil)
     }
     
-    private func updateVipStatus() {
+    func updateVipStatus() {
         vipBannerView.snp.updateConstraints { (make) in
             if LPAccount.shared.isVip {
                 make.height.equalTo(0)
