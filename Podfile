@@ -2,7 +2,7 @@
 
 target 'Wallpaper' do
 
-    pod 'Alamofire'
+    pod 'Alamofire', "5.2.1"
     pod 'SnapKit'
     pod "Qiniu", "~> 7.4.1"
     
@@ -11,6 +11,6 @@ target 'Wallpaper' do
 
     pod 'JGProgressHUD', :modular_headers => true
 
-    pod 'Bytedance-UnionAD'
+#    pod 'Bytedance-UnionAD'
 
 end

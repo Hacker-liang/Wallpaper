@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -85,6 +85,17 @@
 		6646523E24CAC279001B9B2C /* LPColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646523D24CAC279001B9B2C /* LPColor.swift */; };
 		6646524124CAD098001B9B2C /* LPSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646524024CAD098001B9B2C /* LPSettingViewController.swift */; };
 		6646524624CAD733001B9B2C /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6646524524CAD733001B9B2C /* AdManager.swift */; };
+		66478C38252FEEFE00EAFC75 /* BUAdSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66478C35252FEEFE00EAFC75 /* BUAdSDK.framework */; };
+		66478C39252FEEFE00EAFC75 /* BUFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66478C36252FEEFE00EAFC75 /* BUFoundation.framework */; };
+		66478C3A252FEEFE00EAFC75 /* BUAdSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66478C37252FEEFE00EAFC75 /* BUAdSDK.bundle */; };
+		66478C3F252FEF6700EAFC75 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 66478C3E252FEF6700EAFC75 /* libc++.tbd */; };
+		66478C44252FEF8200EAFC75 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 66478C43252FEF8200EAFC75 /* libxml2.tbd */; };
+		66478C49252FEF8800EAFC75 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 66478C48252FEF8800EAFC75 /* libbz2.tbd */; };
+		66478C4E252FEF9000EAFC75 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66478C4D252FEF8F00EAFC75 /* Accelerate.framework */; };
+		66478C50252FEF9900EAFC75 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66478C4F252FEF9900EAFC75 /* Photos.framework */; };
+		66478C52252FEF9F00EAFC75 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66478C51252FEF9F00EAFC75 /* AdSupport.framework */; };
+		66478C54252FEFA600EAFC75 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66478C53252FEFA600EAFC75 /* CoreMotion.framework */; };
+		66478C56252FEFAF00EAFC75 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 66478C55252FEFAF00EAFC75 /* libresolv.9.tbd */; };
 		6675D4BF24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6675D4BD24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.swift */; };
 		6675D4C024CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6675D4BE24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.xib */; };
 		6675D4C324CED8E4007DC3A7 /* LPUpgradeBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6675D4C224CED8E4007DC3A7 /* LPUpgradeBannerView.swift */; };
@@ -208,6 +219,17 @@
 		6646524224CAD5BB001B9B2C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		6646524324CAD5BB001B9B2C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		6646524524CAD733001B9B2C /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
+		66478C35252FEEFE00EAFC75 /* BUAdSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BUAdSDK.framework; sourceTree = "<group>"; };
+		66478C36252FEEFE00EAFC75 /* BUFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BUFoundation.framework; sourceTree = "<group>"; };
+		66478C37252FEEFE00EAFC75 /* BUAdSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BUAdSDK.bundle; sourceTree = "<group>"; };
+		66478C3E252FEF6700EAFC75 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		66478C43252FEF8200EAFC75 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		66478C48252FEF8800EAFC75 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		66478C4D252FEF8F00EAFC75 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		66478C4F252FEF9900EAFC75 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		66478C51252FEF9F00EAFC75 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		66478C53252FEFA600EAFC75 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		66478C55252FEFAF00EAFC75 /* libresolv.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.9.tbd; path = usr/lib/libresolv.9.tbd; sourceTree = SDKROOT; };
 		6675D4BD24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoAlubmCollectionViewCell.swift; sourceTree = "<group>"; };
 		6675D4BE24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePhotoAlubmCollectionViewCell.xib; sourceTree = "<group>"; };
 		6675D4C224CED8E4007DC3A7 /* LPUpgradeBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPUpgradeBannerView.swift; sourceTree = "<group>"; };
@@ -230,7 +252,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66478C56252FEFAF00EAFC75 /* libresolv.9.tbd in Frameworks */,
+				66478C54252FEFA600EAFC75 /* CoreMotion.framework in Frameworks */,
+				66478C52252FEF9F00EAFC75 /* AdSupport.framework in Frameworks */,
+				66478C50252FEF9900EAFC75 /* Photos.framework in Frameworks */,
+				66478C4E252FEF9000EAFC75 /* Accelerate.framework in Frameworks */,
+				66478C49252FEF8800EAFC75 /* libbz2.tbd in Frameworks */,
+				66478C44252FEF8200EAFC75 /* libxml2.tbd in Frameworks */,
+				66478C3F252FEF6700EAFC75 /* libc++.tbd in Frameworks */,
 				CE9D1A95F96E447E7AA7553A /* libPods-Wallpaper.a in Frameworks */,
+				66478C38252FEEFE00EAFC75 /* BUAdSDK.framework in Frameworks */,
+				66478C39252FEEFE00EAFC75 /* BUFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +508,7 @@
 		6646521F24C997F7001B9B2C /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				66478C34252FEEFE00EAFC75 /* ADs */,
 				6646523324CAB43D001B9B2C /* TwicketSegmentedControl */,
 				6646522024C99809001B9B2C /* Toast */,
 			);
@@ -535,6 +568,16 @@
 			path = AD;
 			sourceTree = "<group>";
 		};
+		66478C34252FEEFE00EAFC75 /* ADs */ = {
+			isa = PBXGroup;
+			children = (
+				66478C35252FEEFE00EAFC75 /* BUAdSDK.framework */,
+				66478C36252FEEFE00EAFC75 /* BUFoundation.framework */,
+				66478C37252FEEFE00EAFC75 /* BUAdSDK.bundle */,
+			);
+			path = ADs;
+			sourceTree = "<group>";
+		};
 		66515E4024C024B00075095C /* Upgrade */ = {
 			isa = PBXGroup;
 			children = (
@@ -578,6 +621,14 @@
 		EB141A51D25D902E94B3FA30 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				66478C55252FEFAF00EAFC75 /* libresolv.9.tbd */,
+				66478C53252FEFA600EAFC75 /* CoreMotion.framework */,
+				66478C51252FEF9F00EAFC75 /* AdSupport.framework */,
+				66478C4F252FEF9900EAFC75 /* Photos.framework */,
+				66478C4D252FEF8F00EAFC75 /* Accelerate.framework */,
+				66478C48252FEF8800EAFC75 /* libbz2.tbd */,
+				66478C43252FEF8200EAFC75 /* libxml2.tbd */,
+				66478C3E252FEF6700EAFC75 /* libc++.tbd */,
 				EADB868DCF283667142BE229 /* libPods-Wallpaper.a */,
 			);
 			name = Frameworks;
@@ -594,7 +645,6 @@
 				660AF21B24B73E760042C2FB /* Sources */,
 				660AF21C24B73E760042C2FB /* Frameworks */,
 				660AF21D24B73E760042C2FB /* Resources */,
-				3D16916C611EB81D1875085A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -695,6 +745,7 @@
 				6603E52B250E561A00864C37 /* LivePhotoGalleryViewController.xib in Resources */,
 				660CB2D42520D20A00802973 /* upgrade_image_3.png in Resources */,
 				6603E52F250EF46700864C37 /* LivePhotoGalleryCollectionViewCell.xib in Resources */,
+				66478C3A252FEEFE00EAFC75 /* BUAdSDK.bundle in Resources */,
 				6646520424C97701001B9B2C /* 200w_00017.png in Resources */,
 				6646521E24C97701001B9B2C /* 200w_00027.png in Resources */,
 				6646521024C97701001B9B2C /* 200w_0007.png in Resources */,
@@ -759,23 +810,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3D16916C611EB81D1875085A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Wallpaper/Pods-Wallpaper-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Wallpaper/Pods-Wallpaper-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Wallpaper/Pods-Wallpaper-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E2B3CD7E92D18559E1B81E20 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1025,8 +1059,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 8Z57A6F36Q;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Wallpaper/Libs/ADs",
+				);
 				INFOPLIST_FILE = Wallpaper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1050,8 +1088,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 8Z57A6F36Q;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Wallpaper/Libs/ADs",
+				);
 				INFOPLIST_FILE = Wallpaper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (

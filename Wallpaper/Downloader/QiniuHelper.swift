@@ -27,7 +27,7 @@ class QiniuHelper: NSObject {
     }
     
     class func requestQiniuLivePhotoDownloadUrl(sourceName: String) -> String {
-        let expires = 60 //分钟失效
+        let expires = 60 //1分钟失效
         let authPolicy = QiniuAuthPolicy("5v-livephotos", expires: expires)
         let expiresDate = Int(Date().timeIntervalSince1970)+expires
         let url = "\(qiniuDownloadUrl)\(sourceName)?e=\(expiresDate)"
@@ -45,6 +45,7 @@ class QiniuHelper: NSObject {
         let toke = authPolicy.makedownloadToken(url: url, accessKey: qiniuKey, secretKey: qiniuSecret)
         return "\(url)&token=\(toke)"
     }
+    
     class func getMorningDate(date:Date) -> Date{
         let calendar = NSCalendar.init(identifier: .chinese)
         let components = calendar?.components([.year,.month,.day], from: date)

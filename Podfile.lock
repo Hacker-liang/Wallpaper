@@ -1,6 +1,5 @@
 PODS:
   - Alamofire (5.2.1)
-  - Bytedance-UnionAD (3.1.0.5)
   - GRDB.swift (4.14.0):
     - GRDB.swift/standard (= 4.14.0)
   - GRDB.swift/standard (4.14.0)
@@ -23,8 +22,7 @@ PODS:
   - SwiftProtobuf (1.10.2)
 
 DEPENDENCIES:
-  - Alamofire
-  - Bytedance-UnionAD
+  - Alamofire (= 5.2.1)
   - JGProgressHUD
   - LeanCloud
   - Qiniu (~> 7.4.1)
@@ -38,7 +36,6 @@ SPEC REPOS:
     - Qiniu
     - SnapKit
   trunk:
-    - Bytedance-UnionAD
     - GRDB.swift
     - JGProgressHUD
     - LeanCloud
@@ -47,7 +44,6 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
-  Bytedance-UnionAD: 4768919f6de97eb29687b8e50cee65eef5e9f3a9
   GRDB.swift: 8cc3ab7c8b8b4ac1761deb8dca4b51c1c9d429f8
   HappyDNS: 158044ed01375cb27b28f272b198bca3901aced8
   JGProgressHUD: aa403e9a5b45cae98903c4600cccdd98c0c3ec90
@@ -57,6 +53,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftProtobuf: bec1ae7d686ff73dd09d79866154f4970b891410
 
-PODFILE CHECKSUM: d0cd2d0c4adc962e1c67c86403ad633c5305cffd
+PODFILE CHECKSUM: 94afb02b71bf47adcb84ec2ff7d8b23680c0e229
 
 COCOAPODS: 1.9.3

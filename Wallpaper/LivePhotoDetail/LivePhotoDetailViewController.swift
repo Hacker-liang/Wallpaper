@@ -214,17 +214,15 @@ class LivePhotoDetailViewController: UIViewController {
         
         print("alreadyViewCount: \(alreadyViewCount)")
         
-        if currentCellIndex.row != index {
-            if currentCellIndex.row >= 0 && currentCellIndex.row < dataSource.count {
-                (detailCollectionView.cellForItem(at: currentCellIndex) as? LivePhotoDetailCollectionViewCell)?.livePhotoView.stopPlayback()
-                self.cancelDownloadIfNeeded(model: dataSource[currentCellIndex.row])
-            }
-            currentCellIndex = IndexPath(row: index, section: 0)
-            if currentCellIndex.row >= 0 && currentCellIndex.row < dataSource.count {
-                (detailCollectionView.cellForItem(at: currentCellIndex) as? LivePhotoDetailCollectionViewCell)?.livePhotoView.startPlayback(with: .full)
+        if currentCellIndex.row >= 0 && currentCellIndex.row < dataSource.count {
+            (detailCollectionView.cellForItem(at: currentCellIndex) as? LivePhotoDetailCollectionViewCell)?.livePhotoView.stopPlayback()
+            self.cancelDownloadIfNeeded(model: dataSource[currentCellIndex.row])
+        }
+        currentCellIndex = IndexPath(row: index, section: 0)
+        if currentCellIndex.row >= 0 && currentCellIndex.row < dataSource.count {
+            (detailCollectionView.cellForItem(at: currentCellIndex) as? LivePhotoDetailCollectionViewCell)?.livePhotoView.startPlayback(with: .full)
 
-                self.startDownloadIfNeeded(model: dataSource[currentCellIndex.row])
-            }
+            self.startDownloadIfNeeded(model: dataSource[currentCellIndex.row])
         }
         
         if currentCellIndex.row < dataSource.count {

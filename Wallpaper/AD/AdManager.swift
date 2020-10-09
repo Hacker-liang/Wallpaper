@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AppTrackingTransparency
+import AdSupport
 
 class AdManager: NSObject {
     
@@ -19,7 +21,8 @@ class AdManager: NSObject {
         let bannerViewWidth = controller.view.bounds.size.width-40
         let bannerViewHeight = (bannerViewWidth/UIScreen.main.bounds.size.width)*60
         
-        let bannerView = BUNativeExpressBannerView(slotID: Banner_600x90_Id, rootViewController: controller, adSize: CGSize(width: bannerViewWidth, height: bannerViewHeight), isSupportDeepLink: true)
+        let bannerView = BUNativeExpressBannerView.init(slotID: Banner_600x90_Id, rootViewController: controller, adSize: CGSize(width: bannerViewWidth, height: bannerViewHeight))
+//        let bannerView = BUNativeExpressBannerView(slotID: Banner_600x90_Id, rootViewController: controller, adSize: CGSize(width: bannerViewWidth, height: bannerViewHeight), isSupportDeepLink: true)
         
         bannerView.frame = CGRect(x: 20, y: (IS_IPHONE_X ? 50:30), width: bannerViewWidth, height: bannerViewHeight)
         bannerView.delegate = controller
@@ -33,18 +36,35 @@ class AdManager: NSObject {
         model.userId = "123"
         let videoAd = BUNativeExpressRewardedVideoAd(slotID: Reward_Video_Id, rewardedVideoModel: model)
         
-        videoAd.delegate = controller
-        videoAd.loadData()
-        
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
+                videoAd.delegate = controller
+                videoAd.loadData()
+            })
+        } else {
+            videoAd.delegate = controller
+            videoAd.loadData()
+            // Fallback on earlier versions
+        }
+
         return videoAd
     }
     
     class func loadFullVideoAd<T: UIViewController & BUNativeExpressFullscreenVideoAdDelegate>(in controller: T) -> BUNativeExpressFullscreenVideoAd {
-        
         let ad = BUNativeExpressFullscreenVideoAd(slotID: FullScreen_Video_Id)
-        ad.delegate = controller
-        ad.loadData()
+
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
+                ad.delegate = controller
+                ad.loadData()
+            })
+        } else {
+            ad.delegate = controller
+            ad.loadData()
+            // Fallback on earlier versions
+        }
         return ad
+
     }
     
 }

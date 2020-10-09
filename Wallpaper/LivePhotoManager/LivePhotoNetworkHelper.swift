@@ -74,7 +74,7 @@ class LivePhotoNetworkHelper: NSObject {
                 ret.append(todo)
             }
         }
-        for i in 1...10 {
+        for i in 1...20 {
             
             for j in 1...9 {
                 let categoryId = 2
@@ -94,7 +94,7 @@ class LivePhotoNetworkHelper: NSObject {
                 ret.append(todo)
             }
         }
-        for i in 1...10 {
+        for i in 1...20 {
             
             for j in 1...6 {
                 let categoryId = 3

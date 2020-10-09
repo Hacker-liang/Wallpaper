@@ -22,6 +22,7 @@ class LPAccount: NSObject {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: kVipStatusChangedNoti), object: nil)
             }
         }
+        
     }
     
     private var isWorking = false
