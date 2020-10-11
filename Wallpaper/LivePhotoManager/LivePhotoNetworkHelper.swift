@@ -121,12 +121,13 @@ class LivePhotoNetworkHelper: NSObject {
         }
     }
     
-    class func requestLivePhotoList(in category: Int, limit: Int = LivePhotoConfig.shared.getCategoryLimited(), _ callback: @escaping ((_ list: [LivePhotoModel]?)->Void)) {
+    class func requestLivePhotoList(in categoryId: Int, subCategoryId:Int, _ callback: @escaping ((_ list: [LivePhotoModel]?)->Void)) {
         
         let query = LCQuery(className: LeanCloud_LivePhotosList)
+        let limit: Int = LivePhotoConfig.shared.getCategoryLimited(categoryId: categoryId)
         query.limit = limit
         query.whereKey("updatedAt", .descending)
-        query.whereKey("subCategoryId", .equalTo(category))
+        query.whereKey("subCategoryId", .equalTo(subCategoryId))
         query.find { (result) in
             switch result {
             case .success(objects: let livePhotos):
@@ -144,7 +145,7 @@ class LivePhotoNetworkHelper: NSObject {
         }
     }
     
-    class func requestLatestLivePhotoList(limit: Int = LivePhotoConfig.shared.getCategoryLimited(), _ callback: @escaping ((_ list: [LivePhotoModel]?)->Void)) {
+    class func requestLatestLivePhotoList(limit: Int = LivePhotoConfig.shared.getNewLimited(), _ callback: @escaping ((_ list: [LivePhotoModel]?)->Void)) {
         let query = LCQuery(className: LeanCloud_LivePhotosList)
         query.limit = limit
         query.whereKey("updatedAt", .descending)
@@ -166,7 +167,7 @@ class LivePhotoNetworkHelper: NSObject {
         }
     }
     
-    class func requestHotLivePhotoList(limit: Int = LivePhotoConfig.shared.getCategoryLimited(), _ callback: @escaping ((_ list: [LivePhotoModel]?)->Void)) {
+    class func requestHotLivePhotoList(limit: Int = LivePhotoConfig.shared.getHotLimited(), _ callback: @escaping ((_ list: [LivePhotoModel]?)->Void)) {
         let query = LCQuery(className: LeanCloud_LivePhotosList)
         query.limit = limit
         query.whereKey("updatedAt", .descending)
@@ -212,8 +213,25 @@ class LivePhotoNetworkHelper: NSObject {
     
     class func parseLivePhotoData(object: LCObject) -> LivePhotoModel {
         let livePhoto = LivePhotoModel()
-        livePhoto.imageName = object.get("imageName")?.stringValue
-        livePhoto.movName = object.get("movName")?.stringValue
+        
+        
+        if IS_IPHONE_X {
+            
+            if let imageName = object.get("imageName")?.stringValue {
+                livePhoto.imageName = "\(imageName)_19x9"
+            }
+            if let movName = object.get("movName")?.stringValue {
+                livePhoto.movName = "\(movName)_19x9"
+            }
+        } else {
+            if let imageName = object.get("imageName")?.stringValue {
+                livePhoto.imageName = "\(imageName)_16x9"
+            }
+            if let movName = object.get("movName")?.stringValue {
+                livePhoto.movName = "\(movName)_16x9"
+            }
+        }
+        
         livePhoto.forceAdWhenDownload = object.get("forceAdWhenDownload")?.boolValue ?? true
 
         return livePhoto

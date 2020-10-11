@@ -30,7 +30,7 @@ class LivePhotoGalleryViewController: UIViewController {
         collectionView.delegate = self
         collectionView.alwaysBounceVertical = true
         collectionView.dataSource = self
-        
+        collectionView.showsVerticalScrollIndicator = false
         (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.minimumLineSpacing = 0.0
         (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.minimumInteritemSpacing = 0.0
         
@@ -49,7 +49,7 @@ class LivePhotoGalleryViewController: UIViewController {
         let categoryName = subCagetoryName
         
         selectedCategory = category
-        LivePhotoNetworkHelper.requestLivePhotoList(in: id) { [weak self] (livePhotos) in
+        LivePhotoNetworkHelper.requestLivePhotoList(in: category.categoryId ?? 0, subCategoryId: subCagetoryId) { [weak self] (livePhotos) in
             guard let weakSelf = self else {
                 return
             }

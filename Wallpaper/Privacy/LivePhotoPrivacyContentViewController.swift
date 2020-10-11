@@ -23,6 +23,7 @@ class LivePhotoPrivacyContentViewController: UIViewController {
         }
         
         contentTextView = UITextView()
+        contentTextView.isEditable = false
         contentTextView.font = UIFont.systemFont(ofSize: 12)
         contentTextView.textColor = .rgb(0xdedede)
         contentTextView.backgroundColor = .clear

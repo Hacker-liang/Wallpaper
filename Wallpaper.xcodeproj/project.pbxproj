@@ -96,6 +96,7 @@
 		66478C52252FEF9F00EAFC75 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66478C51252FEF9F00EAFC75 /* AdSupport.framework */; };
 		66478C54252FEFA600EAFC75 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66478C53252FEFA600EAFC75 /* CoreMotion.framework */; };
 		66478C56252FEFAF00EAFC75 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 66478C55252FEFAF00EAFC75 /* libresolv.9.tbd */; };
+		665C840F2532FC80007965AE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 665C840E2532FC80007965AE /* StoreKit.framework */; };
 		6675D4BF24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6675D4BD24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.swift */; };
 		6675D4C024CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6675D4BE24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.xib */; };
 		6675D4C324CED8E4007DC3A7 /* LPUpgradeBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6675D4C224CED8E4007DC3A7 /* LPUpgradeBannerView.swift */; };
@@ -230,6 +231,7 @@
 		66478C51252FEF9F00EAFC75 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		66478C53252FEFA600EAFC75 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		66478C55252FEFAF00EAFC75 /* libresolv.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.9.tbd; path = usr/lib/libresolv.9.tbd; sourceTree = SDKROOT; };
+		665C840E2532FC80007965AE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		6675D4BD24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoAlubmCollectionViewCell.swift; sourceTree = "<group>"; };
 		6675D4BE24CECB0C007DC3A7 /* LivePhotoAlubmCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LivePhotoAlubmCollectionViewCell.xib; sourceTree = "<group>"; };
 		6675D4C224CED8E4007DC3A7 /* LPUpgradeBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPUpgradeBannerView.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				66478C56252FEFAF00EAFC75 /* libresolv.9.tbd in Frameworks */,
 				66478C54252FEFA600EAFC75 /* CoreMotion.framework in Frameworks */,
 				66478C52252FEF9F00EAFC75 /* AdSupport.framework in Frameworks */,
+				665C840F2532FC80007965AE /* StoreKit.framework in Frameworks */,
 				66478C50252FEF9900EAFC75 /* Photos.framework in Frameworks */,
 				66478C4E252FEF9000EAFC75 /* Accelerate.framework in Frameworks */,
 				66478C49252FEF8800EAFC75 /* libbz2.tbd in Frameworks */,
@@ -621,6 +624,7 @@
 		EB141A51D25D902E94B3FA30 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				665C840E2532FC80007965AE /* StoreKit.framework */,
 				66478C55252FEFAF00EAFC75 /* libresolv.9.tbd */,
 				66478C53252FEFA600EAFC75 /* CoreMotion.framework */,
 				66478C51252FEF9F00EAFC75 /* AdSupport.framework */,
@@ -1059,7 +1063,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = 8Z57A6F36Q;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1088,7 +1092,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = 8Z57A6F36Q;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

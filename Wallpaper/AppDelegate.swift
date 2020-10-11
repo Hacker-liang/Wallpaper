@@ -40,6 +40,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return true
+    }
+    
     private func showRatingIfNeeded() {
         let launchCountKey = "lauchCount"
         let limitCount = 10
@@ -75,6 +79,10 @@ extension AppDelegate {
     
     fileprivate func setupBUAd() {
         BUAdSDKManager.setAppID(BUAd_AppId)
+        BUAdSDKManager.setIsPaidApp(false)
+        #if DEBUG
+        BUAdSDKManager.setLoglevel(.debug)
+        #endif
     }
 }
 

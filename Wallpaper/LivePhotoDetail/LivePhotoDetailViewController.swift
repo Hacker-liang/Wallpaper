@@ -67,7 +67,7 @@ class LivePhotoDetailViewController: UIViewController {
         
 //        let name = category.subCategories[subCategoryIndex].subCategoryName
         self.categoryIsFree = category.isFree ?? false
-        LivePhotoNetworkHelper.requestLivePhotoList(in: subCagetoryId) { [weak self] (livePhotos) in
+        LivePhotoNetworkHelper.requestLivePhotoList(in: category.categoryId ?? 0, subCategoryId: subCagetoryId) { [weak self] (livePhotos) in
             guard let weakSelf = self else {
                 return
             }
@@ -80,9 +80,7 @@ class LivePhotoDetailViewController: UIViewController {
             weakSelf.albumCollectionView.reloadData()
             if let index = selectedIndex, index >= 0, index < weakSelf.dataSource.count {
                 self?.changePageIndex(index: index)
-            } else {
-                self?.changePageIndex(index: 0)
-            }
+            } 
 
         }
     }
@@ -158,7 +156,7 @@ class LivePhotoDetailViewController: UIViewController {
     }
     
     private func loadFullVideoAdIfNeeded(finishCallback: ((_ isFinish: Bool)->Void)?) {
-        if LPAccount.shared.isVip {
+        if LPAccount.shared.isVip || !LivePhotoConfig.shared.showVideoAds {
             return
         }
         self.fullScreenAdFinishCallback = finishCallback
@@ -166,7 +164,7 @@ class LivePhotoDetailViewController: UIViewController {
     }
     
     private func loadRewardVideoAdIfNeeded(finishCallback: ((_ isFinish: Bool)->Void)?) {
-        if LPAccount.shared.isVip {
+        if LPAccount.shared.isVip || !LivePhotoConfig.shared.showVideoAds {
             return
         }
         self.rewardAdFinishCallback = finishCallback
@@ -174,7 +172,7 @@ class LivePhotoDetailViewController: UIViewController {
     }
     
     private func forceWatchAdBeforDownload(model: LivePhotoModel) -> Bool {
-        return model.forceAdWhenDownload && !LPAccount.shared.isVip
+        return model.forceAdWhenDownload && !LPAccount.shared.isVip && LivePhotoConfig.shared.showVideoAds
     }
     
     private func updateContentViewVisiable() {
